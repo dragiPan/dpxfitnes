@@ -49,7 +49,8 @@ Deno.serve(async (req) => {
 
   if (action === 'list_events') {
     const token = await accessTokenFor(admin, callerId)
-    if (!token) return json({ error: 'not_connected' }, 400)
+    // 200 with an error field: the browser client can't read non-2xx bodies
+    if (!token) return json({ error: 'not_connected' })
 
     const params = new URLSearchParams({
       timeMin: body.time_min,
@@ -62,7 +63,11 @@ Deno.serve(async (req) => {
       `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
       { headers: { Authorization: `Bearer ${token}` } },
     )
-    if (!res.ok) return json({ error: 'google_error' }, 502)
+    if (!res.ok) {
+      const detail = await res.text()
+      console.error('Google Calendar list failed:', res.status, detail)
+      return json({ error: 'google_error', status: res.status, detail })
+    }
     const data = await res.json()
     return json({ events: data.items ?? [] })
   }
@@ -80,7 +85,7 @@ Deno.serve(async (req) => {
     if (!targetUserId) return json({ error: 'target_user_id required' }, 400)
 
     const token = await accessTokenFor(admin, targetUserId)
-    if (!token) return json({ error: 'not_connected' }, 400)
+    if (!token) return json({ error: 'not_connected' })
 
     const res = await fetch(
       'https://www.googleapis.com/calendar/v3/calendars/primary/events',
@@ -96,7 +101,11 @@ Deno.serve(async (req) => {
         }),
       },
     )
-    if (!res.ok) return json({ error: 'google_error' }, 502)
+    if (!res.ok) {
+      const detail = await res.text()
+      console.error('Google Calendar insert failed:', res.status, detail)
+      return json({ error: 'google_error', status: res.status, detail })
+    }
     const event = await res.json()
     return json({ event_id: event.id })
   }

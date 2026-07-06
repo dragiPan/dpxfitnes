@@ -45,16 +45,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { data: sub } = supabase.auth.onAuthStateChange((event, newSession) => {
       setSession(newSession)
       if (newSession) {
-        void loadProfile(newSession.user.id)
-        // After a Google OAuth redirect with calendar scopes, persist the
-        // refresh token so edge functions can talk to Google Calendar later.
-        if (event === 'SIGNED_IN' && newSession.provider_refresh_token) {
-          void supabase.from('google_tokens').upsert({
-            user_id: newSession.user.id,
-            refresh_token: newSession.provider_refresh_token,
-            updated_at: new Date().toISOString(),
-          })
-        }
+        // deferred so supabase calls never run inside the auth lock
+        setTimeout(() => {
+          void loadProfile(newSession.user.id)
+          // After a Google OAuth redirect with calendar scopes, persist the
+          // refresh token so edge functions can talk to Google Calendar later.
+          if (event === 'SIGNED_IN' && newSession.provider_refresh_token) {
+            supabase
+              .from('google_tokens')
+              .upsert({
+                user_id: newSession.user.id,
+                refresh_token: newSession.provider_refresh_token,
+                updated_at: new Date().toISOString(),
+              })
+              .then(({ error }) => {
+                if (error) console.error('Failed to store Google token:', error.message)
+              })
+          }
+        }, 0)
       } else {
         setProfile(null)
       }

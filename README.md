@@ -48,6 +48,8 @@ One Google Cloud project powers both login and calendar sync.
 
 Clients connect their calendar from the **Planner** page (one-time consent). Training sessions you schedule get pushed straight into their Google Calendar.
 
+> **Important:** while the consent screen's publishing status is *Testing*, Google expires refresh tokens after **7 days**, so clients would have to reconnect their calendar weekly. Once the flow works, go to Google Auth Platform → **Audience** → **Publish app**. The app stays unverified (users see a one-time "unverified app" warning they can click through), but tokens stop expiring. Also note the consent screen shows your `*.supabase.co` domain instead of "DPX Fitnes" — that's cosmetic and only changes with Google verification or a custom auth domain.
+
 ## 4. Edge functions (invites, email, calendar)
 
 Install the [Supabase CLI](https://supabase.com/docs/guides/cli), then from this folder:
@@ -73,9 +75,14 @@ Any static host works. Easiest:
 - **Vercel**: import the repo → framework Vite → add the two `VITE_*` env vars → deploy.
 - or **Firebase Hosting** / **Cloudflare Pages** — same idea: build command `npm run build`, output `dist/`.
 
-Because it's a single-page app, add a rewrite of all routes to `/index.html` (Vercel does this automatically for Vite; on Firebase set `"rewrites": [{ "source": "**", "destination": "/index.html" }]`).
+Because it's a single-page app, all routes must be rewritten to `/index.html` — the included [vercel.json](vercel.json) handles this on Vercel; on Firebase set `"rewrites": [{ "source": "**", "destination": "/index.html" }]`.
 
-After deploying, update Supabase *Site URL* / *Redirect URLs* and the `SITE_URL` secret.
+After deploying, update Supabase *Site URL* / *Redirect URLs* and the `SITE_URL` secret. In **Redirect URLs**, use wildcard entries so OAuth can return to sub-pages like `/planner`:
+
+```
+https://your-app.vercel.app/**
+http://localhost:5173/**
+```
 
 ---
 

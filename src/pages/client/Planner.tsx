@@ -24,12 +24,25 @@ export default function Planner() {
 
   useEffect(() => {
     if (!session) return
-    void supabase
-      .from('google_tokens')
-      .select('user_id')
-      .eq('user_id', session.user.id)
-      .maybeSingle()
-      .then(({ data }) => setConnected(!!data))
+    void (async () => {
+      // If we just came back from the Google consent screen, the refresh token
+      // is on the current session — persist it before checking connection state.
+      const { data: fresh } = await supabase.auth.getSession()
+      const s = fresh.session
+      if (s?.provider_refresh_token) {
+        await supabase.from('google_tokens').upsert({
+          user_id: s.user.id,
+          refresh_token: s.provider_refresh_token,
+          updated_at: new Date().toISOString(),
+        })
+      }
+      const { data } = await supabase
+        .from('google_tokens')
+        .select('user_id')
+        .eq('user_id', session.user.id)
+        .maybeSingle()
+      setConnected(!!data)
+    })()
   }, [session])
 
   const load = useCallback(async () => {
@@ -64,6 +77,14 @@ export default function Planner() {
           body: { action: 'list_events', time_min: timeMin, time_max: timeMax },
         })
         if (fnErr) throw fnErr
+        if ((data as { error?: string })?.error === 'not_connected') {
+          // token missing or revoked — show the connect button again
+          setConnected(false)
+          setEvents(collected.sort((a, b) => a.start.getTime() - b.start.getTime()))
+          setLoading(false)
+          return
+        }
+        if ((data as { error?: string })?.error) throw new Error((data as { error: string }).error)
         for (const ev of ((data as { events: GCalEvent[] })?.events ?? [])) {
           const startRaw = ev.start?.dateTime ?? ev.start?.date
           if (!startRaw) continue
