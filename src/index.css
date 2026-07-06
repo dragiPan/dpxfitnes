@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-white text-black font-sans antialiased;
+}
+
+h1,
+h2,
+h3 {
+  @apply font-extrabold tracking-tight;
+}
+
+/* ---- Reusable component classes (black & white design system) ---- */
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 font-bold text-sm
+    border-2 border-black bg-white text-black cursor-pointer select-none
+    transition-colors duration-100 disabled:opacity-40 disabled:cursor-not-allowed;
+}
+.btn:hover:not(:disabled) {
+  @apply bg-black text-white;
+}
+
+.btn-primary {
+  @apply bg-black text-white;
+}
+.btn-primary:hover:not(:disabled) {
+  @apply bg-white text-black;
+}
+
+.btn-sm {
+  @apply px-2.5 py-1.5 text-xs;
+}
+
+.card {
+  @apply border-2 border-black bg-white p-4;
+}
+
+.input {
+  @apply w-full border-2 border-black bg-white px-3 py-2.5 text-sm font-semibold
+    placeholder:text-neutral-400 placeholder:font-normal focus:outline-none
+    focus:ring-2 focus:ring-black focus:ring-offset-1;
+}
+
+.label {
+  @apply block text-xs font-bold uppercase tracking-wide mb-1;
+}
+
+.tab {
+  @apply px-3 py-2 text-xs sm:text-sm font-bold uppercase tracking-wide border-2 border-black
+    cursor-pointer whitespace-nowrap bg-white text-black;
+}
+.tab-active {
+  @apply bg-black text-white;
+}
+
+.badge {
+  @apply inline-block border border-black px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide;
+}

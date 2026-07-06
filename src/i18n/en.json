@@ -1,0 +1,260 @@
+{
+  "app": { "name": "DPX FITNES" },
+  "nav": {
+    "dashboard": "Home",
+    "checkin": "Check-in",
+    "program": "Program",
+    "meals": "Meals",
+    "planner": "Planner",
+    "board": "Board",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "clients": "Clients",
+    "programs": "Programs",
+    "groups": "Groups"
+  },
+  "auth": {
+    "welcome": "Coaching platform",
+    "signInGoogle": "Continue with Google",
+    "or": "or",
+    "email": "Email address",
+    "sendCode": "Send login code",
+    "code": "6-digit code",
+    "verifyCode": "Verify code",
+    "codeSent": "Code sent — check your email.",
+    "inviteOnly": "This platform is invite-only. If you don't have an account, ask your coach for an invite.",
+    "error": "Sign-in failed. Check your email/code and try again."
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back",
+    "loading": "Loading…",
+    "date": "Date",
+    "none": "None",
+    "today": "Today",
+    "close": "Close",
+    "duplicate": "Duplicate",
+    "view": "View",
+    "send": "Send",
+    "name": "Name",
+    "title": "Title",
+    "description": "Description",
+    "notes": "Notes",
+    "weight": "Weight",
+    "error": "Something went wrong. Try again.",
+    "saved": "Saved",
+    "confirmDelete": "Delete this? This cannot be undone.",
+    "optional": "optional",
+    "all": "All"
+  },
+  "nutrient": {
+    "calories": "Calories",
+    "protein": "Protein",
+    "carbs": "Carbohydrates",
+    "fiber": "Fiber",
+    "sugar": "Sugar",
+    "fat": "Fat",
+    "saturated_fat": "Saturated fat",
+    "polyunsaturated_fat": "Polyunsaturated fat",
+    "monounsaturated_fat": "Monounsaturated fat",
+    "trans_fat": "Trans fat",
+    "cholesterol": "Cholesterol",
+    "sodium": "Sodium",
+    "potassium": "Potassium",
+    "vitamin_a": "Vitamin A",
+    "vitamin_c": "Vitamin C",
+    "calcium": "Calcium",
+    "iron": "Iron"
+  },
+  "measure": {
+    "title": "Body measurements (cm)",
+    "neck": "Neck",
+    "shoulders": "Shoulders",
+    "chest": "Chest",
+    "waist": "Waist",
+    "hips": "Hips",
+    "arm": "Arm",
+    "thigh": "Thigh",
+    "calf": "Calf"
+  },
+  "checkin": {
+    "title": "Daily check-in",
+    "subtitle": "Transfer your daily totals from MyFitnessPal.",
+    "macros": "Main numbers",
+    "micros": "Other nutrients",
+    "weight": "Body weight (kg)",
+    "target": "Target",
+    "notesPh": "Anything you want to tell your coach…",
+    "saved": "Check-in saved. Good work!"
+  },
+  "dashboard": {
+    "hello": "Hey",
+    "todayCheckin": "Today's check-in",
+    "done": "Done",
+    "notDone": "Not filled in yet",
+    "goCheckin": "Fill in check-in",
+    "nextSession": "Next training session",
+    "noSession": "No session scheduled",
+    "latestPosts": "Latest announcements",
+    "openProgram": "Open my program"
+  },
+  "program": {
+    "title": "My program",
+    "noProgram": "No program assigned yet. Your coach will assign one soon.",
+    "day": "Day",
+    "sets": "Sets",
+    "reps": "Reps",
+    "weight": "Weight",
+    "rest": "Rest",
+    "instructions": "Instructions",
+    "logTitle": "Your log",
+    "set": "Set",
+    "addSet": "Add set",
+    "history": "Recent sessions",
+    "video": "Video"
+  },
+  "meals": {
+    "title": "Meal plan",
+    "noPlan": "No meal plan yet. Your coach will add one soon.",
+    "dailyTotals": "Daily totals"
+  },
+  "planner": {
+    "title": "Planner",
+    "connect": "Connect Google Calendar",
+    "connected": "Google Calendar connected",
+    "refresh": "Refresh",
+    "week": "Week",
+    "noEvents": "Nothing planned",
+    "training": "TRAINING",
+    "hint": "Connect your Google Calendar so your whole schedule (work, meals, family, training) shows up here and your coach can plan sessions when you're free.",
+    "loadError": "Could not load your calendar. Try reconnecting.",
+    "allDay": "All day"
+  },
+  "board": {
+    "title": "Message board",
+    "everyone": "Everyone",
+    "newPost": "New announcement",
+    "postTitle": "Title",
+    "postBody": "Message",
+    "publish": "Publish",
+    "noPosts": "No announcements yet.",
+    "audience": "Audience",
+    "published": "Announcement published and members notified."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No notifications.",
+    "markAll": "Mark all as read"
+  },
+  "comments": {
+    "title": "Questions & comments",
+    "placeholder": "Write a question or comment…",
+    "empty": "No comments yet. Ask anything.",
+    "coach": "COACH"
+  },
+  "profile": {
+    "title": "Profile",
+    "language": "Language",
+    "signOut": "Sign out",
+    "name": "Name"
+  },
+  "coach": {
+    "dashTitle": "Coach dashboard",
+    "statClients": "Clients",
+    "statCheckins": "Check-ins today",
+    "statPrograms": "Programs",
+    "clients": {
+      "title": "Clients",
+      "invite": "Invite client",
+      "email": "Client email",
+      "fullName": "Full name",
+      "sendInvite": "Send invite",
+      "invited": "Invite sent — the client will get an email to set up their account.",
+      "inviteError": "Invite failed. Is the invite-client edge function deployed?",
+      "lastCheckin": "Last check-in",
+      "never": "Never",
+      "open": "Open"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "checkins": "Check-ins",
+      "targets": "Targets",
+      "program": "Program",
+      "meals": "Meals",
+      "sessions": "Sessions",
+      "measurements": "Measurements"
+    },
+    "overview": {
+      "weightTrend": "Weight trend",
+      "nutrientTrend": "Nutrient trend",
+      "last30": "Last 30 days",
+      "target": "Target"
+    },
+    "checkinsEmpty": "No check-ins yet.",
+    "targets": {
+      "hint": "Targets are visible only to you unless \"show to client\" is on. Calories is typically shown to the client as a grayed-out soft limit.",
+      "show": "Show to client",
+      "value": "Target"
+    },
+    "programTab": {
+      "assign": "Assign a program",
+      "assigned": "Assigned programs",
+      "none": "No programs assigned.",
+      "active": "Active",
+      "inactive": "Inactive",
+      "logs": "Training logs",
+      "noLogs": "No logged sets yet.",
+      "assignedMsg": "Program assigned and client notified."
+    },
+    "mealsTab": {
+      "newPlan": "New meal plan",
+      "planTitle": "Plan title",
+      "addMeal": "Add meal",
+      "mealName": "Meal name",
+      "time": "Time",
+      "active": "Active",
+      "savedMsg": "Meal plan saved and client notified."
+    },
+    "sessions": {
+      "title": "Training sessions",
+      "new": "Schedule session",
+      "start": "Start",
+      "end": "End",
+      "push": "Save & push to Google Calendar",
+      "pushed": "Session saved and added to the client's Google Calendar.",
+      "notConnected": "Session saved. Client hasn't connected Google Calendar, so it only shows in the app.",
+      "upcoming": "Upcoming",
+      "past": "Past"
+    },
+    "measurementsTab": {
+      "enable": "Enable body measurements for this client",
+      "empty": "No measurements yet."
+    },
+    "programs": {
+      "title": "Program library",
+      "new": "New program",
+      "empty": "No programs yet. Build your first one.",
+      "days": "days",
+      "addDay": "Add day",
+      "dayTitle": "Day title (e.g. Push, Pull, Legs)",
+      "addExercise": "Add exercise",
+      "exName": "Exercise name",
+      "youtube": "YouTube link",
+      "restSec": "Rest (sec)",
+      "assignTo": "Assign to client",
+      "duplicated": "Program duplicated."
+    },
+    "groups": {
+      "title": "Groups",
+      "new": "New group",
+      "members": "Members",
+      "addMember": "Add member",
+      "empty": "No groups yet.",
+      "remove": "Remove"
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "app": { "name": "DPX FITNES" },
+  "nav": {
+    "dashboard": "Početna",
+    "checkin": "Prijava",
+    "program": "Program",
+    "meals": "Ishrana",
+    "planner": "Planer",
+    "board": "Oglasna tabla",
+    "notifications": "Obaveštenja",
+    "profile": "Profil",
+    "clients": "Klijenti",
+    "programs": "Programi",
+    "groups": "Grupe"
+  },
+  "auth": {
+    "welcome": "Platforma za online trening",
+    "signInGoogle": "Nastavi preko Google-a",
+    "or": "ili",
+    "email": "Email adresa",
+    "sendCode": "Pošalji kod za prijavu",
+    "code": "6-cifreni kod",
+    "verifyCode": "Potvrdi kod",
+    "codeSent": "Kod je poslat — proveri email.",
+    "inviteOnly": "Platforma je dostupna samo po pozivu. Ako nemaš nalog, traži poziv od svog trenera.",
+    "error": "Prijava nije uspela. Proveri email/kod i pokušaj ponovo."
+  },
+  "common": {
+    "save": "Sačuvaj",
+    "cancel": "Otkaži",
+    "delete": "Obriši",
+    "edit": "Izmeni",
+    "add": "Dodaj",
+    "back": "Nazad",
+    "loading": "Učitavanje…",
+    "date": "Datum",
+    "none": "Ništa",
+    "today": "Danas",
+    "close": "Zatvori",
+    "duplicate": "Dupliraj",
+    "view": "Pogledaj",
+    "send": "Pošalji",
+    "name": "Ime",
+    "title": "Naslov",
+    "description": "Opis",
+    "notes": "Beleške",
+    "weight": "Težina",
+    "error": "Nešto nije u redu. Pokušaj ponovo.",
+    "saved": "Sačuvano",
+    "confirmDelete": "Obrisati? Ova radnja je nepovratna.",
+    "optional": "opciono",
+    "all": "Sve"
+  },
+  "nutrient": {
+    "calories": "Kalorije",
+    "protein": "Proteini",
+    "carbs": "Ugljeni hidrati",
+    "fiber": "Vlakna",
+    "sugar": "Šećer",
+    "fat": "Masti",
+    "saturated_fat": "Zasićene masti",
+    "polyunsaturated_fat": "Polinezasićene masti",
+    "monounsaturated_fat": "Mononezasićene masti",
+    "trans_fat": "Trans masti",
+    "cholesterol": "Holesterol",
+    "sodium": "Natrijum",
+    "potassium": "Kalijum",
+    "vitamin_a": "Vitamin A",
+    "vitamin_c": "Vitamin C",
+    "calcium": "Kalcijum",
+    "iron": "Gvožđe"
+  },
+  "measure": {
+    "title": "Obimi tela (cm)",
+    "neck": "Vrat",
+    "shoulders": "Ramena",
+    "chest": "Grudi",
+    "waist": "Struk",
+    "hips": "Kukovi",
+    "arm": "Ruka",
+    "thigh": "Butina",
+    "calf": "List"
+  },
+  "checkin": {
+    "title": "Dnevna prijava",
+    "subtitle": "Prepiši svoje dnevne vrednosti iz MyFitnessPal-a.",
+    "macros": "Glavne vrednosti",
+    "micros": "Ostali nutrijenti",
+    "weight": "Telesna težina (kg)",
+    "target": "Cilj",
+    "notesPh": "Nešto što želiš da kažeš treneru…",
+    "saved": "Prijava sačuvana. Svaka čast!"
+  },
+  "dashboard": {
+    "hello": "Zdravo",
+    "todayCheckin": "Današnja prijava",
+    "done": "Popunjena",
+    "notDone": "Još nije popunjena",
+    "goCheckin": "Popuni prijavu",
+    "nextSession": "Sledeći trening",
+    "noSession": "Nema zakazanog treninga",
+    "latestPosts": "Najnovije objave",
+    "openProgram": "Otvori moj program"
+  },
+  "program": {
+    "title": "Moj program",
+    "noProgram": "Program još nije dodeljen. Trener će ga uskoro dodeliti.",
+    "day": "Dan",
+    "sets": "Serije",
+    "reps": "Ponavljanja",
+    "weight": "Težina",
+    "rest": "Pauza",
+    "instructions": "Uputstva",
+    "logTitle": "Tvoj dnevnik",
+    "set": "Serija",
+    "addSet": "Dodaj seriju",
+    "history": "Prethodni treninzi",
+    "video": "Video"
+  },
+  "meals": {
+    "title": "Plan ishrane",
+    "noPlan": "Plan ishrane još ne postoji. Trener će ga uskoro dodati.",
+    "dailyTotals": "Dnevni zbir"
+  },
+  "planner": {
+    "title": "Planer",
+    "connect": "Poveži Google Kalendar",
+    "connected": "Google Kalendar povezan",
+    "refresh": "Osveži",
+    "week": "Nedelja",
+    "noEvents": "Ništa nije planirano",
+    "training": "TRENING",
+    "hint": "Poveži svoj Google Kalendar da se ceo tvoj raspored (posao, obroci, porodica, trening) vidi ovde i da trener može da zakaže trening kad si slobodan.",
+    "loadError": "Kalendar nije mogao da se učita. Pokušaj da se ponovo povežeš.",
+    "allDay": "Ceo dan"
+  },
+  "board": {
+    "title": "Oglasna tabla",
+    "everyone": "Svi",
+    "newPost": "Nova objava",
+    "postTitle": "Naslov",
+    "postBody": "Poruka",
+    "publish": "Objavi",
+    "noPosts": "Još nema objava.",
+    "audience": "Publika",
+    "published": "Objava je objavljena i članovi su obavešteni."
+  },
+  "notifications": {
+    "title": "Obaveštenja",
+    "empty": "Nema obaveštenja.",
+    "markAll": "Označi sve kao pročitano"
+  },
+  "comments": {
+    "title": "Pitanja i komentari",
+    "placeholder": "Napiši pitanje ili komentar…",
+    "empty": "Još nema komentara. Pitaj šta god želiš.",
+    "coach": "TRENER"
+  },
+  "profile": {
+    "title": "Profil",
+    "language": "Jezik",
+    "signOut": "Odjavi se",
+    "name": "Ime"
+  },
+  "coach": {
+    "dashTitle": "Trenerska tabla",
+    "statClients": "Klijenti",
+    "statCheckins": "Prijave danas",
+    "statPrograms": "Programi",
+    "clients": {
+      "title": "Klijenti",
+      "invite": "Pozovi klijenta",
+      "email": "Email klijenta",
+      "fullName": "Ime i prezime",
+      "sendInvite": "Pošalji poziv",
+      "invited": "Poziv poslat — klijent će dobiti email za otvaranje naloga.",
+      "inviteError": "Poziv nije uspeo. Da li je invite-client funkcija postavljena?",
+      "lastCheckin": "Poslednja prijava",
+      "never": "Nikad",
+      "open": "Otvori"
+    },
+    "tabs": {
+      "overview": "Pregled",
+      "checkins": "Prijave",
+      "targets": "Ciljevi",
+      "program": "Program",
+      "meals": "Ishrana",
+      "sessions": "Treninzi",
+      "measurements": "Obimi"
+    },
+    "overview": {
+      "weightTrend": "Kretanje težine",
+      "nutrientTrend": "Kretanje nutrijenata",
+      "last30": "Poslednjih 30 dana",
+      "target": "Cilj"
+    },
+    "checkinsEmpty": "Još nema prijava.",
+    "targets": {
+      "hint": "Ciljeve vidiš samo ti, osim ako je uključeno \"prikaži klijentu\". Kalorije se obično prikazuju klijentu kao sivi orijentir.",
+      "show": "Prikaži klijentu",
+      "value": "Cilj"
+    },
+    "programTab": {
+      "assign": "Dodeli program",
+      "assigned": "Dodeljeni programi",
+      "none": "Nema dodeljenih programa.",
+      "active": "Aktivan",
+      "inactive": "Neaktivan",
+      "logs": "Dnevnik treninga",
+      "noLogs": "Još nema zabeleženih serija.",
+      "assignedMsg": "Program dodeljen i klijent obavešten."
+    },
+    "mealsTab": {
+      "newPlan": "Novi plan ishrane",
+      "planTitle": "Naziv plana",
+      "addMeal": "Dodaj obrok",
+      "mealName": "Naziv obroka",
+      "time": "Vreme",
+      "active": "Aktivan",
+      "savedMsg": "Plan ishrane sačuvan i klijent obavešten."
+    },
+    "sessions": {
+      "title": "Treninzi",
+      "new": "Zakaži trening",
+      "start": "Početak",
+      "end": "Kraj",
+      "push": "Sačuvaj i dodaj u Google Kalendar",
+      "pushed": "Trening sačuvan i dodat u klijentov Google Kalendar.",
+      "notConnected": "Trening sačuvan. Klijent nije povezao Google Kalendar, pa se vidi samo u aplikaciji.",
+      "upcoming": "Predstojeći",
+      "past": "Prošli"
+    },
+    "measurementsTab": {
+      "enable": "Uključi obime tela za ovog klijenta",
+      "empty": "Još nema obima."
+    },
+    "programs": {
+      "title": "Biblioteka programa",
+      "new": "Novi program",
+      "empty": "Još nema programa. Napravi prvi.",
+      "days": "dana",
+      "addDay": "Dodaj dan",
+      "dayTitle": "Naziv dana (npr. Push, Pull, Noge)",
+      "addExercise": "Dodaj vežbu",
+      "exName": "Naziv vežbe",
+      "youtube": "YouTube link",
+      "restSec": "Pauza (sek)",
+      "assignTo": "Dodeli klijentu",
+      "duplicated": "Program dupliran."
+    },
+    "groups": {
+      "title": "Grupe",
+      "new": "Nova grupa",
+      "members": "Članovi",
+      "addMember": "Dodaj člana",
+      "empty": "Još nema grupa.",
+      "remove": "Ukloni"
+    }
+  }
+}
