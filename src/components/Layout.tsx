@@ -14,7 +14,9 @@ const CLIENT_NAV: NavItem[] = [
   { to: '/checkin', key: 'nav.checkin' },
   { to: '/program', key: 'nav.program' },
   { to: '/meals', key: 'nav.meals' },
+  { to: '/progress', key: 'nav.progress' },
   { to: '/planner', key: 'nav.planner' },
+  { to: '/chat', key: 'nav.chat' },
   { to: '/board', key: 'nav.board' },
 ]
 
@@ -22,6 +24,7 @@ const COACH_NAV: NavItem[] = [
   { to: '/', key: 'nav.dashboard' },
   { to: '/clients', key: 'nav.clients' },
   { to: '/programs', key: 'nav.programs' },
+  { to: '/library', key: 'nav.library' },
   { to: '/groups', key: 'nav.groups' },
   { to: '/board', key: 'nav.board' },
 ]

@@ -32,6 +32,7 @@ export interface Checkin {
   calcium: number | null
   iron: number | null
   weight: number | null
+  steps: number | null
   notes: string | null
 }
 
@@ -76,6 +77,7 @@ export interface ProgramExercise {
   program_day_id: string
   order_index: number
   name: string
+  kind: 'strength' | 'cardio'
   instructions: string | null
   youtube_url: string | null
   target_sets: number | null
@@ -100,6 +102,44 @@ export interface ExerciseLog {
   set_number: number
   reps: number | null
   weight: number | null
+  steps: number | null
+  duration_min: number | null
+  notes: string | null
+}
+
+export interface IntakeResponse {
+  user_id: string
+  answers: Record<string, string>
+  submitted_at: string | null
+}
+
+export interface LibraryExercise {
+  id: string
+  name: string
+  kind: 'strength' | 'cardio'
+  youtube_url: string | null
+  instructions: string | null
+  target_sets: number | null
+  target_reps: string | null
+  target_weight: string | null
+  rest_seconds: number | null
+}
+
+export interface ChatMessage {
+  id: string
+  client_id: string
+  sender_id: string
+  body: string
+  read: boolean
+  created_at: string
+}
+
+export interface Subscription {
+  client_id: string
+  package_name: string | null
+  price: number | null
+  currency: string
+  paid_until: string | null
   notes: string | null
 }
 

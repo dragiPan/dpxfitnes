@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { NUTRIENTS, MEASUREMENT_FIELDS, type NutrientKey } from '../../lib/nutrients'
 import type { NutritionTarget } from '../../lib/types'
 
-type FormValues = Partial<Record<NutrientKey | 'weight', string>>
+type FormValues = Partial<Record<NutrientKey | 'weight' | 'steps', string>>
 type MeasureValues = Partial<Record<(typeof MEASUREMENT_FIELDS)[number], string>>
 
 function todayStr() {
@@ -39,6 +39,7 @@ export default function CheckIn() {
         v[n.key] = raw == null ? '' : String(raw)
       }
       v.weight = ci.weight == null ? '' : String(ci.weight)
+      v.steps = ci.steps == null ? '' : String(ci.steps)
       setNotes(ci.notes ?? '')
     } else {
       setNotes('')
@@ -77,6 +78,7 @@ export default function CheckIn() {
         date,
         notes: notes.trim() || null,
         weight: numOrNull(values.weight),
+        steps: numOrNull(values.steps),
         updated_at: new Date().toISOString(),
       }
       for (const n of NUTRIENTS) row[n.key] = numOrNull(values[n.key])
@@ -173,6 +175,16 @@ export default function CheckIn() {
               value={values.weight ?? ''}
               onChange={(e) => setValues((v) => ({ ...v, weight: e.target.value }))}
               placeholder="0.0"
+            />
+          </div>
+          <div>
+            <label className="label">{t('checkin.steps')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              value={values.steps ?? ''}
+              onChange={(e) => setValues((v) => ({ ...v, steps: e.target.value }))}
+              placeholder="0"
             />
           </div>
         </div>

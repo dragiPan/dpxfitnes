@@ -15,9 +15,16 @@ export default function ClientDashboard() {
   const [checkedIn, setCheckedIn] = useState<boolean | null>(null)
   const [nextSession, setNextSession] = useState<TrainingSession | null>(null)
   const [posts, setPosts] = useState<BoardPost[]>([])
+  const [intakeDone, setIntakeDone] = useState(true)
 
   useEffect(() => {
     if (!session) return
+    void supabase
+      .from('intake_responses')
+      .select('submitted_at')
+      .eq('user_id', session.user.id)
+      .maybeSingle()
+      .then(({ data }) => setIntakeDone(!!(data as { submitted_at: string | null } | null)?.submitted_at))
     void supabase
       .from('checkins')
       .select('id')
@@ -49,6 +56,13 @@ export default function ClientDashboard() {
         {t('dashboard.hello')}
         {profile?.full_name ? `, ${profile.full_name.split(' ')[0]}` : ''} 👊
       </h1>
+
+      {!intakeDone && (
+        <Link to="/intake" className="card block border-4 hover:bg-neutral-50">
+          <p className="font-black">📋 {t('intake.bannerTitle')}</p>
+          <p className="text-sm text-neutral-600">{t('intake.bannerBody')}</p>
+        </Link>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="card">

@@ -1,11 +1,14 @@
 {
-  "app": { "name": "DPX FITNES" },
+  "app": { "name": "DPXFITNES" },
   "nav": {
     "dashboard": "Home",
     "checkin": "Check-in",
     "program": "Program",
     "meals": "Meals",
     "planner": "Planner",
+    "progress": "Progress",
+    "chat": "Chat",
+    "library": "Library",
     "board": "Board",
     "notifications": "Notifications",
     "profile": "Profile",
@@ -49,7 +52,8 @@
     "saved": "Saved",
     "confirmDelete": "Delete this? This cannot be undone.",
     "optional": "optional",
-    "all": "All"
+    "all": "All",
+    "exportPdf": "Export PDF"
   },
   "nutrient": {
     "calories": "Calories",
@@ -87,6 +91,7 @@
     "macros": "Main numbers",
     "micros": "Other nutrients",
     "weight": "Body weight (kg)",
+    "steps": "Steps (today)",
     "target": "Target",
     "notesPh": "Anything you want to tell your coach…",
     "saved": "Check-in saved. Good work!"
@@ -115,7 +120,50 @@
     "set": "Set",
     "addSet": "Add set",
     "history": "Recent sessions",
-    "video": "Video"
+    "video": "Video",
+    "cardio": "Cardio",
+    "strength": "Strength",
+    "newPr": "NEW PR!",
+    "session": "Session",
+    "duration": "Duration"
+  },
+  "progress": {
+    "title": "My progress",
+    "noData": "No data yet.",
+    "weight": "Weight",
+    "steps": "Steps",
+    "nutrition": "Nutrition",
+    "prs": "Personal records",
+    "cardio4w": "Cardio — last 4 weeks",
+    "sessions": "Sessions"
+  },
+  "chat": {
+    "title": "Chat with your coach",
+    "empty": "No messages yet. Say hi!",
+    "placeholder": "Write a message…",
+    "newMessage": "New message"
+  },
+  "intake": {
+    "title": "Intake questionnaire",
+    "subtitle": "Fill this out once so your coach can build the right plan for you.",
+    "submitted": "Submitted",
+    "saveDraft": "Save draft",
+    "submit": "Submit to coach",
+    "bannerTitle": "Fill in your intake questionnaire",
+    "bannerBody": "Your coach needs this before building your plan. Takes 5 minutes.",
+    "q": {
+      "goal": "What is your main goal? (fat loss, muscle, strength…)",
+      "experience": "How long have you been training? What kind of training?",
+      "training_days": "How many days per week can you train, and which days?",
+      "injuries": "Any current or past injuries?",
+      "health": "Any health conditions? (heart, blood pressure, diabetes…)",
+      "medications": "Do you take any medications or supplements?",
+      "sleep": "How many hours do you sleep on average?",
+      "stress": "How stressful is your daily life? (work, family…)",
+      "occupation": "What is your job / daily activity level?",
+      "diet_restrictions": "Any foods you don't eat? (allergies, religion, preference)",
+      "extra": "Anything else your coach should know?"
+    }
   },
   "meals": {
     "title": "Meal plan",
@@ -186,7 +234,40 @@
       "program": "Program",
       "meals": "Meals",
       "sessions": "Sessions",
-      "measurements": "Measurements"
+      "measurements": "Measurements",
+      "chat": "Chat",
+      "intake": "Intake",
+      "payment": "Payment"
+    },
+    "library": {
+      "title": "Exercise library",
+      "hint": "Save an exercise once, then drop it into any program from the builder.",
+      "search": "Search exercises…",
+      "empty": "No exercises saved yet.",
+      "newName": "New exercise",
+      "addFrom": "Add from library",
+      "saveTo": "Save to library"
+    },
+    "intakeTab": {
+      "empty": "The client hasn't started the intake questionnaire yet.",
+      "draft": "Draft — not submitted yet."
+    },
+    "paymentTab": {
+      "package": "Package",
+      "price": "Price",
+      "currency": "Currency",
+      "paidUntil": "Paid until",
+      "sendReminder": "Send reminder",
+      "reminderTitle": "Your coaching package is up for renewal",
+      "reminderSent": "Reminder sent to the client.",
+      "expired": "Subscription expired",
+      "expiringSoon": "Expires within 7 days",
+      "expiringList": "Payments due"
+    },
+    "remove": {
+      "button": "Remove client",
+      "confirm": "Remove {{name}} permanently? Their account and all their data will be deleted. They cannot rejoin unless you invite them again.",
+      "error": "Removal failed. Is the remove-client edge function deployed?"
     },
     "overview": {
       "weightTrend": "Weight trend",

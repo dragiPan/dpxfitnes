@@ -9,6 +9,7 @@ interface DayEvent {
   id: string
   title: string
   start: Date
+  end: Date | null
   allDay: boolean
   isTraining: boolean
 }
@@ -65,6 +66,7 @@ export default function Planner() {
         id: `s-${s.id}`,
         title: s.title,
         start: new Date(s.start_at),
+        end: new Date(s.end_at),
         allDay: false,
         isTraining: true,
       })
@@ -88,10 +90,12 @@ export default function Planner() {
         for (const ev of ((data as { events: GCalEvent[] })?.events ?? [])) {
           const startRaw = ev.start?.dateTime ?? ev.start?.date
           if (!startRaw) continue
+          const endRaw = ev.end?.dateTime ?? null
           collected.push({
             id: `g-${ev.id}`,
             title: ev.summary ?? '(untitled)',
             start: new Date(startRaw),
+            end: endRaw ? new Date(endRaw) : null,
             allDay: !ev.start?.dateTime,
             isTraining: false,
           })
@@ -181,7 +185,12 @@ export default function Planner() {
                     }`}
                   >
                     {e.isTraining && <span className="mr-1">🏋</span>}
-                    {!e.allDay && <span>{format(e.start, 'HH:mm')} · </span>}
+                    {!e.allDay && (
+                      <span>
+                        {format(e.start, 'HH:mm')}
+                        {e.end ? `–${format(e.end, 'HH:mm')}` : ''} ·{' '}
+                      </span>
+                    )}
                     {e.allDay && <span>{t('planner.allDay')} · </span>}
                     {e.title}
                   </div>

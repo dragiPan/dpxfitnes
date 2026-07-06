@@ -1,4 +1,4 @@
-# DPX FITNES — Coaching Platform
+# DPXFITNES — Coaching Platform
 
 Online coaching platform for **dpxfitnes**: daily nutrition check-ins (numbers transferred from MyFitnessPal), training program builder with YouTube demos, meal plans, Google Calendar two-way sync, groups with message boards, and in-app + email notifications. English/Serbian, invite-only, black & white mobile-first UI.
 

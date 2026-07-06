@@ -2,10 +2,14 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabase'
-import type { Checkin, Profile } from '../../lib/types'
+import type { Checkin, Profile, Subscription } from '../../lib/types'
 
 function todayStr() {
   return new Date().toISOString().slice(0, 10)
+}
+
+interface SubRow extends Subscription {
+  profile?: Pick<Profile, 'full_name' | 'email'> | null
 }
 
 export default function CoachDashboard() {
@@ -13,8 +17,17 @@ export default function CoachDashboard() {
   const [clientCount, setClientCount] = useState(0)
   const [programCount, setProgramCount] = useState(0)
   const [todayCheckins, setTodayCheckins] = useState<(Checkin & { profile?: Profile })[]>([])
+  const [expiring, setExpiring] = useState<SubRow[]>([])
 
   useEffect(() => {
+    const soon = new Date(Date.now() + 7 * 86400000).toISOString().slice(0, 10)
+    void supabase
+      .from('subscriptions')
+      .select('*, profile:profiles!subscriptions_client_id_fkey(full_name, email)')
+      .not('paid_until', 'is', null)
+      .lte('paid_until', soon)
+      .order('paid_until')
+      .then(({ data }) => setExpiring((data as SubRow[]) ?? []))
     void supabase
       .from('profiles')
       .select('id', { count: 'exact', head: true })
@@ -50,6 +63,30 @@ export default function CoachDashboard() {
           <p className="label mb-0">{t('coach.statPrograms')}</p>
         </Link>
       </div>
+
+      {expiring.length > 0 && (
+        <div>
+          <p className="label">💰 {t('coach.paymentTab.expiringList')}</p>
+          <div className="space-y-1">
+            {expiring.map((s) => {
+              const expired = s.paid_until && new Date(s.paid_until) < new Date()
+              return (
+                <Link
+                  key={s.client_id}
+                  to={`/clients/${s.client_id}`}
+                  className={`card flex items-center justify-between hover:bg-neutral-50 ${expired ? 'border-4' : ''}`}
+                >
+                  <span className="font-bold">{s.profile?.full_name || s.profile?.email}</span>
+                  <span className="text-xs font-black">
+                    {expired ? '⚠ ' : '⏳ '}
+                    {s.paid_until ? new Date(s.paid_until).toLocaleDateString() : ''}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       <div>
         <p className="label">{t('coach.statCheckins')}</p>

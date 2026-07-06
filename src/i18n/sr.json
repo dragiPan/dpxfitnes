@@ -1,11 +1,14 @@
 {
-  "app": { "name": "DPX FITNES" },
+  "app": { "name": "DPXFITNES" },
   "nav": {
     "dashboard": "Početna",
     "checkin": "Prijava",
     "program": "Program",
     "meals": "Ishrana",
     "planner": "Planer",
+    "progress": "Napredak",
+    "chat": "Poruke",
+    "library": "Biblioteka",
     "board": "Oglasna tabla",
     "notifications": "Obaveštenja",
     "profile": "Profil",
@@ -49,7 +52,8 @@
     "saved": "Sačuvano",
     "confirmDelete": "Obrisati? Ova radnja je nepovratna.",
     "optional": "opciono",
-    "all": "Sve"
+    "all": "Sve",
+    "exportPdf": "Izvezi PDF"
   },
   "nutrient": {
     "calories": "Kalorije",
@@ -87,6 +91,7 @@
     "macros": "Glavne vrednosti",
     "micros": "Ostali nutrijenti",
     "weight": "Telesna težina (kg)",
+    "steps": "Koraci (danas)",
     "target": "Cilj",
     "notesPh": "Nešto što želiš da kažeš treneru…",
     "saved": "Prijava sačuvana. Svaka čast!"
@@ -115,7 +120,50 @@
     "set": "Serija",
     "addSet": "Dodaj seriju",
     "history": "Prethodni treninzi",
-    "video": "Video"
+    "video": "Video",
+    "cardio": "Kardio",
+    "strength": "Snaga",
+    "newPr": "NOVI REKORD!",
+    "session": "Trening",
+    "duration": "Trajanje"
+  },
+  "progress": {
+    "title": "Moj napredak",
+    "noData": "Još nema podataka.",
+    "weight": "Težina",
+    "steps": "Koraci",
+    "nutrition": "Ishrana",
+    "prs": "Lični rekordi",
+    "cardio4w": "Kardio — poslednje 4 nedelje",
+    "sessions": "Treninzi"
+  },
+  "chat": {
+    "title": "Poruke sa trenerom",
+    "empty": "Još nema poruka. Javi se!",
+    "placeholder": "Napiši poruku…",
+    "newMessage": "Nova poruka"
+  },
+  "intake": {
+    "title": "Uvodni upitnik",
+    "subtitle": "Popuni ovo jednom da trener može da napravi pravi plan za tebe.",
+    "submitted": "Poslato",
+    "saveDraft": "Sačuvaj nacrt",
+    "submit": "Pošalji treneru",
+    "bannerTitle": "Popuni uvodni upitnik",
+    "bannerBody": "Treneru je ovo potrebno pre pravljenja plana. Traje 5 minuta.",
+    "q": {
+      "goal": "Koji je tvoj glavni cilj? (mršavljenje, mišići, snaga…)",
+      "experience": "Koliko dugo treniraš? Kakav trening?",
+      "training_days": "Koliko dana nedeljno možeš da treniraš i kojim danima?",
+      "injuries": "Da li imaš trenutne ili ranije povrede?",
+      "health": "Zdravstvena stanja? (srce, pritisak, dijabetes…)",
+      "medications": "Da li uzimaš lekove ili suplemente?",
+      "sleep": "Koliko sati prosečno spavaš?",
+      "stress": "Koliko ti je svakodnevica stresna? (posao, porodica…)",
+      "occupation": "Čime se baviš / koliko si aktivan tokom dana?",
+      "diet_restrictions": "Hrana koju ne jedeš? (alergije, vera, ukus)",
+      "extra": "Još nešto što trener treba da zna?"
+    }
   },
   "meals": {
     "title": "Plan ishrane",
@@ -186,7 +234,40 @@
       "program": "Program",
       "meals": "Ishrana",
       "sessions": "Treninzi",
-      "measurements": "Obimi"
+      "measurements": "Obimi",
+      "chat": "Poruke",
+      "intake": "Upitnik",
+      "payment": "Plaćanje"
+    },
+    "library": {
+      "title": "Biblioteka vežbi",
+      "hint": "Sačuvaj vežbu jednom, pa je ubaci u bilo koji program iz graditelja.",
+      "search": "Pretraži vežbe…",
+      "empty": "Još nema sačuvanih vežbi.",
+      "newName": "Nova vežba",
+      "addFrom": "Dodaj iz biblioteke",
+      "saveTo": "Sačuvaj u biblioteku"
+    },
+    "intakeTab": {
+      "empty": "Klijent još nije počeo uvodni upitnik.",
+      "draft": "Nacrt — još nije poslato."
+    },
+    "paymentTab": {
+      "package": "Paket",
+      "price": "Cena",
+      "currency": "Valuta",
+      "paidUntil": "Plaćeno do",
+      "sendReminder": "Pošalji podsetnik",
+      "reminderTitle": "Vreme je za obnovu tvog paketa",
+      "reminderSent": "Podsetnik poslat klijentu.",
+      "expired": "Pretplata istekla",
+      "expiringSoon": "Ističe u roku od 7 dana",
+      "expiringList": "Plaćanja na redu"
+    },
+    "remove": {
+      "button": "Ukloni klijenta",
+      "confirm": "Trajno ukloniti {{name}}? Nalog i svi podaci će biti obrisani. Ne može ponovo da se pridruži dok ga ne pozoveš.",
+      "error": "Uklanjanje nije uspelo. Da li je remove-client funkcija postavljena?"
     },
     "overview": {
       "weightTrend": "Kretanje težine",

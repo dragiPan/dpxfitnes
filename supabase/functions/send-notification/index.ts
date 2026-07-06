@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
   if (!recipients || recipients.length === 0) return json({ ok: true, sent: 0 })
 
   const resendKey = Deno.env.get('RESEND_API_KEY')
-  const from = Deno.env.get('FROM_EMAIL') ?? 'DPX Fitnes <onboarding@resend.dev>'
+  const from = Deno.env.get('FROM_EMAIL') ?? 'DPXFITNES <onboarding@resend.dev>'
   if (!resendKey) return json({ ok: true, sent: 0, warning: 'RESEND_API_KEY not set' })
 
   let sent = 0
@@ -47,9 +47,9 @@ Deno.serve(async (req) => {
       body: JSON.stringify({
         from,
         to: r.email,
-        subject: `DPX Fitnes — ${subject}`,
+        subject: `DPXFITNES — ${subject}`,
         html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;border:2px solid #000;padding:24px">
-          <h1 style="font-size:20px;letter-spacing:-1px;margin:0 0 16px">DPX FITNES</h1>
+          <h1 style="font-size:20px;letter-spacing:-1px;margin:0 0 16px">DPXFITNES</h1>
           <h2 style="font-size:16px;margin:0 0 8px">${escapeHtml(String(subject))}</h2>
           <p style="font-size:14px;white-space:pre-wrap">${escapeHtml(String(body ?? ''))}</p>
         </div>`,

@@ -15,6 +15,9 @@ dist-ssr
 # environment secrets
 .env
 
+# graphify local-only files
+graphify-out/cost.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

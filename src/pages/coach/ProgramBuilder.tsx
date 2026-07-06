@@ -3,8 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabase'
 import { notifyUsers } from '../../lib/notify'
+import { printProgram } from '../../lib/print'
 import YouTubeEmbed from '../../components/YouTubeEmbed'
-import type { Profile, Program, ProgramDay, ProgramExercise } from '../../lib/types'
+import type { LibraryExercise, Profile, Program, ProgramDay, ProgramExercise } from '../../lib/types'
 
 interface FullProgram extends Program {
   program_days: (ProgramDay & { program_exercises: ProgramExercise[] })[]
@@ -15,6 +16,7 @@ export default function ProgramBuilder() {
   const { id } = useParams<{ id: string }>()
   const [program, setProgram] = useState<FullProgram | null>(null)
   const [clients, setClients] = useState<Profile[]>([])
+  const [library, setLibrary] = useState<LibraryExercise[]>([])
   const [assignTo, setAssignTo] = useState('')
   const [msg, setMsg] = useState('')
 
@@ -41,7 +43,30 @@ export default function ProgramBuilder() {
       .eq('role', 'client')
       .order('full_name')
       .then(({ data }) => setClients((data as Profile[]) ?? []))
+    void supabase
+      .from('exercise_library')
+      .select('*')
+      .order('name')
+      .then(({ data }) => setLibrary((data as LibraryExercise[]) ?? []))
   }, [load])
+
+  async function addFromLibrary(dayId: string, count: number, libId: string) {
+    const item = library.find((l) => l.id === libId)
+    if (!item) return
+    await supabase.from('program_exercises').insert({
+      program_day_id: dayId,
+      order_index: count,
+      name: item.name,
+      kind: item.kind,
+      instructions: item.instructions,
+      youtube_url: item.youtube_url,
+      target_sets: item.target_sets,
+      target_reps: item.target_reps,
+      target_weight: item.target_weight,
+      rest_seconds: item.rest_seconds,
+    })
+    await load()
+  }
 
   async function saveProgramField(field: 'title' | 'description', value: string) {
     if (!id) return
@@ -99,9 +124,27 @@ export default function ProgramBuilder() {
 
   return (
     <div>
-      <Link to="/programs" className="text-xs font-bold uppercase hover:underline">
-        ← {t('common.back')}
-      </Link>
+      <div className="flex items-center justify-between">
+        <Link to="/programs" className="text-xs font-bold uppercase hover:underline">
+          ← {t('common.back')}
+        </Link>
+        <button
+          className="btn btn-sm"
+          onClick={() =>
+            printProgram(program, {
+              day: t('program.day'),
+              exercise: t('coach.programs.exName'),
+              sets: t('program.sets'),
+              reps: t('program.reps'),
+              weight: t('program.weight'),
+              rest: t('program.rest'),
+              video: t('program.video'),
+            })
+          }
+        >
+          🖨 {t('common.exportPdf')}
+        </button>
+      </div>
 
       <div className="card my-3 space-y-2">
         <input
@@ -156,12 +199,28 @@ export default function ProgramBuilder() {
               ))}
             </div>
 
-            <button
-              className="btn btn-sm mt-3"
-              onClick={() => void addExercise(day.id, day.program_exercises.length)}
-            >
-              + {t('coach.programs.addExercise')}
-            </button>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <button
+                className="btn btn-sm"
+                onClick={() => void addExercise(day.id, day.program_exercises.length)}
+              >
+                + {t('coach.programs.addExercise')}
+              </button>
+              {library.length > 0 && (
+                <select
+                  className="input max-w-64 py-1.5 text-xs"
+                  value=""
+                  onChange={(e) => void addFromLibrary(day.id, day.program_exercises.length, e.target.value)}
+                >
+                  <option value="">+ {t('coach.library.addFrom')}…</option>
+                  {library.map((l) => (
+                    <option key={l.id} value={l.id}>
+                      {l.name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -182,6 +241,8 @@ function ExerciseEditor({
 }) {
   const { t } = useTranslation()
   const [preview, setPreview] = useState(false)
+  const [kind, setKind] = useState(ex.kind)
+  const [savedToLib, setSavedToLib] = useState(false)
 
   async function save(field: keyof ProgramExercise, raw: string) {
     let value: string | number | null = raw
@@ -191,6 +252,29 @@ function ExerciseEditor({
       value = null
     }
     await supabase.from('program_exercises').update({ [field]: value }).eq('id', ex.id)
+  }
+
+  async function changeKind(next: 'strength' | 'cardio') {
+    setKind(next)
+    await supabase.from('program_exercises').update({ kind: next }).eq('id', ex.id)
+  }
+
+  async function saveToLibrary() {
+    // read the current row so unblurred edits are not lost
+    const { data } = await supabase.from('program_exercises').select('*').eq('id', ex.id).single()
+    const row = (data as ProgramExercise | null) ?? ex
+    await supabase.from('exercise_library').insert({
+      name: row.name,
+      kind: row.kind,
+      youtube_url: row.youtube_url,
+      instructions: row.instructions,
+      target_sets: row.target_sets,
+      target_reps: row.target_reps,
+      target_weight: row.target_weight,
+      rest_seconds: row.rest_seconds,
+    })
+    setSavedToLib(true)
+    setTimeout(() => setSavedToLib(false), 2500)
   }
 
   async function remove() {
@@ -208,6 +292,17 @@ function ExerciseEditor({
           placeholder={t('coach.programs.exName')}
           onBlur={(e) => void save('name', e.target.value)}
         />
+        <select
+          className="input max-w-32 shrink-0"
+          value={kind}
+          onChange={(e) => void changeKind(e.target.value as 'strength' | 'cardio')}
+        >
+          <option value="strength">{t('program.strength')}</option>
+          <option value="cardio">{t('program.cardio')}</option>
+        </select>
+        <button className="btn btn-sm shrink-0" title={t('coach.library.saveTo')} onClick={() => void saveToLibrary()}>
+          {savedToLib ? '✓' : '📚'}
+        </button>
         <button className="btn btn-sm shrink-0" onClick={() => void remove()}>
           ✕
         </button>

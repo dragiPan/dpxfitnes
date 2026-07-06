@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../contexts/AuthContext'
+import { printMealPlan } from '../../lib/print'
 import Comments from '../../components/Comments'
 import type { MealPlan, MealPlanMeal } from '../../lib/types'
 
@@ -54,7 +55,25 @@ export default function MyMeals() {
           const tot = totals(plan)
           return (
             <div key={plan.id} className="card">
-              <h2 className="text-xl">{plan.title}</h2>
+              <div className="flex items-start justify-between gap-2">
+                <h2 className="text-xl">{plan.title}</h2>
+                <button
+                  className="btn btn-sm shrink-0"
+                  onClick={() =>
+                    printMealPlan(plan, {
+                      meal: t('coach.mealsTab.mealName'),
+                      time: t('coach.mealsTab.time'),
+                      calories: t('nutrient.calories'),
+                      protein: t('nutrient.protein'),
+                      carbs: t('nutrient.carbs'),
+                      fat: t('nutrient.fat'),
+                      totals: t('meals.dailyTotals'),
+                    })
+                  }
+                >
+                  🖨
+                </button>
+              </div>
               {plan.notes && <p className="mt-1 whitespace-pre-wrap text-sm">{plan.notes}</p>}
 
               <div className="mt-3 space-y-3">

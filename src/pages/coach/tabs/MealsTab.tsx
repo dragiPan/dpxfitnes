@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../../lib/supabase'
 import { notifyUsers } from '../../../lib/notify'
+import { printMealPlan } from '../../../lib/print'
 import Comments from '../../../components/Comments'
 import type { MealPlan, MealPlanMeal, Profile } from '../../../lib/types'
 
@@ -119,6 +120,22 @@ export default function MealsTab({ client }: { client: Profile }) {
             </button>
             <button className="btn btn-sm btn-primary" onClick={() => void notifyClient(plan)}>
               {t('common.send')} →
+            </button>
+            <button
+              className="btn btn-sm"
+              onClick={() =>
+                printMealPlan(plan, {
+                  meal: t('coach.mealsTab.mealName'),
+                  time: t('coach.mealsTab.time'),
+                  calories: t('nutrient.calories'),
+                  protein: t('nutrient.protein'),
+                  carbs: t('nutrient.carbs'),
+                  fat: t('nutrient.fat'),
+                  totals: t('meals.dailyTotals'),
+                })
+              }
+            >
+              🖨 {t('common.exportPdf')}
             </button>
           </div>
 
