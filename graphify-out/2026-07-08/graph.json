@@ -320,7 +320,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_chatthread_chatthread",
-      "community": 4,
+      "community": 0,
       "norm_label": "chatthread()"
     },
     {
@@ -367,7 +367,7 @@
       "label": "NavItem",
       "file_type": "code",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_layout_navitem",
       "community": 0,
@@ -377,7 +377,7 @@
       "label": "CLIENT_NAV",
       "file_type": "code",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L13",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_layout_client_nav",
       "community": 0,
@@ -387,7 +387,7 @@
       "label": "COACH_NAV",
       "file_type": "code",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L24",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_layout_coach_nav",
       "community": 0,
@@ -397,7 +397,7 @@
       "label": "Layout()",
       "file_type": "code",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L33",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_layout_layout",
       "community": 0,
@@ -464,30 +464,20 @@
       "norm_label": "progresscharts.tsx"
     },
     {
-      "label": "MACRO_COLORS",
-      "file_type": "code",
-      "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "src_components_progresscharts_macro_colors",
-      "community": 2,
-      "norm_label": "macro_colors"
-    },
-    {
       "label": "LogRow",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L13",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_progresscharts_logrow",
-      "community": 1,
+      "community": 10,
       "norm_label": "logrow"
     },
     {
       "label": "PR",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L17",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_progresscharts_pr",
       "community": 2,
@@ -497,7 +487,7 @@
       "label": "ProgressCharts()",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L29",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_progresscharts_progresscharts",
       "community": 2,
@@ -840,7 +830,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_types",
-      "community": 1,
+      "community": 9,
       "norm_label": "types.ts"
     },
     {
@@ -850,7 +840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_types_role",
-      "community": 1,
+      "community": 9,
       "norm_label": "role"
     },
     {
@@ -930,7 +920,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_lib_types_programassignment",
-      "community": 1,
+      "community": 10,
       "norm_label": "programassignment"
     },
     {
@@ -940,7 +930,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_lib_types_exerciselog",
-      "community": 1,
+      "community": 10,
       "norm_label": "exerciselog"
     },
     {
@@ -970,7 +960,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "src_lib_types_chatmessage",
-      "community": 4,
+      "community": 9,
       "norm_label": "chatmessage"
     },
     {
@@ -1020,7 +1010,7 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "src_lib_types_comment",
-      "community": 1,
+      "community": 9,
       "norm_label": "comment"
     },
     {
@@ -1030,7 +1020,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "src_lib_types_group",
-      "community": 4,
+      "community": 9,
       "norm_label": "group"
     },
     {
@@ -1040,7 +1030,7 @@
       "source_location": "L193",
       "_origin": "ast",
       "id": "src_lib_types_boardpost",
-      "community": 0,
+      "community": 9,
       "norm_label": "boardpost"
     },
     {
@@ -1050,7 +1040,7 @@
       "source_location": "L202",
       "_origin": "ast",
       "id": "src_lib_types_appnotification",
-      "community": 0,
+      "community": 9,
       "norm_label": "appnotification"
     },
     {
@@ -1060,7 +1050,7 @@
       "source_location": "L213",
       "_origin": "ast",
       "id": "src_lib_types_trainingsession",
-      "community": 0,
+      "community": 9,
       "norm_label": "trainingsession"
     },
     {
@@ -1070,7 +1060,7 @@
       "source_location": "L223",
       "_origin": "ast",
       "id": "src_lib_types_gcalevent",
-      "community": 0,
+      "community": 9,
       "norm_label": "gcalevent"
     },
     {
@@ -1270,7 +1260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_client_dashboard",
-      "community": 0,
+      "community": 9,
       "norm_label": "dashboard.tsx"
     },
     {
@@ -1280,7 +1270,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_client_dashboard_todaystr",
-      "community": 0,
+      "community": 9,
       "norm_label": "todaystr()"
     },
     {
@@ -1290,7 +1280,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_pages_client_dashboard_clientdashboard",
-      "community": 0,
+      "community": 9,
       "norm_label": "clientdashboard()"
     },
     {
@@ -1310,7 +1300,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_client_intake_intake",
-      "community": 4,
+      "community": 0,
       "norm_label": "intake()"
     },
     {
@@ -1420,7 +1410,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_client_planner",
-      "community": 0,
+      "community": 9,
       "norm_label": "planner.tsx"
     },
     {
@@ -1430,7 +1420,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_client_planner_dayevent",
-      "community": 0,
+      "community": 9,
       "norm_label": "dayevent"
     },
     {
@@ -1440,7 +1430,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_client_planner_planner",
-      "community": 0,
+      "community": 9,
       "norm_label": "planner()"
     },
     {
@@ -1580,7 +1570,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_coach_groups",
-      "community": 4,
+      "community": 9,
       "norm_label": "groups.tsx"
     },
     {
@@ -1590,7 +1580,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_coach_groups_fullgroup",
-      "community": 4,
+      "community": 9,
       "norm_label": "fullgroup"
     },
     {
@@ -1600,7 +1590,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_coach_groups_groups",
-      "community": 4,
+      "community": 9,
       "norm_label": "groups()"
     },
     {
@@ -1860,7 +1850,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab",
-      "community": 1,
+      "community": 10,
       "norm_label": "programtab.tsx"
     },
     {
@@ -1870,7 +1860,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_assignmentrow",
-      "community": 1,
+      "community": 10,
       "norm_label": "assignmentrow"
     },
     {
@@ -1880,7 +1870,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_logrow",
-      "community": 1,
+      "community": 10,
       "norm_label": "logrow"
     },
     {
@@ -1890,7 +1880,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_programtab",
-      "community": 1,
+      "community": 10,
       "norm_label": "programtab()"
     },
     {
@@ -3130,7 +3120,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L13",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_layout",
       "target": "src_components_layout_client_nav",
@@ -3140,7 +3130,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L24",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_components_layout",
       "target": "src_components_layout_coach_nav",
@@ -3150,7 +3140,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L33",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "src_components_layout",
       "target": "src_components_layout_layout",
@@ -3160,7 +3150,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_components_layout",
       "target": "src_components_layout_navitem",
@@ -3193,28 +3183,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_components_layout",
-      "target": "src_i18n_index",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/Layout.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_components_layout",
-      "target": "src_i18n_index_setlanguage",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/Layout.tsx",
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_layout",
@@ -3238,7 +3206,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/Layout.tsx",
-      "source_location": "L35",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "src_components_layout_layout",
       "target": "src_contexts_authcontext_useauth"
@@ -3288,7 +3256,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_nutrientchart",
@@ -3299,7 +3267,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_nutrientchart_chartpoint",
@@ -3320,7 +3288,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L13",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_logrow",
@@ -3330,17 +3298,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "src_components_progresscharts",
-      "target": "src_components_progresscharts_macro_colors",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L17",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_pr",
@@ -3350,7 +3308,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L29",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_progresscharts",
@@ -3361,7 +3319,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_nutrients",
@@ -3372,7 +3330,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_nutrients_nutrientkey",
@@ -3383,7 +3341,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_nutrients_nutrients",
@@ -3394,7 +3352,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_supabase",
@@ -3405,7 +3363,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_supabase_supabase",
@@ -3416,7 +3374,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_types",
@@ -3427,7 +3385,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_types_checkin",
@@ -3438,7 +3396,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_types_exerciselog",
@@ -3449,7 +3407,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_lib_types_nutritiontarget",
@@ -3482,7 +3440,7 @@
       "context": "type",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L13",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_components_progresscharts_logrow",
       "target": "src_lib_types_exerciselog",
@@ -3494,7 +3452,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L70",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "src_components_progresscharts_progresscharts",
       "target": "src_lib_nutrients_nutrients"
@@ -7871,5 +7829,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0ae344e6139bc66502929219cdf9ebffc6c29f8b"
+  "built_at_commit": "fc2efe816a4d7891012fa098453951ea0e8a4a7c"
 }
