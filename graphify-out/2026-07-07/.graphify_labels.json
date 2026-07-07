@@ -1,1 +1,15 @@
-{"0": "Auth and Navigation Layout", "1": "Program and Exercise Types", "2": "Nutrition and Progress Charts", "3": "Frontend Dependencies", "4": "Chat and Notifications", "5": "Client and Coach Dashboard", "6": "Print Meal and Program", "7": "TypeScript Compiler Config", "8": "API Utilities and CORS", "9": "Client Intake Flow", "10": "App Entry Point", "11": "Vercel Routing Config", "12": "Vite Build Config"}
+{
+  "0": "Auth and Navigation Layout",
+  "1": "Program and Exercise Types",
+  "2": "Nutrition and Progress Charts",
+  "3": "Frontend Dependencies",
+  "4": "Chat and Notifications",
+  "5": "Client and Coach Dashboard",
+  "6": "Print Meal and Program",
+  "7": "TypeScript Compiler Config",
+  "8": "API Utilities and CORS",
+  "9": "Client Intake Flow",
+  "10": "App Entry Point",
+  "11": "Vercel Routing Config",
+  "12": "Vite Build Config"
+}

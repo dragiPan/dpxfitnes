@@ -1,16 +1,16 @@
 # Graph Report - dpx-fitnes  (2026-07-07)
 
 ## Corpus Check
-- 62 files · ~22,766 words
+- 63 files · ~24,109 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 225 nodes · 520 edges · 13 communities (11 shown, 2 thin omitted)
+- 225 nodes · 521 edges · 13 communities (11 shown, 2 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3a4a21b4`
+- Built from commit: `fc2efe81`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -43,14 +43,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `Planner()` --calls--> `useAuth()`  [EXTRACTED]
   src/pages/client/Planner.tsx → src/contexts/AuthContext.tsx
-- `ClientDetail()` --calls--> `useAuth()`  [EXTRACTED]
-  src/pages/coach/ClientDetail.tsx → src/contexts/AuthContext.tsx
 - `App()` --calls--> `useAuth()`  [EXTRACTED]
   src/App.tsx → src/contexts/AuthContext.tsx
 - `ChatThread()` --calls--> `useAuth()`  [EXTRACTED]
   src/components/ChatThread.tsx → src/contexts/AuthContext.tsx
 - `Comments()` --calls--> `useAuth()`  [EXTRACTED]
   src/components/Comments.tsx → src/contexts/AuthContext.tsx
+- `Layout()` --calls--> `useAuth()`  [EXTRACTED]
+  src/components/Layout.tsx → src/contexts/AuthContext.tsx
 
 ## Import Cycles
 - None detected.
@@ -78,7 +78,7 @@ Cohesion: 0.17
 Nodes (11): Props, Props, INTAKE_QUESTIONS, IntakeQuestionId, NotifyPayload, notifyUsers(), anonKey, supabase (+3 more)
 
 ### Community 5 - "Client and Coach Dashboard"
-Cohesion: 0.17
+Cohesion: 0.18
 Nodes (11): AuthCtx, Profile, Subscription, ClientDetail(), Tab, TABS, ClientRow, CoachDashboard() (+3 more)
 
 ### Community 6 - "Print Meal and Program"
@@ -98,7 +98,7 @@ Cohesion: 0.38
 Nodes (5): LogRow, ExerciseLog, ProgramAssignment, AssignmentRow, LogRow
 
 ## Knowledge Gaps
-- **65 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+60 more)
+- **64 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+59 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -112,7 +112,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Profile` connect `Client and Coach Dashboard` to `Auth and Navigation Layout`, `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Print Meal and Program`, `Client Intake Flow`, `App Entry Point`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _65 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _64 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Auth and Navigation Layout` be split into smaller, more focused modules?**
   _Cohesion score 0.11491935483870967 - nodes in this community are weakly interconnected._
 - **Should `Nutrition and Progress Charts` be split into smaller, more focused modules?**

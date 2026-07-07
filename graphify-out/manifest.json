@@ -20,14 +20,14 @@
     "semantic_hash": "c51287071dff3f4f723eef8c02df175b"
   },
   "src/components/ChatThread.tsx": {
-    "mtime": 1783364316.4547057,
-    "ast_hash": "09abc5b652ecd5da035440dfd24e3287",
-    "semantic_hash": "09abc5b652ecd5da035440dfd24e3287"
+    "mtime": 1783432968.8076086,
+    "ast_hash": "71e2c9883a85efe4a58f8dfe33002b0c",
+    "semantic_hash": ""
   },
   "src/components/Comments.tsx": {
-    "mtime": 1783340316.6094182,
-    "ast_hash": "5390a41d901c24d5632c7808b15b22d4",
-    "semantic_hash": "5390a41d901c24d5632c7808b15b22d4"
+    "mtime": 1783432973.5182266,
+    "ast_hash": "76d5cb25e4e031947168007e4ee79ec5",
+    "semantic_hash": ""
   },
   "src/components/Layout.tsx": {
     "mtime": 1783364460.2053788,
@@ -110,9 +110,9 @@
     "semantic_hash": "3114be618d85f635c61148fce0cbfd2c"
   },
   "src/pages/Board.tsx": {
-    "mtime": 1783340397.6260798,
-    "ast_hash": "78ae47e8ef9bfdf364bd9ccf58250e7c",
-    "semantic_hash": "78ae47e8ef9bfdf364bd9ccf58250e7c"
+    "mtime": 1783432978.335457,
+    "ast_hash": "fc1d8a4f0098cf0113bc6f793c1eee1b",
+    "semantic_hash": ""
   },
   "src/pages/Login.tsx": {
     "mtime": 1783340360.0520833,
@@ -120,9 +120,9 @@
     "semantic_hash": "34bd92d6545ca11d6d63f9c63d2629bb"
   },
   "src/pages/Notifications.tsx": {
-    "mtime": 1783340375.0277166,
-    "ast_hash": "a437fcea043b85b0b3d6874788f2af08",
-    "semantic_hash": "a437fcea043b85b0b3d6874788f2af08"
+    "mtime": 1783432936.4332378,
+    "ast_hash": "5d53d75067142a882eb691163ff545b4",
+    "semantic_hash": ""
   },
   "src/pages/Profile.tsx": {
     "mtime": 1783340382.5937755,
@@ -135,9 +135,9 @@
     "semantic_hash": "79447bc27a3946e3dd0e1228d29f8b7f"
   },
   "src/pages/client/CheckIn.tsx": {
-    "mtime": 1783364291.4689405,
-    "ast_hash": "4707c5ae77a7b2a8902a323a407553a3",
-    "semantic_hash": "4707c5ae77a7b2a8902a323a407553a3"
+    "mtime": 1783432965.9110959,
+    "ast_hash": "4ef2520cda5a759f6778e5dbadcbaa14",
+    "semantic_hash": ""
   },
   "src/pages/client/Dashboard.tsx": {
     "mtime": 1783364439.0576155,
@@ -145,9 +145,9 @@
     "semantic_hash": "08e9fd6c8fe82c3a7ff4723da9f1f9df"
   },
   "src/pages/client/Intake.tsx": {
-    "mtime": 1783364332.9053705,
-    "ast_hash": "a6988171f84fd2764abaf18a3ebb168f",
-    "semantic_hash": "a6988171f84fd2764abaf18a3ebb168f"
+    "mtime": 1783432976.3281212,
+    "ast_hash": "9e774f6714a28ce5c48d8def515f34e6",
+    "semantic_hash": ""
   },
   "src/pages/client/MyMeals.tsx": {
     "mtime": 1783364639.6377792,
@@ -170,9 +170,9 @@
     "semantic_hash": "4cd8f991303ab3eb00268a56b0fca02e"
   },
   "src/pages/coach/ClientDetail.tsx": {
-    "mtime": 1783364610.1257436,
-    "ast_hash": "3800135950ae5ad9e640f654a6b691a4",
-    "semantic_hash": "3800135950ae5ad9e640f654a6b691a4"
+    "mtime": 1783432951.0171707,
+    "ast_hash": "d5a0089c1f64474cf3de73328230d5a4",
+    "semantic_hash": ""
   },
   "src/pages/coach/Clients.tsx": {
     "mtime": 1783340578.3949785,
@@ -275,8 +275,8 @@
     "semantic_hash": "b47f3707070daddf902eb240303c7552"
   },
   "supabase/functions/send-notification/index.ts": {
-    "mtime": 1783420350.198793,
-    "ast_hash": "de6e3f3ef22649153d7235225891a1e9",
+    "mtime": 1783432913.3317866,
+    "ast_hash": "c66aff5e78e87978084fe77293c60378",
     "semantic_hash": ""
   },
   "supabase/migrations/001_schema.sql": {
@@ -317,6 +317,11 @@
   "public/favicon.svg": {
     "mtime": 1783340015.756771,
     "ast_hash": "12ac1d9c050c7905836467f8b321146c",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/004_perf_security.sql": {
+    "mtime": 1783421907.1283722,
+    "ast_hash": "61123c07dc2528cbd0391630fd8efb61",
     "semantic_hash": ""
   }
 }

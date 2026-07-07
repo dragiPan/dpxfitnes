@@ -35,14 +35,14 @@
     "semantic_hash": "5c2cec82a1106cf2b70a6c881986cd04"
   },
   "src/components/NutrientChart.tsx": {
-    "mtime": 1783340276.2367187,
-    "ast_hash": "7d0ec1e028cc286f00f32f85ce160ec0",
-    "semantic_hash": "7d0ec1e028cc286f00f32f85ce160ec0"
+    "mtime": 1783420392.9379098,
+    "ast_hash": "5e576b8a8f3c9258ec36eb586a598e82",
+    "semantic_hash": ""
   },
   "src/components/ProgressCharts.tsx": {
-    "mtime": 1783364368.2067478,
-    "ast_hash": "82e9f3ee3ce9aa077344327c78067e14",
-    "semantic_hash": "82e9f3ee3ce9aa077344327c78067e14"
+    "mtime": 1783420412.4984038,
+    "ast_hash": "7e8255860381aaa76e16ee6cc5236d15",
+    "semantic_hash": ""
   },
   "src/components/YouTubeEmbed.tsx": {
     "mtime": 1783340267.6983762,
@@ -75,9 +75,9 @@
     "semantic_hash": "2584ff308fbbd8b210df6b62ae5103aa"
   },
   "src/lib/notify.ts": {
-    "mtime": 1783340128.53484,
-    "ast_hash": "420e2131b4b68ae32217f293f8cabaf1",
-    "semantic_hash": "420e2131b4b68ae32217f293f8cabaf1"
+    "mtime": 1783420327.2464178,
+    "ast_hash": "580fe30ce72bbdb9da48d81ed843618a",
+    "semantic_hash": ""
   },
   "src/lib/nutrients.ts": {
     "mtime": 1783340121.8188148,
@@ -205,9 +205,9 @@
     "semantic_hash": "7abcbf340418357d8becd82ab0cce0a3"
   },
   "src/pages/coach/tabs/CheckinsTab.tsx": {
-    "mtime": 1783340861.2428677,
-    "ast_hash": "04e3835def31050dce983b6e32e6afaa",
-    "semantic_hash": "04e3835def31050dce983b6e32e6afaa"
+    "mtime": 1783420435.4050472,
+    "ast_hash": "ae71142e58bd82c00f17eb5e365e293d",
+    "semantic_hash": ""
   },
   "src/pages/coach/tabs/IntakeTab.tsx": {
     "mtime": 1783364577.5810769,
@@ -260,9 +260,9 @@
     "semantic_hash": "945a3385ece7841e4297e9cf1d4a6b73"
   },
   "supabase/functions/google-calendar/index.ts": {
-    "mtime": 1783359000.3815656,
-    "ast_hash": "aee57197b1866971e8bab9d38c6c50d2",
-    "semantic_hash": "aee57197b1866971e8bab9d38c6c50d2"
+    "mtime": 1783420378.2543654,
+    "ast_hash": "52dbfb1c991a04adb36ad8a63fc1012f",
+    "semantic_hash": ""
   },
   "supabase/functions/invite-client/index.ts": {
     "mtime": 1783340801.3916383,
@@ -275,9 +275,9 @@
     "semantic_hash": "b47f3707070daddf902eb240303c7552"
   },
   "supabase/functions/send-notification/index.ts": {
-    "mtime": 1783366469.5630667,
-    "ast_hash": "7429041dae9ba4605cf05aa25dbe389a",
-    "semantic_hash": "7429041dae9ba4605cf05aa25dbe389a"
+    "mtime": 1783420350.198793,
+    "ast_hash": "de6e3f3ef22649153d7235225891a1e9",
+    "semantic_hash": ""
   },
   "supabase/migrations/001_schema.sql": {
     "mtime": 1783340417.9870365,
@@ -303,5 +303,20 @@
     "mtime": 1783348474.4734035,
     "ast_hash": "43ef4209030cd39cbc58b92ba57754bf",
     "semantic_hash": "43ef4209030cd39cbc58b92ba57754bf"
+  },
+  "supabase/migrations/003_fixes.sql": {
+    "mtime": 1783420321.362601,
+    "ast_hash": "b241a4ba8b9258f221f627ac8e437fd4",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1783364216.1478062,
+    "ast_hash": "26b467df47b302e0314afdaef2d3d284",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1783340015.756771,
+    "ast_hash": "12ac1d9c050c7905836467f8b321146c",
+    "semantic_hash": ""
   }
 }

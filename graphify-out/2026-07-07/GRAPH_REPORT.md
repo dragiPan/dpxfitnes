@@ -1,10 +1,11 @@
-# Graph Report - .  (2026-07-07)
+# Graph Report - dpx-fitnes  (2026-07-07)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 62 files · ~22,766 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 224 nodes · 519 edges · 13 communities (10 shown, 3 thin omitted)
+- 225 nodes · 520 edges · 13 communities (11 shown, 2 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -40,29 +41,29 @@
 10. `ProgramDay` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `ChatThread()` --calls--> `useAuth()`  [EXTRACTED]
-  src/components/ChatThread.tsx → src/contexts/AuthContext.tsx
-- `Comments()` --calls--> `useAuth()`  [EXTRACTED]
-  src/components/Comments.tsx → src/contexts/AuthContext.tsx
-- `Intake()` --calls--> `useAuth()`  [EXTRACTED]
-  src/pages/client/Intake.tsx → src/contexts/AuthContext.tsx
+- `Planner()` --calls--> `useAuth()`  [EXTRACTED]
+  src/pages/client/Planner.tsx → src/contexts/AuthContext.tsx
 - `ClientDetail()` --calls--> `useAuth()`  [EXTRACTED]
   src/pages/coach/ClientDetail.tsx → src/contexts/AuthContext.tsx
 - `App()` --calls--> `useAuth()`  [EXTRACTED]
   src/App.tsx → src/contexts/AuthContext.tsx
+- `ChatThread()` --calls--> `useAuth()`  [EXTRACTED]
+  src/components/ChatThread.tsx → src/contexts/AuthContext.tsx
+- `Comments()` --calls--> `useAuth()`  [EXTRACTED]
+  src/components/Comments.tsx → src/contexts/AuthContext.tsx
 
 ## Import Cycles
 - None detected.
 
-## Communities (13 total, 3 thin omitted)
+## Communities (13 total, 2 thin omitted)
 
 ### Community 0 - "Auth and Navigation Layout"
-Cohesion: 0.12
-Nodes (24): App(), CLIENT_NAV, COACH_NAV, Layout(), NavItem, AuthProvider(), Ctx, useAuth() (+16 more)
+Cohesion: 0.11
+Nodes (20): DPXFITNES Online Coaching Platform, App(), ChatThread(), Comments(), CLIENT_NAV, COACH_NAV, Layout(), NavItem (+12 more)
 
 ### Community 1 - "Program and Exercise Types"
-Cohesion: 0.12
-Nodes (18): LogRow, YouTubeEmbed(), ExerciseLog, LibraryExercise, Program, ProgramAssignment, ProgramDay, ProgramExercise (+10 more)
+Cohesion: 0.15
+Nodes (12): YouTubeEmbed(), LibraryExercise, Program, ProgramDay, ProgramExercise, youtubeId(), FullProgram, MyProgram() (+4 more)
 
 ### Community 2 - "Nutrition and Progress Charts"
 Cohesion: 0.11
@@ -73,12 +74,12 @@ Cohesion: 0.07
 Nodes (26): dependencies, date-fns, i18next, react, react-dom, react-i18next, react-router-dom, recharts (+18 more)
 
 ### Community 4 - "Chat and Notifications"
-Cohesion: 0.15
-Nodes (12): ChatThread(), Props, Comments(), Props, NotifyPayload, notifyUsers(), anonKey, url (+4 more)
+Cohesion: 0.17
+Nodes (11): Props, Props, INTAKE_QUESTIONS, IntakeQuestionId, NotifyPayload, notifyUsers(), anonKey, supabase (+3 more)
 
 ### Community 5 - "Client and Coach Dashboard"
-Cohesion: 0.14
-Nodes (13): AuthCtx, Group, Profile, Subscription, ClientDetail(), Tab, TABS, ClientRow (+5 more)
+Cohesion: 0.17
+Nodes (11): AuthCtx, Profile, Subscription, ClientDetail(), Tab, TABS, ClientRow, CoachDashboard() (+3 more)
 
 ### Community 6 - "Print Meal and Program"
 Cohesion: 0.21
@@ -89,28 +90,32 @@ Cohesion: 0.11
 Nodes (17): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleDetection, moduleResolution, noEmit (+9 more)
 
 ### Community 9 - "Client Intake Flow"
-Cohesion: 0.36
-Nodes (4): INTAKE_QUESTIONS, IntakeQuestionId, IntakeResponse, Intake()
+Cohesion: 0.16
+Nodes (13): AppNotification, BoardPost, ChatMessage, Comment, GCalEvent, Group, Role, TrainingSession (+5 more)
+
+### Community 10 - "App Entry Point"
+Cohesion: 0.38
+Nodes (5): LogRow, ExerciseLog, ProgramAssignment, AssignmentRow, LogRow
 
 ## Knowledge Gaps
 - **65 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+60 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `useAuth()` connect `Auth and Navigation Layout` to `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Client and Coach Dashboard`, `Print Meal and Program`, `Client Intake Flow`?**
   _High betweenness centrality (0.067) - this node is a cross-community bridge._
-- **Why does `supabase` connect `Auth and Navigation Layout` to `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Client and Coach Dashboard`, `Print Meal and Program`, `Client Intake Flow`?**
+- **Why does `supabase` connect `Chat and Notifications` to `Auth and Navigation Layout`, `Program and Exercise Types`, `Nutrition and Progress Charts`, `Client and Coach Dashboard`, `Print Meal and Program`, `Client Intake Flow`, `App Entry Point`?**
   _High betweenness centrality (0.059) - this node is a cross-community bridge._
-- **Why does `Profile` connect `Client and Coach Dashboard` to `Auth and Navigation Layout`, `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Print Meal and Program`, `Client Intake Flow`?**
+- **Why does `Profile` connect `Client and Coach Dashboard` to `Auth and Navigation Layout`, `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Print Meal and Program`, `Client Intake Flow`, `App Entry Point`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
   _65 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Auth and Navigation Layout` be split into smaller, more focused modules?**
-  _Cohesion score 0.12012012012012012 - nodes in this community are weakly interconnected._
-- **Should `Program and Exercise Types` be split into smaller, more focused modules?**
-  _Cohesion score 0.12310606060606061 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11491935483870967 - nodes in this community are weakly interconnected._
 - **Should `Nutrition and Progress Charts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11375661375661375 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10837438423645321 - nodes in this community are weakly interconnected._
+- **Should `Frontend Dependencies` be split into smaller, more focused modules?**
+  _Cohesion score 0.07407407407407407 - nodes in this community are weakly interconnected._
