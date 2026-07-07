@@ -135,7 +135,13 @@
     "nutrition": "Ishrana",
     "prs": "Lični rekordi",
     "cardio4w": "Kardio — poslednje 4 nedelje",
-    "sessions": "Treninzi"
+    "sessions": "Treninzi",
+    "macroSplit": "Odnos makroa — prosek 7 dana",
+    "averages": "Prosek za 7 dana",
+    "adherence": "Pogađanje ciljeva — 30 dana",
+    "calOnTarget": "Kalorije u cilju (±10%)",
+    "proteinHit": "Pogođen proteinski cilj",
+    "checkinCompliance": "Prijave (7 dana)"
   },
   "chat": {
     "title": "Poruke sa trenerom",

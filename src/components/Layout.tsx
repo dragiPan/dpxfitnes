@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
+import { setLanguage } from '../i18n'
 
 interface NavItem {
   to: string
@@ -30,11 +31,19 @@ const COACH_NAV: NavItem[] = [
 ]
 
 export default function Layout() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { isCoach, session } = useAuth()
   const location = useLocation()
   const [unread, setUnread] = useState(0)
   const nav = isCoach ? COACH_NAV : CLIENT_NAV
+
+  async function toggleLanguage() {
+    const next = i18n.language === 'sr' ? 'en' : 'sr'
+    setLanguage(next)
+    if (session) {
+      await supabase.from('profiles').update({ language: next }).eq('id', session.user.id)
+    }
+  }
 
   useEffect(() => {
     if (!session) return
@@ -59,6 +68,13 @@ export default function Layout() {
             {t('app.name')}
           </NavLink>
           <div className="flex items-center gap-1">
+            <button
+              className="border-2 border-black px-1.5 py-0.5 text-[11px] font-black hover:bg-black hover:text-white"
+              onClick={() => void toggleLanguage()}
+              title={i18n.language === 'sr' ? 'English' : 'Srpski'}
+            >
+              {i18n.language === 'sr' ? 'SR' : 'EN'}
+            </button>
             <NavLink
               to="/notifications"
               className="relative px-2 py-1 font-bold"
