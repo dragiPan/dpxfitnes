@@ -64,6 +64,29 @@ export default function ProgressCharts({ userId }: { userId: string }) {
   const target = targets.find((x) => x.nutrient === nutrient)?.target_value ?? null
   const unit = NUTRIENTS.find((n) => n.key === nutrient)?.unit
 
+  // stock-ticker headline: latest value + change across the loaded range
+  const fmtNum = (n: number) =>
+    Number.isInteger(n) ? n.toLocaleString() : n.toLocaleString(undefined, { maximumFractionDigits: 1 })
+  const statHead = (data: ChartPoint[], u?: string) => {
+    if (data.length === 0) return null
+    const latest = data[data.length - 1].value
+    const delta = data.length > 1 ? latest - data[0].value : 0
+    return (
+      <div className="mb-1 flex flex-wrap items-baseline gap-x-3">
+        <span className="text-3xl font-black tabular-nums leading-none">
+          {fmtNum(latest)}
+          {u ? <span className="ml-1 text-sm font-bold">{u}</span> : null}
+        </span>
+        {delta !== 0 && (
+          <span className="text-sm font-bold tabular-nums text-neutral-500">
+            {delta > 0 ? '▲' : '▼'} {fmtNum(Math.abs(delta))}
+            {u ? ` ${u}` : ''}
+          </span>
+        )}
+      </div>
+    )
+  }
+
   // personal records: heaviest logged weight per strength exercise
   const prs: PR[] = useMemo(() => {
     const best = new Map<string, PR>()
@@ -101,11 +124,13 @@ export default function ProgressCharts({ userId }: { userId: string }) {
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="card">
           <p className="label">{t('progress.weight')}</p>
+          {statHead(weightData, 'kg')}
           {weightData.length === 0 ? empty : <NutrientChart data={weightData} unit="kg" />}
         </div>
 
         <div className="card">
           <p className="label">{t('progress.steps')}</p>
+          {statHead(stepsData)}
           {stepsData.length === 0 ? empty : <NutrientChart data={stepsData} />}
         </div>
       </div>
@@ -125,6 +150,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
             ))}
           </select>
         </div>
+        {statHead(nutrientData, unit)}
         {nutrientData.length === 0 ? (
           empty
         ) : (

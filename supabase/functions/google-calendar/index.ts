@@ -8,13 +8,27 @@
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { corsHeaders, json } from '../_shared/cors.ts'
 
-async function accessTokenFor(admin: ReturnType<typeof createClient>, userId: string) {
+async function accessTokenFor(
+  admin: ReturnType<typeof createClient>,
+  userId: string,
+  force = false,
+) {
   const { data: tokenRow } = await admin
     .from('google_tokens')
-    .select('refresh_token')
+    .select('refresh_token, access_token, access_expires_at')
     .eq('user_id', userId)
     .maybeSingle()
   if (!tokenRow) return null
+
+  // use the cached access token when still valid — saves a Google round trip
+  if (
+    !force &&
+    tokenRow.access_token &&
+    tokenRow.access_expires_at &&
+    new Date(tokenRow.access_expires_at as string).getTime() - Date.now() > 60_000
+  ) {
+    return tokenRow.access_token as string
+  }
 
   const res = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
@@ -26,8 +40,18 @@ async function accessTokenFor(admin: ReturnType<typeof createClient>, userId: st
       grant_type: 'refresh_token',
     }),
   })
-  if (!res.ok) return null
+  if (!res.ok) {
+    console.error(`Google token refresh failed for ${userId}: ${res.status} ${await res.text()}`)
+    return null
+  }
   const data = await res.json()
+  await admin
+    .from('google_tokens')
+    .update({
+      access_token: data.access_token,
+      access_expires_at: new Date(Date.now() + (data.expires_in ?? 3600) * 1000).toISOString(),
+    })
+    .eq('user_id', userId)
   return data.access_token as string
 }
 
@@ -48,7 +72,7 @@ Deno.serve(async (req) => {
   const action = body.action as string
 
   if (action === 'list_events') {
-    const token = await accessTokenFor(admin, callerId)
+    let token = await accessTokenFor(admin, callerId)
     // 200 with an error field: the browser client can't read non-2xx bodies
     if (!token) return json({ error: 'not_connected' })
 
@@ -59,10 +83,14 @@ Deno.serve(async (req) => {
       orderBy: 'startTime',
       maxResults: '150',
     })
-    const res = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`,
-      { headers: { Authorization: `Bearer ${token}` } },
-    )
+    const listUrl = `https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`
+    let res = await fetch(listUrl, { headers: { Authorization: `Bearer ${token}` } })
+    if (res.status === 401) {
+      // cached token revoked — force one refresh and retry
+      token = await accessTokenFor(admin, callerId, true)
+      if (!token) return json({ error: 'not_connected' })
+      res = await fetch(listUrl, { headers: { Authorization: `Bearer ${token}` } })
+    }
     if (!res.ok) {
       const detail = await res.text()
       console.error('Google Calendar list failed:', res.status, detail)
@@ -84,14 +112,13 @@ Deno.serve(async (req) => {
     const targetUserId = body.target_user_id as string
     if (!targetUserId) return json({ error: 'target_user_id required' }, 400)
 
-    const token = await accessTokenFor(admin, targetUserId)
+    let token = await accessTokenFor(admin, targetUserId)
     if (!token) return json({ error: 'not_connected' })
 
-    const res = await fetch(
-      'https://www.googleapis.com/calendar/v3/calendars/primary/events',
-      {
+    const insertEvent = (tk: string) =>
+      fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        headers: { Authorization: `Bearer ${tk}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           summary: body.summary ?? 'Training',
           description: body.description ?? '',
@@ -99,8 +126,13 @@ Deno.serve(async (req) => {
           end: { dateTime: body.end },
           reminders: { useDefault: true },
         }),
-      },
-    )
+      })
+    let res = await insertEvent(token)
+    if (res.status === 401) {
+      token = await accessTokenFor(admin, targetUserId, true)
+      if (!token) return json({ error: 'not_connected' })
+      res = await insertEvent(token)
+    }
     if (!res.ok) {
       const detail = await res.text()
       console.error('Google Calendar insert failed:', res.status, detail)

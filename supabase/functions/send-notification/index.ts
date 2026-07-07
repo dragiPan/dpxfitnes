@@ -37,34 +37,40 @@ Deno.serve(async (req) => {
 
   const resendKey = Deno.env.get('RESEND_API_KEY')
   const from = Deno.env.get('FROM_EMAIL') ?? 'DPXFITNES <onboarding@resend.dev>'
-  if (!resendKey) return json({ ok: true, sent: 0, warning: 'RESEND_API_KEY not set' })
+  if (!resendKey) {
+    // loud, so a missing/typo'd secret is visible in the function logs
+    console.error('RESEND_API_KEY is not set — 0 emails sent. Run: supabase secrets set RESEND_API_KEY=re_...')
+    return json({ ok: true, sent: 0, warning: 'RESEND_API_KEY not set' })
+  }
 
-  let sent = 0
+  // send in parallel — recipients lists can be a whole group
   const failures: { to: string; status: number; detail: string }[] = []
-  for (const r of recipients) {
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        from,
-        to: r.email,
-        subject: `DPXFITNES — ${subject}`,
-        html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;border:2px solid #000;padding:24px">
-          <h1 style="font-size:20px;letter-spacing:-1px;margin:0 0 16px">DPXFITNES</h1>
-          <h2 style="font-size:16px;margin:0 0 8px">${escapeHtml(String(subject))}</h2>
-          <p style="font-size:14px;white-space:pre-wrap">${escapeHtml(String(body ?? ''))}</p>
-        </div>`,
-      }),
-    })
-    if (res.ok) {
-      sent++
-    } else {
+  const results = await Promise.all(
+    recipients.map(async (r) => {
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from,
+          to: r.email,
+          subject: `DPXFITNES — ${subject}`,
+          html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;border:2px solid #000;padding:24px">
+            <h1 style="font-size:20px;letter-spacing:-1px;margin:0 0 16px">DPXFITNES</h1>
+            <h2 style="font-size:16px;margin:0 0 8px">${escapeHtml(String(subject))}</h2>
+            <p style="font-size:14px;white-space:pre-wrap">${escapeHtml(String(body ?? ''))}</p>
+          </div>`,
+        }),
+      })
+      if (res.ok) return true
       const detail = await res.text()
       // shows up in Supabase -> Edge Functions -> send-notification -> Logs
       console.error(`Resend rejected email to ${r.email}: ${res.status} ${detail}`)
       failures.push({ to: r.email, status: res.status, detail: detail.slice(0, 300) })
-    }
-  }
+      return false
+    }),
+  )
+  const sent = results.filter(Boolean).length
+  console.log(`emails: sent=${sent} failed=${failures.length} from="${from}"`)
 
   return json({ ok: true, sent, from, failures })
 })

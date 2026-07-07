@@ -1,0 +1,415 @@
+{
+  "communities": {
+    "0": [
+      "src_app",
+      "src_app_app",
+      "src_components_layout",
+      "src_components_layout_client_nav",
+      "src_components_layout_coach_nav",
+      "src_components_layout_layout",
+      "src_components_layout_navitem",
+      "src_contexts_authcontext",
+      "src_contexts_authcontext_authprovider",
+      "src_contexts_authcontext_ctx",
+      "src_contexts_authcontext_useauth",
+      "src_i18n_index",
+      "src_i18n_index_setlanguage",
+      "src_lib_supabase_supabase",
+      "src_lib_types_appnotification",
+      "src_lib_types_boardpost",
+      "src_lib_types_gcalevent",
+      "src_main",
+      "src_pages_board",
+      "src_pages_board_board",
+      "src_pages_client_chat",
+      "src_pages_client_chat_chat",
+      "src_pages_client_dashboard",
+      "src_pages_client_dashboard_clientdashboard",
+      "src_pages_client_dashboard_todaystr",
+      "src_pages_client_planner",
+      "src_pages_client_planner_dayevent",
+      "src_pages_client_planner_planner",
+      "src_pages_client_progress",
+      "src_pages_client_progress_progress",
+      "src_pages_login",
+      "src_pages_login_login",
+      "src_pages_login_step",
+      "src_pages_notifications",
+      "src_pages_notifications_notifications",
+      "src_pages_profile",
+      "src_pages_profile_profile"
+    ],
+    "1": [
+      "src_components_progresscharts_logrow",
+      "src_components_youtubeembed",
+      "src_components_youtubeembed_youtubeembed",
+      "src_lib_types",
+      "src_lib_types_exerciselog",
+      "src_lib_types_libraryexercise",
+      "src_lib_types_program",
+      "src_lib_types_programassignment",
+      "src_lib_types_programday",
+      "src_lib_types_programexercise",
+      "src_lib_types_role",
+      "src_lib_youtube",
+      "src_lib_youtube_youtubeid",
+      "src_pages_client_myprogram",
+      "src_pages_client_myprogram_exercisecard",
+      "src_pages_client_myprogram_fullprogram",
+      "src_pages_client_myprogram_myprogram",
+      "src_pages_client_myprogram_num",
+      "src_pages_client_myprogram_setdraft",
+      "src_pages_client_myprogram_todaystr",
+      "src_pages_coach_library",
+      "src_pages_coach_library_library",
+      "src_pages_coach_library_libraryeditor",
+      "src_pages_coach_programbuilder",
+      "src_pages_coach_programbuilder_exerciseeditor",
+      "src_pages_coach_programbuilder_fullprogram",
+      "src_pages_coach_programs",
+      "src_pages_coach_programs_programrow",
+      "src_pages_coach_programs_programs",
+      "src_pages_coach_tabs_programtab",
+      "src_pages_coach_tabs_programtab_assignmentrow",
+      "src_pages_coach_tabs_programtab_logrow",
+      "src_pages_coach_tabs_programtab_programtab"
+    ],
+    "2": [
+      "src_components_nutrientchart",
+      "src_components_nutrientchart_chartpoint",
+      "src_components_nutrientchart_fmtdate",
+      "src_components_nutrientchart_nutrientchart",
+      "src_components_nutrientchart_props",
+      "src_components_progresscharts",
+      "src_components_progresscharts_pr",
+      "src_components_progresscharts_progresscharts",
+      "src_lib_nutrients",
+      "src_lib_nutrients_measurement_fields",
+      "src_lib_nutrients_measurementfield",
+      "src_lib_nutrients_nutrientdef",
+      "src_lib_nutrients_nutrientkey",
+      "src_lib_nutrients_nutrients",
+      "src_lib_types_checkin",
+      "src_lib_types_measurement",
+      "src_lib_types_nutritiontarget",
+      "src_pages_client_checkin",
+      "src_pages_client_checkin_checkin",
+      "src_pages_client_checkin_formvalues",
+      "src_pages_client_checkin_measurevalues",
+      "src_pages_client_checkin_todaystr",
+      "src_pages_coach_tabs_checkinstab",
+      "src_pages_coach_tabs_checkinstab_checkinstab",
+      "src_pages_coach_tabs_measurementstab",
+      "src_pages_coach_tabs_measurementstab_measurementstab",
+      "src_pages_coach_tabs_targetstab",
+      "src_pages_coach_tabs_targetstab_targetstab"
+    ],
+    "3": [
+      "package",
+      "package_dependencies",
+      "package_dependencies_date_fns",
+      "package_dependencies_i18next",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_i18next",
+      "package_dependencies_react_router_dom",
+      "package_dependencies_recharts",
+      "package_dependencies_supabase_supabase_js",
+      "package_dependencies_tailwindcss",
+      "package_dependencies_tailwindcss_vite",
+      "package_dependencies_tslib",
+      "package_devdependencies",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "package_devdependencies_vite",
+      "package_devdependencies_vitejs_plugin_react",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_preview",
+      "package_type",
+      "package_version"
+    ],
+    "4": [
+      "src_components_chatthread",
+      "src_components_chatthread_chatthread",
+      "src_components_chatthread_props",
+      "src_components_comments",
+      "src_components_comments_comments",
+      "src_components_comments_props",
+      "src_lib_notify",
+      "src_lib_notify_notifypayload",
+      "src_lib_notify_notifyusers",
+      "src_lib_supabase",
+      "src_lib_supabase_anonkey",
+      "src_lib_supabase_url",
+      "src_lib_types_chatmessage",
+      "src_lib_types_comment",
+      "src_lib_types_commententitytype",
+      "src_lib_types_trainingsession",
+      "src_pages_coach_tabs_paymenttab",
+      "src_pages_coach_tabs_paymenttab_paymenttab",
+      "src_pages_coach_tabs_sessionstab",
+      "src_pages_coach_tabs_sessionstab_sessionstab"
+    ],
+    "5": [
+      "src_contexts_authcontext_authctx",
+      "src_lib_types_group",
+      "src_lib_types_profile",
+      "src_lib_types_subscription",
+      "src_pages_coach_clientdetail",
+      "src_pages_coach_clientdetail_clientdetail",
+      "src_pages_coach_clientdetail_tab",
+      "src_pages_coach_clientdetail_tabs",
+      "src_pages_coach_clients",
+      "src_pages_coach_clients_clientrow",
+      "src_pages_coach_clients_clients",
+      "src_pages_coach_coachdashboard",
+      "src_pages_coach_coachdashboard_coachdashboard",
+      "src_pages_coach_coachdashboard_subrow",
+      "src_pages_coach_coachdashboard_todaystr",
+      "src_pages_coach_groups",
+      "src_pages_coach_groups_fullgroup",
+      "src_pages_coach_groups_groups",
+      "src_pages_coach_tabs_overviewtab",
+      "src_pages_coach_tabs_overviewtab_overviewtab"
+    ],
+    "6": [
+      "src_lib_print",
+      "src_lib_print_esc",
+      "src_lib_print_openandprint",
+      "src_lib_print_printday",
+      "src_lib_print_printexercise",
+      "src_lib_print_printmeal",
+      "src_lib_print_printmealplan",
+      "src_lib_print_printprogram",
+      "src_lib_types_mealplan",
+      "src_lib_types_mealplanmeal",
+      "src_pages_client_mymeals",
+      "src_pages_client_mymeals_fullplan",
+      "src_pages_client_mymeals_mymeals",
+      "src_pages_coach_programbuilder_programbuilder",
+      "src_pages_coach_tabs_mealstab",
+      "src_pages_coach_tabs_mealstab_fullplan",
+      "src_pages_coach_tabs_mealstab_mealeditor",
+      "src_pages_coach_tabs_mealstab_mealstab"
+    ],
+    "7": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowimportingtsextensions",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduledetection",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_nofallthroughcasesinswitch",
+      "tsconfig_compileroptions_nounusedlocals",
+      "tsconfig_compileroptions_nounusedparameters",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_types",
+      "tsconfig_compileroptions_verbatimmodulesyntax",
+      "tsconfig_include"
+    ],
+    "8": [
+      "supabase_functions_google_calendar_index",
+      "supabase_functions_google_calendar_index_accesstokenfor",
+      "supabase_functions_invite_client_index",
+      "supabase_functions_remove_client_index",
+      "supabase_functions_send_notification_index",
+      "supabase_functions_send_notification_index_escapehtml",
+      "supabase_functions_shared_cors",
+      "supabase_functions_shared_cors_corsheaders",
+      "supabase_functions_shared_cors_json"
+    ],
+    "9": [
+      "src_lib_intake",
+      "src_lib_intake_intake_questions",
+      "src_lib_intake_intakequestionid",
+      "src_lib_types_intakeresponse",
+      "src_pages_client_intake",
+      "src_pages_client_intake_intake",
+      "src_pages_coach_tabs_intaketab",
+      "src_pages_coach_tabs_intaketab_intaketab"
+    ],
+    "10": [
+      "dpxfitnes_app",
+      "index",
+      "public_favicon"
+    ],
+    "11": [
+      "vercel",
+      "vercel_rewrites"
+    ],
+    "12": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12012012012012012,
+    "1": 0.12310606060606061,
+    "2": 0.11375661375661375,
+    "3": 0.07407407407407407,
+    "4": 0.14736842105263157,
+    "5": 0.1368421052631579,
+    "6": 0.20915032679738563,
+    "7": 0.1111111111111111,
+    "8": 0.4444444444444444,
+    "9": 0.35714285714285715,
+    "10": 0.6666666666666666,
+    "11": 1.0,
+    "12": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_contexts_authcontext_useauth",
+      "label": "useAuth()",
+      "degree": 33
+    },
+    {
+      "id": "src_lib_supabase_supabase",
+      "label": "supabase",
+      "degree": 32
+    },
+    {
+      "id": "src_lib_types_profile",
+      "label": "Profile",
+      "degree": 19
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "src_lib_notify_notifyusers",
+      "label": "notifyUsers()",
+      "degree": 11
+    },
+    {
+      "id": "src_lib_types_program",
+      "label": "Program",
+      "degree": 9
+    },
+    {
+      "id": "src_lib_nutrients_nutrients",
+      "label": "NUTRIENTS",
+      "degree": 7
+    },
+    {
+      "id": "src_lib_print_printprogram",
+      "label": "printProgram()",
+      "degree": 7
+    },
+    {
+      "id": "src_lib_print_printmealplan",
+      "label": "printMealPlan()",
+      "degree": 7
+    },
+    {
+      "id": "src_lib_types_programday",
+      "label": "ProgramDay",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ChatThread()",
+      "target": "useAuth()",
+      "source_files": [
+        "src/components/ChatThread.tsx",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `ChatThread()` unexpectedly reaches hub `useAuth()`"
+    },
+    {
+      "source": "Comments()",
+      "target": "useAuth()",
+      "source_files": [
+        "src/components/Comments.tsx",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `Comments()` unexpectedly reaches hub `useAuth()`"
+    },
+    {
+      "source": "Intake()",
+      "target": "useAuth()",
+      "source_files": [
+        "src/pages/client/Intake.tsx",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `Intake()` unexpectedly reaches hub `useAuth()`"
+    },
+    {
+      "source": "ClientDetail()",
+      "target": "useAuth()",
+      "source_files": [
+        "src/pages/coach/ClientDetail.tsx",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `ClientDetail()` unexpectedly reaches hub `useAuth()`"
+    },
+    {
+      "source": "App()",
+      "target": "useAuth()",
+      "source_files": [
+        "src/App.tsx",
+        "src/contexts/AuthContext.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "peripheral node `App()` unexpectedly reaches hub `useAuth()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `useAuth()` connect `Auth and Navigation Layout` to `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Client and Coach Dashboard`, `Print Meal and Program`, `Client Intake Flow`?",
+      "why": "High betweenness centrality (0.067) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `supabase` connect `Auth and Navigation Layout` to `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Client and Coach Dashboard`, `Print Meal and Program`, `Client Intake Flow`?",
+      "why": "High betweenness centrality (0.059) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Profile` connect `Client and Coach Dashboard` to `Auth and Navigation Layout`, `Program and Exercise Types`, `Nutrition and Progress Charts`, `Chat and Notifications`, `Print Meal and Program`, `Client Intake Flow`?",
+      "why": "High betweenness centrality (0.020) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `private`, `version` to the rest of the system?",
+      "why": "65 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Auth and Navigation Layout` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12012012012012012 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Program and Exercise Types` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12310606060606061 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Nutrition and Progress Charts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.11375661375661375 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

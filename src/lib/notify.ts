@@ -8,9 +8,10 @@ interface NotifyPayload {
 }
 
 /**
- * Creates in-app notifications for the given users and asks the
- * `send-notification` edge function to email them as well.
- * Email failures are non-fatal (the function may not be deployed yet).
+ * Creates in-app notifications for the given users and fires the
+ * `send-notification` edge function for the emails IN THE BACKGROUND —
+ * the caller never waits on email delivery, and notification problems
+ * never break the action that triggered them (they only log to console).
  */
 export async function notifyUsers(userIds: string[], payload: NotifyPayload) {
   if (userIds.length === 0) return
@@ -21,14 +22,26 @@ export async function notifyUsers(userIds: string[], payload: NotifyPayload) {
     body: payload.body ?? null,
     link: payload.link ?? null,
   }))
-  const { error } = await supabase.from('notifications').insert(rows)
-  if (error) throw error
 
-  try {
-    await supabase.functions.invoke('send-notification', {
+  const { error } = await supabase.from('notifications').insert(rows)
+  if (error) {
+    console.error('In-app notification insert failed:', error.message)
+    return
+  }
+
+  // fire-and-forget: email delivery must not block the UI
+  supabase.functions
+    .invoke('send-notification', {
       body: { user_ids: userIds, subject: payload.title, body: payload.body ?? '' },
     })
-  } catch {
-    // email is best-effort; in-app notification already created
-  }
+    .then(({ data, error: fnErr }) => {
+      if (fnErr) {
+        console.error('send-notification failed:', fnErr.message ?? fnErr)
+        return
+      }
+      const res = data as { sent?: number; failures?: unknown[]; warning?: string } | null
+      if (res?.warning) console.error('send-notification warning:', res.warning)
+      if (res?.failures?.length) console.error('email failures:', res.failures)
+    })
+    .catch((e) => console.error('send-notification invoke error:', e))
 }

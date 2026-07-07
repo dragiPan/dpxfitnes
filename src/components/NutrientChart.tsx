@@ -45,9 +45,11 @@ export default function NutrientChart({ data, target, unit, targetLabel }: Props
             domain={['auto', 'auto']}
           />
           <Tooltip
+            isAnimationActive={false}
             labelFormatter={(l) => fmtDate(String(l))}
             formatter={(v) => [`${v}${unit ? ` ${unit}` : ''}`, '']}
             separator=""
+            cursor={{ stroke: '#000', strokeDasharray: '3 3' }}
             contentStyle={{
               border: '2px solid #000',
               borderRadius: 0,
