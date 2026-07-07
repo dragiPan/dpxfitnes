@@ -173,6 +173,7 @@
   "planner": {
     "title": "Planer",
     "connect": "Poveži Google Kalendar",
+    "reconnect": "Ponovo poveži Google Kalendar",
     "connected": "Google Kalendar povezan",
     "refresh": "Osveži",
     "week": "Nedelja",

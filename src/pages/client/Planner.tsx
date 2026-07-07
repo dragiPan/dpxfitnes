@@ -156,10 +156,17 @@ export default function Planner() {
           </button>
         </div>
       )}
-      {connected && (
+      {connected && !error && (
         <p className="mb-3 text-xs font-bold text-neutral-500">✓ {t('planner.connected')}</p>
       )}
-      {error && <p className="mb-3 text-xs font-bold">{error}</p>}
+      {error && (
+        <div className="card mb-4">
+          <p className="mb-2 text-sm font-bold">{error}</p>
+          <button className="btn btn-primary" onClick={() => void connect()}>
+            ⟳ {t('planner.reconnect')}
+          </button>
+        </div>
+      )}
       {loading && <p className="mb-3 text-xs">{t('common.loading')}</p>}
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-7">

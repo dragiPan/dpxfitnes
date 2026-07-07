@@ -173,6 +173,7 @@
   "planner": {
     "title": "Planner",
     "connect": "Connect Google Calendar",
+    "reconnect": "Reconnect Google Calendar",
     "connected": "Google Calendar connected",
     "refresh": "Refresh",
     "week": "Week",

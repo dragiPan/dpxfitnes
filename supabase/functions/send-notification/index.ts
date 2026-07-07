@@ -40,6 +40,7 @@ Deno.serve(async (req) => {
   if (!resendKey) return json({ ok: true, sent: 0, warning: 'RESEND_API_KEY not set' })
 
   let sent = 0
+  const failures: { to: string; status: number; detail: string }[] = []
   for (const r of recipients) {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -55,10 +56,17 @@ Deno.serve(async (req) => {
         </div>`,
       }),
     })
-    if (res.ok) sent++
+    if (res.ok) {
+      sent++
+    } else {
+      const detail = await res.text()
+      // shows up in Supabase -> Edge Functions -> send-notification -> Logs
+      console.error(`Resend rejected email to ${r.email}: ${res.status} ${detail}`)
+      failures.push({ to: r.email, status: res.status, detail: detail.slice(0, 300) })
+    }
   }
 
-  return json({ ok: true, sent })
+  return json({ ok: true, sent, from, failures })
 })
 
 function escapeHtml(s: string) {

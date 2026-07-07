@@ -1,0 +1,12 @@
+# Keep graphify code-only so it runs fully local with no LLM API key.
+# (docs/PDFs/images would otherwise require semantic extraction via an API)
+*.md
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.pdf
+graphify-out/
+dist/
+node_modules/
