@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabase'
 import ChatThread from '../../components/ChatThread'
@@ -34,8 +34,12 @@ export default function ClientDetail() {
   const { id } = useParams<{ id: string }>()
   const { profile } = useAuth()
   const navigate = useNavigate()
+  // tab lives in the URL (?tab=chat) so notifications can deep-link to it
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tabParam = searchParams.get('tab') as Tab | null
+  const tab: Tab = tabParam && TABS.includes(tabParam) ? tabParam : 'overview'
+  const setTab = (x: Tab) => setSearchParams({ tab: x }, { replace: true })
   const [client, setClient] = useState<Profile | null>(null)
-  const [tab, setTab] = useState<Tab>('overview')
   const [removing, setRemoving] = useState(false)
   const [removeError, setRemoveError] = useState('')
 

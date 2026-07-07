@@ -74,7 +74,8 @@ export default function Board() {
       setBody('')
       setMsg(t('board.published'))
       await load()
-    } catch {
+    } catch (e) {
+      console.error('board publish failed:', e)
       setMsg(t('common.error'))
     } finally {
       setBusy(false)

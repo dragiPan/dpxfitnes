@@ -102,12 +102,13 @@ export default function CheckIn() {
         }
       }
 
-      // let the coach know a check-in came in
+      // let the coach know a check-in came in (links straight to this client's check-ins tab)
       const { data: coaches } = await supabase.rpc('coach_ids')
       await notifyUsers(((coaches as string[] | null) ?? []).map(String), {
         type: 'checkin',
         title: `Check-in: ${profile?.full_name || profile?.email} (${date})`,
         body: `kcal: ${values.calories || '–'} | P: ${values.protein || '–'} | ${t('common.weight')}: ${values.weight || '–'}`,
+        link: `/clients/${session.user.id}?tab=checkins`,
       })
 
       setMsg(t('checkin.saved'))

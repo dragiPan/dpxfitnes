@@ -50,12 +50,14 @@ export default function Comments({ entityType, entityId, clientId, contextLabel 
       setBody('')
       await load()
 
-      // notify the other side of the conversation
+      // notify the other side of the conversation, linking to where the thread lives
+      const area = entityType.startsWith('meal') ? 'meals' : 'program'
       if (isCoach) {
         await notifyUsers([clientId], {
           type: 'comment',
           title: `${t('comments.coach')}: ${contextLabel}`,
           body: body.trim().slice(0, 200),
+          link: `/${area}`,
         })
       } else {
         const { data: coaches } = await supabase.rpc('coach_ids')
@@ -64,6 +66,7 @@ export default function Comments({ entityType, entityId, clientId, contextLabel 
           type: 'comment',
           title: contextLabel,
           body: body.trim().slice(0, 200),
+          link: `/clients/${clientId}?tab=${area}`,
         })
       }
     } finally {

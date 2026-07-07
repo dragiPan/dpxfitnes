@@ -47,6 +47,7 @@ export default function Intake() {
         await notifyUsers(((coaches as string[] | null) ?? []).map(String), {
           type: 'intake',
           title: `${t('intake.title')}: ${profile?.full_name || profile?.email}`,
+          link: `/clients/${session.user.id}?tab=intake`,
         })
         navigate('/')
       }

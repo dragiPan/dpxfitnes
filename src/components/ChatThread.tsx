@@ -88,6 +88,7 @@ export default function ChatThread({ clientId, senderLabel }: Props) {
           type: 'chat',
           title: `${t('chat.newMessage')}: ${senderLabel}`,
           body: text.slice(0, 200),
+          link: `/clients/${clientId}?tab=chat`,
         })
       }
     } finally {
