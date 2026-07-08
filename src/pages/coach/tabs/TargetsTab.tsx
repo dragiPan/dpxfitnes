@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../../../lib/supabase'
-import { NUTRIENTS } from '../../../lib/nutrients'
+import { EXTRA_TARGETS, NUTRIENTS } from '../../../lib/nutrients'
 import type { NutritionTarget, Profile } from '../../../lib/types'
 
 export default function TargetsTab({ client }: { client: Profile }) {
@@ -43,7 +43,11 @@ export default function TargetsTab({ client }: { client: Profile }) {
           <span className="text-xs font-black uppercase text-right">{t('coach.targets.value')}</span>
           <span className="text-xs font-black uppercase text-center">{t('coach.targets.show')}</span>
         </div>
-        {NUTRIENTS.map((n) => {
+        {[
+          ...NUTRIENTS.map((n) => ({ key: n.key as string, unit: n.unit, label: t(`nutrient.${n.key}`) })),
+          { key: 'steps', unit: EXTRA_TARGETS[0].unit, label: t('cardio.stepsDaily') },
+          { key: 'cardio_weekly_min', unit: EXTRA_TARGETS[1].unit, label: t('cardio.weeklyMin') },
+        ].map((n) => {
           const row = rowFor(n.key)
           return (
             <div
@@ -51,7 +55,7 @@ export default function TargetsTab({ client }: { client: Profile }) {
               className="grid grid-cols-[1fr_7rem_6rem] items-center gap-2 border-b border-neutral-300 px-3 py-1.5 last:border-b-0"
             >
               <span className="text-sm font-bold">
-                {t(`nutrient.${n.key}`)} <span className="text-xs text-neutral-400">({n.unit})</span>
+                {n.label} <span className="text-xs text-neutral-400">({n.unit})</span>
               </span>
               <input
                 className="input px-2 py-1.5 text-right"

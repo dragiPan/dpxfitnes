@@ -75,7 +75,7 @@ export default function Notifications() {
                 </p>
               </div>
               <div className="flex shrink-0 items-center gap-1">
-                {!n.read && <span className="badge">NEW</span>}
+                {!n.read && <span className="badge border-accent bg-accent text-white">NEW</span>}
                 {n.link && <span className="font-black">→</span>}
               </div>
             </div>

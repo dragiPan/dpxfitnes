@@ -134,6 +134,17 @@ export interface ChatMessage {
   created_at: string
 }
 
+export interface CardioLog {
+  id: string
+  user_id: string
+  date: string
+  kind: string
+  zone: 1 | 2 | 3 | null
+  minutes: number | null
+  steps: number | null
+  created_at: string
+}
+
 export interface Subscription {
   client_id: string
   package_name: string | null

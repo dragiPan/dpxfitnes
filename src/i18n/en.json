@@ -59,6 +59,7 @@
     "calories": "Calories",
     "protein": "Protein",
     "carbs": "Carbohydrates",
+    "carbsShort": "Carbs",
     "fiber": "Fiber",
     "sugar": "Sugar",
     "fat": "Fat",
@@ -142,6 +143,29 @@
     "calOnTarget": "Calories on target (±10%)",
     "proteinHit": "Protein target hit",
     "checkinCompliance": "Check-ins (7 days)"
+  },
+  "cardio": {
+    "title": "Cardio",
+    "kind": "Activity",
+    "zone": "Zone",
+    "minutes": "Minutes",
+    "add": "Add",
+    "thisWeek": "This week",
+    "byKind": "By activity",
+    "weeklyMin": "Weekly cardio (min)",
+    "stepsDaily": "Daily steps",
+    "kinds": {
+      "walk": "Walking",
+      "jog": "Jogging",
+      "run": "Running",
+      "incline_treadmill": "Incline treadmill",
+      "bike": "Bike",
+      "elliptical": "Elliptical",
+      "rowing": "Rowing",
+      "swim": "Swimming",
+      "other": "Other",
+      "program": "Program cardio"
+    }
   },
   "chat": {
     "title": "Chat with your coach",

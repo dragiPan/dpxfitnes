@@ -257,7 +257,7 @@ function ExerciseCard({
         <h2 className="text-lg">
           {ex.name}
           {cardio && <span className="badge ml-2">{t('program.cardio')}</span>}
-          {prFlash && <span className="ml-2 bg-black px-2 py-0.5 text-xs font-black text-white">🏆 {t('program.newPr')}</span>}
+          {prFlash && <span className="ml-2 bg-accent px-2 py-0.5 text-xs font-black text-white">🏆 {t('program.newPr')}</span>}
         </h2>
         <p className="text-xs font-bold text-neutral-500">
           {cardio ? (

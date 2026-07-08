@@ -4,11 +4,14 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 import { supabase } from '../lib/supabase'
 import NutrientChart, { type ChartPoint } from './NutrientChart'
 import { NUTRIENTS, type NutrientKey } from '../lib/nutrients'
-import type { Checkin, ExerciseLog, NutritionTarget } from '../lib/types'
+import type { CardioLog, Checkin, ExerciseLog, NutritionTarget } from '../lib/types'
 
-// monochrome categorical steps for the macro donut — identity is carried by
-// the legend + direct % labels, never by color alone (grayscale is CVD-safe)
-const MACRO_COLORS = ['#000000', '#737373', '#d4d4d4']
+// macro donut slices: accent red / black / gray — identity is also carried by
+// the legend + direct % labels, never by color alone
+const MACRO_COLORS = ['#e11d48', '#000000', '#a3a3a3']
+
+const RANGES = [7, 30, 90, 365] as const
+const RANGE_LABELS: Record<number, string> = { 7: '7D', 30: '30D', 90: '90D', 365: '1Y' }
 
 interface LogRow extends ExerciseLog {
   exercise: { name: string; kind: 'strength' | 'cardio' } | null
@@ -31,11 +34,13 @@ export default function ProgressCharts({ userId }: { userId: string }) {
   const [checkins, setCheckins] = useState<Checkin[]>([])
   const [targets, setTargets] = useState<NutritionTarget[]>([])
   const [logs, setLogs] = useState<LogRow[]>([])
+  const [cardio, setCardioLogs] = useState<CardioLog[]>([])
   const [nutrient, setNutrient] = useState<NutrientKey>('calories')
+  const [rangeDays, setRangeDays] = useState<number>(90)
 
   useEffect(() => {
     const since = new Date()
-    since.setDate(since.getDate() - 90)
+    since.setDate(since.getDate() - rangeDays)
     const sinceStr = since.toISOString().slice(0, 10)
     void supabase
       .from('checkins')
@@ -45,10 +50,21 @@ export default function ProgressCharts({ userId }: { userId: string }) {
       .order('date')
       .then(({ data }) => setCheckins((data as Checkin[]) ?? []))
     void supabase
+      .from('cardio_logs')
+      .select('*')
+      .eq('user_id', userId)
+      .gte('date', sinceStr)
+      .order('date')
+      .then(({ data }) => setCardioLogs((data as CardioLog[]) ?? []))
+  }, [userId, rangeDays])
+
+  useEffect(() => {
+    void supabase
       .from('nutrition_targets')
       .select('*')
       .eq('user_id', userId)
       .then(({ data }) => setTargets((data as NutritionTarget[]) ?? []))
+    // all-time logs so PRs are true personal records
     void supabase
       .from('exercise_logs')
       .select('*, exercise:program_exercises(name, kind)')
@@ -165,27 +181,60 @@ export default function ProgressCharts({ userId }: { userId: string }) {
     return [...best.values()].sort((a, b) => b.weight - a.weight)
   }, [logs])
 
-  // cardio volume: total steps + minutes from cardio logs, last 4 weeks
-  const cardio = useMemo(() => {
-    const since = new Date()
-    since.setDate(since.getDate() - 28)
-    const sinceStr = since.toISOString().slice(0, 10)
-    let steps = 0
-    let minutes = 0
-    let sessions = 0
-    for (const l of logs) {
-      if (l.exercise?.kind !== 'cardio' || l.date < sinceStr) continue
-      sessions++
-      steps += Number(l.steps ?? 0)
-      minutes += Number(l.duration_min ?? 0)
+  // cardio: this-week minutes vs weekly target + per-activity breakdown.
+  // Sessions come from cardio_logs plus cardio exercises logged in programs.
+  const cardioStats = useMemo(() => {
+    const cutoff7 = new Date()
+    cutoff7.setDate(cutoff7.getDate() - 7)
+    const cutoff7Str = cutoff7.toISOString().slice(0, 10)
+
+    let weekMinutes = 0
+    const byKind = new Map<string, { minutes: number; steps: number; sessions: number }>()
+    const bump = (kind: string, minutes: number, steps: number) => {
+      const cur = byKind.get(kind) ?? { minutes: 0, steps: 0, sessions: 0 }
+      cur.minutes += minutes
+      cur.steps += steps
+      cur.sessions++
+      byKind.set(kind, cur)
     }
-    return { steps, minutes, sessions }
-  }, [logs])
+    for (const s of cardio) {
+      if (s.date >= cutoff7Str) weekMinutes += Number(s.minutes ?? 0)
+      bump(s.kind, Number(s.minutes ?? 0), Number(s.steps ?? 0))
+    }
+    const rangeCutoff = new Date()
+    rangeCutoff.setDate(rangeCutoff.getDate() - rangeDays)
+    const rangeCutoffStr = rangeCutoff.toISOString().slice(0, 10)
+    for (const l of logs) {
+      if (l.exercise?.kind !== 'cardio' || l.date < rangeCutoffStr) continue
+      if (l.date >= cutoff7Str) weekMinutes += Number(l.duration_min ?? 0)
+      bump('program', Number(l.duration_min ?? 0), Number(l.steps ?? 0))
+    }
+    const kinds = [...byKind.entries()]
+      .map(([kind, v]) => ({ kind, ...v }))
+      .sort((a, b) => b.minutes - a.minutes)
+    const weeklyTarget = targets.find((x) => x.nutrient === 'cardio_weekly_min')?.target_value ?? null
+    return { weekMinutes, weeklyTarget, kinds }
+  }, [cardio, logs, targets, rangeDays])
+
+  const stepsTarget = targets.find((x) => x.nutrient === 'steps')?.target_value ?? null
 
   const empty = <p className="text-sm text-neutral-500">{t('progress.noData')}</p>
 
   return (
     <div className="space-y-4">
+      {/* time-range selector for all trend charts */}
+      <div className="flex gap-1">
+        {RANGES.map((r) => (
+          <button
+            key={r}
+            className={`tab ${rangeDays === r ? 'tab-active' : ''}`}
+            onClick={() => setRangeDays(r)}
+          >
+            {RANGE_LABELS[r]}
+          </button>
+        ))}
+      </div>
+
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="card">
           <p className="label">{t('progress.weight')}</p>
@@ -196,7 +245,11 @@ export default function ProgressCharts({ userId }: { userId: string }) {
         <div className="card">
           <p className="label">{t('progress.steps')}</p>
           {statHead(stepsData)}
-          {stepsData.length === 0 ? empty : <NutrientChart data={stepsData} />}
+          {stepsData.length === 0 ? (
+            empty
+          ) : (
+            <NutrientChart data={stepsData} target={stepsTarget} targetLabel={t('checkin.target')} />
+          )}
         </div>
       </div>
 
@@ -261,28 +314,28 @@ export default function ProgressCharts({ userId }: { userId: string }) {
         <div className="space-y-4">
           <div className="card">
             <p className="label">{t('progress.averages')}</p>
-            <div className="grid grid-cols-5 gap-1 text-center">
+            <div className="grid grid-cols-2 gap-1 text-center sm:grid-cols-3 lg:grid-cols-5">
               {(
                 [
-                  ['calories', avg7.calories, 'kcal'],
-                  ['protein', avg7.protein, 'g'],
-                  ['carbs', avg7.carbs, 'g'],
-                  ['fat', avg7.fat, 'g'],
+                  [t('nutrient.calories'), avg7.calories, 'kcal'],
+                  [t('nutrient.protein'), avg7.protein, 'g'],
+                  [t('nutrient.carbsShort'), avg7.carbs, 'g'],
+                  [t('nutrient.fat'), avg7.fat, 'g'],
                 ] as const
-              ).map(([key, val, u]) => (
-                <div key={key} className="border-2 border-black p-1.5">
-                  <p className="text-[9px] font-black uppercase text-neutral-500">
-                    {t(`nutrient.${key}`)}
-                  </p>
-                  <p className="text-base font-black tabular-nums leading-tight">
-                    {val != null ? Math.round(val) : '–'}
+              ).map(([label, val, u]) => (
+                <div key={label} className="min-w-0 border-2 border-black p-1.5">
+                  <p className="truncate text-[9px] font-black uppercase text-neutral-500">{label}</p>
+                  <p className="text-sm font-black tabular-nums leading-tight sm:text-base">
+                    {val != null ? Math.round(val).toLocaleString() : '–'}
                     <span className="ml-0.5 text-[9px] font-bold">{u}</span>
                   </p>
                 </div>
               ))}
-              <div className="border-2 border-black p-1.5">
-                <p className="text-[9px] font-black uppercase text-neutral-500">{t('progress.steps')}</p>
-                <p className="text-base font-black tabular-nums leading-tight">
+              <div className="min-w-0 border-2 border-black p-1.5">
+                <p className="truncate text-[9px] font-black uppercase text-neutral-500">
+                  {t('progress.steps')}
+                </p>
+                <p className="text-sm font-black tabular-nums leading-tight sm:text-base">
                   {avg7.steps != null ? Math.round(avg7.steps).toLocaleString() : '–'}
                 </p>
               </div>
@@ -376,20 +429,57 @@ export default function ProgressCharts({ userId }: { userId: string }) {
         </div>
 
         <div className="card">
-          <p className="label">{t('progress.cardio4w')}</p>
-          <div className="grid grid-cols-3 gap-2 text-center">
-            <div>
-              <p className="text-2xl font-black">{cardio.sessions}</p>
-              <p className="text-[10px] font-bold uppercase text-neutral-500">{t('progress.sessions')}</p>
+          <p className="label">{t('cardio.title')}</p>
+
+          {/* this week vs weekly minutes target */}
+          <div className="mb-3">
+            <div className="mb-1 flex items-baseline justify-between">
+              <span className="text-xs font-black uppercase text-neutral-500">
+                {t('cardio.thisWeek')}
+              </span>
+              <span className="text-lg font-black tabular-nums">
+                {Math.round(cardioStats.weekMinutes)}
+                <span className="text-xs font-bold"> min</span>
+                {cardioStats.weeklyTarget != null && (
+                  <span className="text-xs font-bold text-neutral-500">
+                    {' '}
+                    / {cardioStats.weeklyTarget} min
+                  </span>
+                )}
+              </span>
             </div>
-            <div>
-              <p className="text-2xl font-black">{Math.round(cardio.minutes)}</p>
-              <p className="text-[10px] font-bold uppercase text-neutral-500">min</p>
-            </div>
-            <div>
-              <p className="text-2xl font-black">{cardio.steps.toLocaleString()}</p>
-              <p className="text-[10px] font-bold uppercase text-neutral-500">{t('progress.steps')}</p>
-            </div>
+            {cardioStats.weeklyTarget != null && (
+              <div className="h-4 border-2 border-black">
+                <div
+                  className="h-full bg-accent"
+                  style={{
+                    width: `${Math.min(100, (cardioStats.weekMinutes / cardioStats.weeklyTarget) * 100)}%`,
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* per-activity breakdown for the selected range */}
+          <p className="text-[9px] font-black uppercase tracking-wide text-neutral-500">
+            {t('cardio.byKind')}
+          </p>
+          {cardioStats.kinds.length === 0 && empty}
+          <div className="space-y-1">
+            {cardioStats.kinds.map((k) => (
+              <div key={k.kind} className="flex items-baseline justify-between gap-2 border-b border-neutral-200 pb-1">
+                <span className="text-sm font-bold">{t(`cardio.kinds.${k.kind}`)}</span>
+                <span className="text-sm font-black tabular-nums">
+                  {Math.round(k.minutes)} min
+                  {k.steps > 0 && (
+                    <span className="ml-2 text-xs font-bold text-neutral-500">
+                      {Math.round(k.steps).toLocaleString()} {t('progress.steps').toLowerCase()}
+                    </span>
+                  )}
+                  <span className="ml-2 text-xs font-bold text-neutral-500">×{k.sessions}</span>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

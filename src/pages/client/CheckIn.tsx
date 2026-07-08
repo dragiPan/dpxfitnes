@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabase'
 import { notifyUsers } from '../../lib/notify'
 import { useAuth } from '../../contexts/AuthContext'
-import { NUTRIENTS, MEASUREMENT_FIELDS, type NutrientKey } from '../../lib/nutrients'
-import type { NutritionTarget } from '../../lib/types'
+import { CARDIO_KINDS, NUTRIENTS, MEASUREMENT_FIELDS, type NutrientKey } from '../../lib/nutrients'
+import type { CardioLog, NutritionTarget } from '../../lib/types'
 
 type FormValues = Partial<Record<NutrientKey | 'weight' | 'steps', string>>
 type MeasureValues = Partial<Record<(typeof MEASUREMENT_FIELDS)[number], string>>
@@ -21,17 +21,21 @@ export default function CheckIn() {
   const [measures, setMeasures] = useState<MeasureValues>({})
   const [notes, setNotes] = useState('')
   const [targets, setTargets] = useState<NutritionTarget[]>([])
+  const [cardioEntries, setCardioEntries] = useState<CardioLog[]>([])
+  const [cardioDraft, setCardioDraft] = useState({ kind: 'walk', zone: '', minutes: '', steps: '' })
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
 
   const load = useCallback(async () => {
     if (!session) return
     setMsg('')
-    const [{ data: ci }, { data: tg }, { data: ms }] = await Promise.all([
+    const [{ data: ci }, { data: tg }, { data: ms }, { data: cl }] = await Promise.all([
       supabase.from('checkins').select('*').eq('user_id', session.user.id).eq('date', date).maybeSingle(),
       supabase.from('nutrition_targets').select('*').eq('user_id', session.user.id),
       supabase.from('measurements').select('*').eq('user_id', session.user.id).eq('date', date).maybeSingle(),
+      supabase.from('cardio_logs').select('*').eq('user_id', session.user.id).eq('date', date).order('created_at'),
     ])
+    setCardioEntries((cl as CardioLog[]) ?? [])
     const v: FormValues = {}
     if (ci) {
       for (const n of NUTRIENTS) {
@@ -119,6 +123,30 @@ export default function CheckIn() {
     }
   }
 
+  async function addCardio() {
+    if (!session) return
+    const minutes = numOrNull(cardioDraft.minutes)
+    const steps = numOrNull(cardioDraft.steps)
+    if (minutes == null && steps == null) return
+    const { error } = await supabase.from('cardio_logs').insert({
+      user_id: session.user.id,
+      date,
+      kind: cardioDraft.kind,
+      zone: cardioDraft.zone === '' ? null : Number(cardioDraft.zone),
+      minutes,
+      steps,
+    })
+    if (!error) {
+      setCardioDraft({ kind: cardioDraft.kind, zone: '', minutes: '', steps: '' })
+      await load()
+    }
+  }
+
+  async function removeCardio(id: string) {
+    await supabase.from('cardio_logs').delete().eq('id', id)
+    await load()
+  }
+
   const primary = NUTRIENTS.filter((n) => n.primary)
   const secondary = NUTRIENTS.filter((n) => !n.primary)
 
@@ -195,6 +223,93 @@ export default function CheckIn() {
         <p className="mb-3 text-xs font-black uppercase tracking-wide">{t('checkin.micros')}</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {secondary.map((n) => field(n.key))}
+        </div>
+      </div>
+
+      <div className="card mb-4">
+        <p className="mb-3 text-xs font-black uppercase tracking-wide">{t('cardio.title')}</p>
+
+        {cardioEntries.length > 0 && (
+          <div className="mb-3 space-y-1">
+            {cardioEntries.map((c) => (
+              <div key={c.id} className="flex items-center justify-between gap-2 border border-black px-2 py-1.5">
+                <span className="text-sm font-bold">
+                  {t(`cardio.kinds.${c.kind}`)}
+                  {c.zone && <span className="badge ml-2">Z{c.zone}</span>}
+                </span>
+                <span className="flex items-center gap-2 text-sm font-black tabular-nums">
+                  {c.minutes != null && `${c.minutes} min`}
+                  {c.steps != null && (
+                    <span className="text-xs font-bold text-neutral-500">
+                      {Number(c.steps).toLocaleString()} {t('progress.steps').toLowerCase()}
+                    </span>
+                  )}
+                  <button className="btn btn-sm" onClick={() => void removeCardio(c.id)}>
+                    ✕
+                  </button>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          <div className="col-span-2 sm:col-span-1">
+            <label className="label">{t('cardio.kind')}</label>
+            <select
+              className="input"
+              value={cardioDraft.kind}
+              onChange={(e) => setCardioDraft((d) => ({ ...d, kind: e.target.value }))}
+            >
+              {CARDIO_KINDS.map((k) => (
+                <option key={k} value={k}>
+                  {t(`cardio.kinds.${k}`)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="label">{t('cardio.zone')}</label>
+            <select
+              className="input"
+              value={cardioDraft.zone}
+              onChange={(e) => setCardioDraft((d) => ({ ...d, zone: e.target.value }))}
+            >
+              <option value="">–</option>
+              <option value="1">Z1</option>
+              <option value="2">Z2</option>
+              <option value="3">Z3</option>
+            </select>
+          </div>
+          <div>
+            <label className="label">{t('cardio.minutes')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              value={cardioDraft.minutes}
+              onChange={(e) => setCardioDraft((d) => ({ ...d, minutes: e.target.value }))}
+              placeholder="30"
+            />
+          </div>
+          <div>
+            <label className="label">{t('progress.steps')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              value={cardioDraft.steps}
+              onChange={(e) => setCardioDraft((d) => ({ ...d, steps: e.target.value }))}
+              placeholder="–"
+            />
+          </div>
+          <div className="col-span-2 flex items-end sm:col-span-1">
+            <button
+              className="btn btn-primary w-full"
+              disabled={cardioDraft.minutes.trim() === '' && cardioDraft.steps.trim() === ''}
+              onClick={() => void addCardio()}
+            >
+              + {t('cardio.add')}
+            </button>
+          </div>
         </div>
       </div>
 

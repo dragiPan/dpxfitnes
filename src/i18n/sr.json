@@ -59,6 +59,7 @@
     "calories": "Kalorije",
     "protein": "Proteini",
     "carbs": "Ugljeni hidrati",
+    "carbsShort": "UH",
     "fiber": "Vlakna",
     "sugar": "Šećer",
     "fat": "Masti",
@@ -142,6 +143,29 @@
     "calOnTarget": "Kalorije u cilju (±10%)",
     "proteinHit": "Pogođen proteinski cilj",
     "checkinCompliance": "Prijave (7 dana)"
+  },
+  "cardio": {
+    "title": "Kardio",
+    "kind": "Aktivnost",
+    "zone": "Zona",
+    "minutes": "Minuti",
+    "add": "Dodaj",
+    "thisWeek": "Ova nedelja",
+    "byKind": "Po aktivnosti",
+    "weeklyMin": "Nedeljni kardio (min)",
+    "stepsDaily": "Dnevni koraci",
+    "kinds": {
+      "walk": "Hodanje",
+      "jog": "Džogiranje",
+      "run": "Trčanje",
+      "incline_treadmill": "Traka pod nagibom",
+      "bike": "Bicikl",
+      "elliptical": "Eliptična",
+      "rowing": "Veslanje",
+      "swim": "Plivanje",
+      "other": "Ostalo",
+      "program": "Kardio iz programa"
+    }
   },
   "chat": {
     "title": "Poruke sa trenerom",

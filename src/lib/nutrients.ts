@@ -47,6 +47,26 @@ export const NUTRIENTS: NutrientDef[] = [
   { key: 'iron', unit: '%', primary: false },
 ]
 
+// non-nutrient targets stored in the same nutrition_targets table
+export const EXTRA_TARGETS = [
+  { key: 'steps', unit: '/day' },
+  { key: 'cardio_weekly_min', unit: 'min' },
+] as const
+
+export const CARDIO_KINDS = [
+  'walk',
+  'jog',
+  'run',
+  'incline_treadmill',
+  'bike',
+  'elliptical',
+  'rowing',
+  'swim',
+  'other',
+] as const
+
+export type CardioKind = (typeof CARDIO_KINDS)[number]
+
 export const MEASUREMENT_FIELDS = [
   'neck',
   'shoulders',

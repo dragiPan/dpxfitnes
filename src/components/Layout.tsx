@@ -37,8 +37,8 @@ export default function Layout() {
   const [unread, setUnread] = useState(0)
   const nav = isCoach ? COACH_NAV : CLIENT_NAV
 
-  async function toggleLanguage() {
-    const next = i18n.language === 'sr' ? 'en' : 'sr'
+  async function changeLanguage(next: 'en' | 'sr') {
+    if (i18n.language === next) return
     setLanguage(next)
     if (session) {
       await supabase.from('profiles').update({ language: next }).eq('id', session.user.id)
@@ -68,13 +68,20 @@ export default function Layout() {
             {t('app.name')}
           </NavLink>
           <div className="flex items-center gap-1">
-            <button
-              className="border-2 border-black px-1.5 py-0.5 text-[11px] font-black hover:bg-black hover:text-white"
-              onClick={() => void toggleLanguage()}
-              title={i18n.language === 'sr' ? 'English' : 'Srpski'}
-            >
-              {i18n.language === 'sr' ? 'SR' : 'EN'}
-            </button>
+            {/* segmented language control — active side highlighted */}
+            <div className="flex border-2 border-black text-[11px] font-black">
+              {(['en', 'sr'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  className={`px-1.5 py-0.5 uppercase ${
+                    i18n.language === lang ? 'bg-accent text-white' : 'bg-white text-black hover:bg-neutral-100'
+                  }`}
+                  onClick={() => void changeLanguage(lang)}
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
             <NavLink
               to="/notifications"
               className="relative px-2 py-1 font-bold"
@@ -85,7 +92,7 @@ export default function Layout() {
                 <path d="M13.7 21a2 2 0 0 1-3.4 0" />
               </svg>
               {unread > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center bg-black px-1 text-[9px] font-black text-white">
+                <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center bg-accent px-1 text-[9px] font-black text-white">
                   {unread}
                 </span>
               )}

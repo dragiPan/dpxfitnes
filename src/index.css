@@ -2,6 +2,8 @@
 
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* brand accent — used sparingly to make key elements pop */
+  --color-accent: #e11d48;
 }
 
 html {
@@ -59,7 +61,7 @@ h3 {
     cursor-pointer whitespace-nowrap bg-white text-black;
 }
 .tab-active {
-  @apply bg-black text-white;
+  @apply bg-accent border-accent text-white;
 }
 
 .badge {

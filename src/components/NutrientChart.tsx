@@ -60,13 +60,13 @@ export default function NutrientChart({ data, target, unit, targetLabel }: Props
           {target != null && (
             <ReferenceLine
               y={target}
-              stroke="#888"
+              stroke="#e11d48"
               strokeDasharray="6 4"
               strokeWidth={2}
               label={{
                 value: targetLabel ? `${targetLabel}: ${target}` : String(target),
                 position: 'insideTopRight',
-                fill: '#888',
+                fill: '#e11d48',
                 fontSize: 10,
                 fontWeight: 700,
               }}
