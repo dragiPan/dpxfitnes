@@ -350,7 +350,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_components_comments_comments",
-      "community": 0,
+      "community": 4,
       "norm_label": "comments()"
     },
     {
@@ -474,20 +474,40 @@
       "norm_label": "macro_colors"
     },
     {
-      "label": "LogRow",
+      "label": "RANGES",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "src_components_progresscharts_ranges",
+      "community": 2,
+      "norm_label": "ranges"
+    },
+    {
+      "label": "RANGE_LABELS",
+      "file_type": "code",
+      "source_file": "src/components/ProgressCharts.tsx",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "src_components_progresscharts_range_labels",
+      "community": 2,
+      "norm_label": "range_labels"
+    },
+    {
+      "label": "LogRow",
+      "file_type": "code",
+      "source_file": "src/components/ProgressCharts.tsx",
+      "source_location": "L16",
+      "_origin": "ast",
       "id": "src_components_progresscharts_logrow",
-      "community": 1,
+      "community": 9,
       "norm_label": "logrow"
     },
     {
       "label": "PR",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_progresscharts_pr",
       "community": 2,
@@ -497,7 +517,7 @@
       "label": "ProgressCharts()",
       "file_type": "code",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L29",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "src_components_progresscharts_progresscharts",
       "community": 2,
@@ -694,10 +714,40 @@
       "norm_label": "nutrients"
     },
     {
+      "label": "EXTRA_TARGETS",
+      "file_type": "code",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L51",
+      "_origin": "ast",
+      "id": "src_lib_nutrients_extra_targets",
+      "community": 2,
+      "norm_label": "extra_targets"
+    },
+    {
+      "label": "CARDIO_KINDS",
+      "file_type": "code",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "src_lib_nutrients_cardio_kinds",
+      "community": 2,
+      "norm_label": "cardio_kinds"
+    },
+    {
+      "label": "CardioKind",
+      "file_type": "code",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "src_lib_nutrients_cardiokind",
+      "community": 2,
+      "norm_label": "cardiokind"
+    },
+    {
       "label": "MEASUREMENT_FIELDS",
       "file_type": "code",
       "source_file": "src/lib/nutrients.ts",
-      "source_location": "L50",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "src_lib_nutrients_measurement_fields",
       "community": 2,
@@ -707,7 +757,7 @@
       "label": "MeasurementField",
       "file_type": "code",
       "source_file": "src/lib/nutrients.ts",
-      "source_location": "L61",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "src_lib_nutrients_measurementfield",
       "community": 2,
@@ -840,7 +890,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_types",
-      "community": 1,
+      "community": 5,
       "norm_label": "types.ts"
     },
     {
@@ -850,7 +900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_lib_types_role",
-      "community": 1,
+      "community": 5,
       "norm_label": "role"
     },
     {
@@ -890,7 +940,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_lib_types_measurement",
-      "community": 2,
+      "community": 5,
       "norm_label": "measurement"
     },
     {
@@ -930,7 +980,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "src_lib_types_programassignment",
-      "community": 1,
+      "community": 9,
       "norm_label": "programassignment"
     },
     {
@@ -940,7 +990,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_lib_types_exerciselog",
-      "community": 1,
+      "community": 9,
       "norm_label": "exerciselog"
     },
     {
@@ -974,10 +1024,20 @@
       "norm_label": "chatmessage"
     },
     {
-      "label": "Subscription",
+      "label": "CardioLog",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
       "source_location": "L137",
+      "_origin": "ast",
+      "id": "src_lib_types_cardiolog",
+      "community": 2,
+      "norm_label": "cardiolog"
+    },
+    {
+      "label": "Subscription",
+      "file_type": "code",
+      "source_file": "src/lib/types.ts",
+      "source_location": "L148",
       "_origin": "ast",
       "id": "src_lib_types_subscription",
       "community": 5,
@@ -987,7 +1047,7 @@
       "label": "MealPlan",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L146",
+      "source_location": "L157",
       "_origin": "ast",
       "id": "src_lib_types_mealplan",
       "community": 6,
@@ -997,7 +1057,7 @@
       "label": "MealPlanMeal",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L155",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "src_lib_types_mealplanmeal",
       "community": 6,
@@ -1007,7 +1067,7 @@
       "label": "CommentEntityType",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L168",
+      "source_location": "L179",
       "_origin": "ast",
       "id": "src_lib_types_commententitytype",
       "community": 4,
@@ -1017,27 +1077,27 @@
       "label": "Comment",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L175",
+      "source_location": "L186",
       "_origin": "ast",
       "id": "src_lib_types_comment",
-      "community": 1,
+      "community": 5,
       "norm_label": "comment"
     },
     {
       "label": "Group",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L186",
+      "source_location": "L197",
       "_origin": "ast",
       "id": "src_lib_types_group",
-      "community": 4,
+      "community": 5,
       "norm_label": "group"
     },
     {
       "label": "BoardPost",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L193",
+      "source_location": "L204",
       "_origin": "ast",
       "id": "src_lib_types_boardpost",
       "community": 0,
@@ -1047,30 +1107,30 @@
       "label": "AppNotification",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L202",
+      "source_location": "L213",
       "_origin": "ast",
       "id": "src_lib_types_appnotification",
-      "community": 0,
+      "community": 5,
       "norm_label": "appnotification"
     },
     {
       "label": "TrainingSession",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L213",
+      "source_location": "L224",
       "_origin": "ast",
       "id": "src_lib_types_trainingsession",
-      "community": 0,
+      "community": 5,
       "norm_label": "trainingsession"
     },
     {
       "label": "GCalEvent",
       "file_type": "code",
       "source_file": "src/lib/types.ts",
-      "source_location": "L223",
+      "source_location": "L234",
       "_origin": "ast",
       "id": "src_lib_types_gcalevent",
-      "community": 0,
+      "community": 5,
       "norm_label": "gcalevent"
     },
     {
@@ -1110,7 +1170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_board",
-      "community": 4,
+      "community": 0,
       "norm_label": "board.tsx"
     },
     {
@@ -1420,7 +1480,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_client_planner",
-      "community": 0,
+      "community": 5,
       "norm_label": "planner.tsx"
     },
     {
@@ -1430,7 +1490,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_client_planner_dayevent",
-      "community": 0,
+      "community": 5,
       "norm_label": "dayevent"
     },
     {
@@ -1440,7 +1500,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_client_planner_planner",
-      "community": 0,
+      "community": 5,
       "norm_label": "planner()"
     },
     {
@@ -1580,7 +1640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_coach_groups",
-      "community": 4,
+      "community": 5,
       "norm_label": "groups.tsx"
     },
     {
@@ -1590,7 +1650,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_coach_groups_fullgroup",
-      "community": 4,
+      "community": 5,
       "norm_label": "fullgroup"
     },
     {
@@ -1600,7 +1660,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_coach_groups_groups",
-      "community": 4,
+      "community": 5,
       "norm_label": "groups()"
     },
     {
@@ -1660,7 +1720,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_coach_programbuilder_programbuilder",
-      "community": 6,
+      "community": 1,
       "norm_label": "programbuilder()"
     },
     {
@@ -1800,7 +1860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_measurementstab",
-      "community": 2,
+      "community": 5,
       "norm_label": "measurementstab.tsx"
     },
     {
@@ -1810,7 +1870,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_measurementstab_measurementstab",
-      "community": 2,
+      "community": 5,
       "norm_label": "measurementstab()"
     },
     {
@@ -1860,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab",
-      "community": 1,
+      "community": 9,
       "norm_label": "programtab.tsx"
     },
     {
@@ -1870,7 +1930,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_assignmentrow",
-      "community": 1,
+      "community": 9,
       "norm_label": "assignmentrow"
     },
     {
@@ -1880,7 +1940,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_logrow",
-      "community": 1,
+      "community": 9,
       "norm_label": "logrow"
     },
     {
@@ -1890,7 +1950,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_coach_tabs_programtab_programtab",
-      "community": 1,
+      "community": 9,
       "norm_label": "programtab()"
     },
     {
@@ -3320,7 +3380,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L13",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_logrow",
@@ -3340,7 +3400,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_pr",
@@ -3350,10 +3410,30 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L29",
+      "source_location": "L32",
       "weight": 1.0,
       "source": "src_components_progresscharts",
       "target": "src_components_progresscharts_progresscharts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ProgressCharts.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_components_progresscharts",
+      "target": "src_components_progresscharts_range_labels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ProgressCharts.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_components_progresscharts",
+      "target": "src_components_progresscharts_ranges",
       "confidence_score": 1.0
     },
     {
@@ -3430,6 +3510,17 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "src_components_progresscharts",
+      "target": "src_lib_types_cardiolog",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ProgressCharts.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_progresscharts",
       "target": "src_lib_types_checkin",
       "confidence_score": 1.0
     },
@@ -3482,7 +3573,7 @@
       "context": "type",
       "confidence": "EXTRACTED",
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L13",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_progresscharts_logrow",
       "target": "src_lib_types_exerciselog",
@@ -3494,7 +3585,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/ProgressCharts.tsx",
-      "source_location": "L70",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "src_components_progresscharts_progresscharts",
       "target": "src_lib_nutrients_nutrients"
@@ -4505,7 +4596,37 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/nutrients.ts",
-      "source_location": "L50",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "src_lib_nutrients",
+      "target": "src_lib_nutrients_cardio_kinds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "src_lib_nutrients",
+      "target": "src_lib_nutrients_cardiokind",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "src_lib_nutrients",
+      "target": "src_lib_nutrients_extra_targets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/nutrients.ts",
+      "source_location": "L70",
       "weight": 1.0,
       "source": "src_lib_nutrients",
       "target": "src_lib_nutrients_measurement_fields",
@@ -4515,7 +4636,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/nutrients.ts",
-      "source_location": "L61",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "src_lib_nutrients",
       "target": "src_lib_nutrients_measurementfield",
@@ -4623,7 +4744,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/client/CheckIn.tsx",
-      "source_location": "L126",
+      "source_location": "L154",
       "weight": 1.0,
       "source": "src_pages_client_checkin_checkin",
       "target": "src_lib_nutrients_nutrients"
@@ -4648,6 +4769,28 @@
       "weight": 1.0,
       "source": "src_pages_coach_tabs_targetstab",
       "target": "src_lib_nutrients_nutrients",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/coach/tabs/TargetsTab.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_coach_tabs_targetstab",
+      "target": "src_lib_nutrients_extra_targets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/client/CheckIn.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_client_checkin",
+      "target": "src_lib_nutrients_cardio_kinds",
       "confidence_score": 1.0
     },
     {
@@ -5513,7 +5656,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L202",
+      "source_location": "L213",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_appnotification",
@@ -5523,10 +5666,20 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L193",
+      "source_location": "L204",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_boardpost",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/types.ts",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "src_lib_types",
+      "target": "src_lib_types_cardiolog",
       "confidence_score": 1.0
     },
     {
@@ -5553,7 +5706,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L175",
+      "source_location": "L186",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_comment",
@@ -5563,7 +5716,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L168",
+      "source_location": "L179",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_commententitytype",
@@ -5583,7 +5736,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L223",
+      "source_location": "L234",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_gcalevent",
@@ -5593,7 +5746,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L186",
+      "source_location": "L197",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_group",
@@ -5623,7 +5776,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L146",
+      "source_location": "L157",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_mealplan",
@@ -5633,7 +5786,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L155",
+      "source_location": "L166",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_mealplanmeal",
@@ -5723,7 +5876,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L137",
+      "source_location": "L148",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_subscription",
@@ -5733,7 +5886,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/lib/types.ts",
-      "source_location": "L213",
+      "source_location": "L224",
       "weight": 1.0,
       "source": "src_lib_types",
       "target": "src_lib_types_trainingsession",
@@ -6529,6 +6682,17 @@
       "weight": 1.0,
       "source": "src_pages_coach_programbuilder",
       "target": "src_lib_types_libraryexercise",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/client/CheckIn.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_client_checkin",
+      "target": "src_lib_types_cardiolog",
       "confidence_score": 1.0
     },
     {
@@ -7871,5 +8035,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0ae344e6139bc66502929219cdf9ebffc6c29f8b"
+  "built_at_commit": "996a92df3231eb34bb3fe3287039ecdda5439577"
 }
