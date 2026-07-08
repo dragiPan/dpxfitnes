@@ -67,6 +67,24 @@ export const CARDIO_KINDS = [
 
 export type CardioKind = (typeof CARDIO_KINDS)[number]
 
+// muscle groups for categorizing strength exercises in the library
+export const MUSCLE_GROUPS = [
+  'chest',
+  'back',
+  'shoulders',
+  'biceps',
+  'triceps',
+  'forearms',
+  'abs',
+  'quads',
+  'hamstrings',
+  'glutes',
+  'calves',
+  'full_body',
+] as const
+
+export type MuscleGroup = (typeof MUSCLE_GROUPS)[number]
+
 export const MEASUREMENT_FIELDS = [
   'neck',
   'shoulders',

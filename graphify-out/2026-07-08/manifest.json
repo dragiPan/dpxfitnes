@@ -30,18 +30,18 @@
     "semantic_hash": ""
   },
   "src/components/Layout.tsx": {
-    "mtime": 1783462551.1140773,
-    "ast_hash": "475019b4598bd04b4d2fde8579307648",
+    "mtime": 1783513568.730364,
+    "ast_hash": "73d86f9f15cc211c4c015f15b159b255",
     "semantic_hash": ""
   },
   "src/components/NutrientChart.tsx": {
-    "mtime": 1783420392.9379098,
-    "ast_hash": "5e576b8a8f3c9258ec36eb586a598e82",
+    "mtime": 1783513388.2206166,
+    "ast_hash": "c7ac4d88cddab8bf7548f155faa02ba1",
     "semantic_hash": ""
   },
   "src/components/ProgressCharts.tsx": {
-    "mtime": 1783462534.4316258,
-    "ast_hash": "ed20476e674cabea5245681c61f454ce",
+    "mtime": 1783513479.1905627,
+    "ast_hash": "5a00efe4ae23c9de4bfa4a0e09dce4f8",
     "semantic_hash": ""
   },
   "src/components/YouTubeEmbed.tsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": "464bd4c1aed44e86380be4e77cb28733"
   },
   "src/i18n/en.json": {
-    "mtime": 1783462562.1835306,
-    "ast_hash": "0c4e58cb25b3f9c5d914656f28275e68",
+    "mtime": 1783513585.4265745,
+    "ast_hash": "e1b99f306dbc2cce09b35fdd8a656329",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
@@ -65,8 +65,8 @@
     "semantic_hash": "d27bc086aa6d0e5e84c287b261be0858"
   },
   "src/i18n/sr.json": {
-    "mtime": 1783462566.542595,
-    "ast_hash": "c0375385ceeca1638d8e076d531f6f53",
+    "mtime": 1783513590.7854104,
+    "ast_hash": "a6e8c7bdc6379b264dbbe6398736593b",
     "semantic_hash": ""
   },
   "src/lib/intake.ts": {
@@ -80,9 +80,9 @@
     "semantic_hash": ""
   },
   "src/lib/nutrients.ts": {
-    "mtime": 1783340121.8188148,
-    "ast_hash": "a759c9f8a050f93d704eeae3e9a94f82",
-    "semantic_hash": "a759c9f8a050f93d704eeae3e9a94f82"
+    "mtime": 1783513365.0603895,
+    "ast_hash": "f6a476256ef7304f5ef1c3356e0361f5",
+    "semantic_hash": ""
   },
   "src/lib/print.ts": {
     "mtime": 1783364510.6851575,
@@ -95,9 +95,9 @@
     "semantic_hash": "4adc41f32fb51da421cbafaf2ebd560c"
   },
   "src/lib/types.ts": {
-    "mtime": 1783364265.885974,
-    "ast_hash": "35f6b2594fa2c69e7e6681764ce18283",
-    "semantic_hash": "35f6b2594fa2c69e7e6681764ce18283"
+    "mtime": 1783513367.424195,
+    "ast_hash": "22176d64f227c24ef371474fd8a59d9f",
+    "semantic_hash": ""
   },
   "src/lib/youtube.ts": {
     "mtime": 1783340124.6406288,
@@ -120,8 +120,8 @@
     "semantic_hash": "34bd92d6545ca11d6d63f9c63d2629bb"
   },
   "src/pages/Notifications.tsx": {
-    "mtime": 1783432936.4332378,
-    "ast_hash": "5d53d75067142a882eb691163ff545b4",
+    "mtime": 1783513570.9807706,
+    "ast_hash": "7f47a203a18cc7c66b0fc396e2f21618",
     "semantic_hash": ""
   },
   "src/pages/Profile.tsx": {
@@ -135,8 +135,8 @@
     "semantic_hash": "79447bc27a3946e3dd0e1228d29f8b7f"
   },
   "src/pages/client/CheckIn.tsx": {
-    "mtime": 1783432965.9110959,
-    "ast_hash": "4ef2520cda5a759f6778e5dbadcbaa14",
+    "mtime": 1783513528.815838,
+    "ast_hash": "23cc3171a6fa450426b962119e4ea698",
     "semantic_hash": ""
   },
   "src/pages/client/Dashboard.tsx": {
@@ -155,9 +155,9 @@
     "semantic_hash": "cfe4162a032b3cd45227facc2ec07f9e"
   },
   "src/pages/client/MyProgram.tsx": {
-    "mtime": 1783364645.2925274,
-    "ast_hash": "3da104cb0d5be60b47e26238608a00fc",
-    "semantic_hash": "3da104cb0d5be60b47e26238608a00fc"
+    "mtime": 1783513572.85962,
+    "ast_hash": "e8a61f94e74d7698f4d7c6fd55375e5a",
+    "semantic_hash": ""
   },
   "src/pages/client/Planner.tsx": {
     "mtime": 1783366461.0852273,
@@ -245,9 +245,9 @@
     "semantic_hash": "9d0f7b559ef357cd89219fb8e74e1a54"
   },
   "src/pages/coach/tabs/TargetsTab.tsx": {
-    "mtime": 1783340704.2435026,
-    "ast_hash": "11380189baed4d31b8fd074e48e81e7d",
-    "semantic_hash": "11380189baed4d31b8fd074e48e81e7d"
+    "mtime": 1783513549.9715984,
+    "ast_hash": "14124662ab23f39fa6d57a117937ff39",
+    "semantic_hash": ""
   },
   "supabase/.temp/linked-project.json": {
     "mtime": 1783347871.4060469,
@@ -322,6 +322,11 @@
   "supabase/migrations/004_perf_security.sql": {
     "mtime": 1783421907.1283722,
     "ast_hash": "61123c07dc2528cbd0391630fd8efb61",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/005_cardio.sql": {
+    "mtime": 1783513362.1577697,
+    "ast_hash": "f3ea1114af3f7ebb365c92bdb481d1b2",
     "semantic_hash": ""
   }
 }

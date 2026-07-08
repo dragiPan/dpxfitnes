@@ -63,6 +63,9 @@ export default function ProgramBuilder() {
       target_sets: item.target_sets,
       target_reps: item.target_reps,
       target_weight: item.target_weight,
+      target_rpe: item.target_rpe,
+      target_minutes: item.target_minutes,
+      target_zone: item.target_zone,
       rest_seconds: item.rest_seconds,
     })
     await load()
@@ -244,10 +247,18 @@ function ExerciseEditor({
   const [kind, setKind] = useState(ex.kind)
   const [savedToLib, setSavedToLib] = useState(false)
 
+  const NUMERIC_FIELDS: (keyof ProgramExercise)[] = [
+    'target_sets',
+    'rest_seconds',
+    'target_minutes',
+    'target_zone',
+    'target_rpe',
+  ]
+
   async function save(field: keyof ProgramExercise, raw: string) {
     let value: string | number | null = raw
-    if (field === 'target_sets' || field === 'rest_seconds') {
-      value = raw.trim() === '' ? null : Number(raw)
+    if (NUMERIC_FIELDS.includes(field)) {
+      value = raw.trim() === '' ? null : Number(raw.replace(',', '.'))
     } else if (raw.trim() === '') {
       value = null
     }
@@ -271,6 +282,9 @@ function ExerciseEditor({
       target_sets: row.target_sets,
       target_reps: row.target_reps,
       target_weight: row.target_weight,
+      target_rpe: row.target_rpe,
+      target_minutes: row.target_minutes,
+      target_zone: row.target_zone,
       rest_seconds: row.rest_seconds,
     })
     setSavedToLib(true)
@@ -308,44 +322,83 @@ function ExerciseEditor({
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <div>
-          <label className="label">{t('program.sets')}</label>
-          <input
-            className="input"
-            inputMode="numeric"
-            defaultValue={ex.target_sets ?? ''}
-            onBlur={(e) => void save('target_sets', e.target.value)}
-          />
+      {kind === 'cardio' ? (
+        // cardio is prescribed as zone + minutes — no sets/reps/weight/rest
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className="label">{t('cardio.zone')}</label>
+            <select
+              className="input"
+              defaultValue={ex.target_zone ?? ''}
+              onChange={(e) => void save('target_zone', e.target.value)}
+            >
+              <option value="">–</option>
+              <option value="1">Z1</option>
+              <option value="2">Z2</option>
+              <option value="3">Z3</option>
+            </select>
+          </div>
+          <div>
+            <label className="label">{t('cardio.minutes')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              defaultValue={ex.target_minutes ?? ''}
+              placeholder="30"
+              onBlur={(e) => void save('target_minutes', e.target.value)}
+            />
+          </div>
         </div>
-        <div>
-          <label className="label">{t('program.reps')}</label>
-          <input
-            className="input"
-            defaultValue={ex.target_reps ?? ''}
-            placeholder="8-12"
-            onBlur={(e) => void save('target_reps', e.target.value)}
-          />
+      ) : (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          <div>
+            <label className="label">{t('program.sets')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              defaultValue={ex.target_sets ?? ''}
+              onBlur={(e) => void save('target_sets', e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">{t('program.reps')}</label>
+            <input
+              className="input"
+              defaultValue={ex.target_reps ?? ''}
+              placeholder="8-12"
+              onBlur={(e) => void save('target_reps', e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">{t('program.weight')}</label>
+            <input
+              className="input"
+              defaultValue={ex.target_weight ?? ''}
+              placeholder="60kg"
+              onBlur={(e) => void save('target_weight', e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">{t('program.rpe')}</label>
+            <input
+              className="input"
+              inputMode="decimal"
+              defaultValue={ex.target_rpe ?? ''}
+              placeholder="5-10"
+              onBlur={(e) => void save('target_rpe', e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label">{t('coach.programs.restSec')}</label>
+            <input
+              className="input"
+              inputMode="numeric"
+              defaultValue={ex.rest_seconds ?? ''}
+              onBlur={(e) => void save('rest_seconds', e.target.value)}
+            />
+          </div>
         </div>
-        <div>
-          <label className="label">{t('program.weight')}</label>
-          <input
-            className="input"
-            defaultValue={ex.target_weight ?? ''}
-            placeholder="60kg / RPE 8"
-            onBlur={(e) => void save('target_weight', e.target.value)}
-          />
-        </div>
-        <div>
-          <label className="label">{t('coach.programs.restSec')}</label>
-          <input
-            className="input"
-            inputMode="numeric"
-            defaultValue={ex.rest_seconds ?? ''}
-            onBlur={(e) => void save('rest_seconds', e.target.value)}
-          />
-        </div>
-      </div>
+      )}
 
       <div className="mt-2">
         <label className="label">{t('coach.programs.youtube')}</label>

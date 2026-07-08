@@ -189,6 +189,11 @@ export default function ProgressCharts({ userId }: { userId: string }) {
     const cutoff7Str = cutoff7.toISOString().slice(0, 10)
 
     let weekMinutes = 0
+    // steps count toward cardio too — daily totals from check-ins, this week
+    let weekSteps = 0
+    for (const c of checkins) {
+      if (c.date >= cutoff7Str && c.steps != null) weekSteps += Number(c.steps)
+    }
     const byKind = new Map<string, { minutes: number; steps: number; sessions: number }>()
     const bump = (kind: string, minutes: number, steps: number) => {
       const cur = byKind.get(kind) ?? { minutes: 0, steps: 0, sessions: 0 }
@@ -213,8 +218,8 @@ export default function ProgressCharts({ userId }: { userId: string }) {
       .map(([kind, v]) => ({ kind, ...v }))
       .sort((a, b) => b.minutes - a.minutes)
     const weeklyTarget = targets.find((x) => x.nutrient === 'cardio_weekly_min')?.target_value ?? null
-    return { weekMinutes, weeklyTarget, kinds }
-  }, [cardio, logs, targets, rangeDays])
+    return { weekMinutes, weekSteps, weeklyTarget, kinds }
+  }, [cardio, logs, targets, rangeDays, checkins])
 
   const stepsTarget = targets.find((x) => x.nutrient === 'steps')?.target_value ?? null
 
@@ -454,6 +459,34 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                   className="h-full bg-accent"
                   style={{
                     width: `${Math.min(100, (cardioStats.weekMinutes / cardioStats.weeklyTarget) * 100)}%`,
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* steps are cardio too — this week's total vs daily target × 7 */}
+          <div className="mb-3">
+            <div className="mb-1 flex items-baseline justify-between">
+              <span className="text-xs font-black uppercase text-neutral-500">
+                {t('cardio.stepsWeek')}
+              </span>
+              <span className="text-lg font-black tabular-nums">
+                {Math.round(cardioStats.weekSteps).toLocaleString()}
+                {stepsTarget != null && (
+                  <span className="text-xs font-bold text-neutral-500">
+                    {' '}
+                    / {(stepsTarget * 7).toLocaleString()}
+                  </span>
+                )}
+              </span>
+            </div>
+            {stepsTarget != null && (
+              <div className="h-4 border-2 border-black">
+                <div
+                  className="h-full bg-accent"
+                  style={{
+                    width: `${Math.min(100, (cardioStats.weekSteps / (stepsTarget * 7)) * 100)}%`,
                   }}
                 />
               </div>

@@ -64,11 +64,15 @@ export default function Programs() {
         program_day_id: (newDay as ProgramDay).id,
         order_index: ex.order_index,
         name: ex.name,
+        kind: ex.kind,
         instructions: ex.instructions,
         youtube_url: ex.youtube_url,
         target_sets: ex.target_sets,
         target_reps: ex.target_reps,
         target_weight: ex.target_weight,
+        target_rpe: ex.target_rpe,
+        target_minutes: ex.target_minutes,
+        target_zone: ex.target_zone,
         rest_seconds: ex.rest_seconds,
       }))
       if (exercises.length > 0) await supabase.from('program_exercises').insert(exercises)

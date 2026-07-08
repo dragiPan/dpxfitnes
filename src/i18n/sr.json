@@ -124,6 +124,7 @@
     "video": "Video",
     "cardio": "Kardio",
     "strength": "Snaga",
+    "rpe": "RPE",
     "newPr": "NOVI REKORD!",
     "session": "Trening",
     "duration": "Trajanje"
@@ -151,6 +152,7 @@
     "minutes": "Minuti",
     "add": "Dodaj",
     "thisWeek": "Ova nedelja",
+    "stepsWeek": "Koraci ove nedelje",
     "byKind": "Po aktivnosti",
     "weeklyMin": "Nedeljni kardio (min)",
     "stepsDaily": "Dnevni koraci",
@@ -166,6 +168,20 @@
       "other": "Ostalo",
       "program": "Kardio iz programa"
     }
+  },
+  "muscles": {
+    "chest": "Grudi",
+    "back": "Leđa",
+    "shoulders": "Ramena",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "forearms": "Podlaktice",
+    "abs": "Trbušnjaci",
+    "quads": "Prednja loža",
+    "hamstrings": "Zadnja loža",
+    "glutes": "Gluteus",
+    "calves": "Listovi",
+    "full_body": "Celo telo"
   },
   "chat": {
     "title": "Poruke sa trenerom",
@@ -277,7 +293,9 @@
       "empty": "Još nema sačuvanih vežbi.",
       "newName": "Nova vežba",
       "addFrom": "Dodaj iz biblioteke",
-      "saveTo": "Sačuvaj u biblioteku"
+      "saveTo": "Sačuvaj u biblioteku",
+      "muscle": "Mišićna grupa",
+      "filterAll": "Sve vežbe"
     },
     "intakeTab": {
       "empty": "Klijent još nije počeo uvodni upitnik.",

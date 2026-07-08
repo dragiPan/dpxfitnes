@@ -124,6 +124,7 @@
     "video": "Video",
     "cardio": "Cardio",
     "strength": "Strength",
+    "rpe": "RPE",
     "newPr": "NEW PR!",
     "session": "Session",
     "duration": "Duration"
@@ -151,6 +152,7 @@
     "minutes": "Minutes",
     "add": "Add",
     "thisWeek": "This week",
+    "stepsWeek": "Steps this week",
     "byKind": "By activity",
     "weeklyMin": "Weekly cardio (min)",
     "stepsDaily": "Daily steps",
@@ -166,6 +168,20 @@
       "other": "Other",
       "program": "Program cardio"
     }
+  },
+  "muscles": {
+    "chest": "Chest",
+    "back": "Back",
+    "shoulders": "Shoulders",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "forearms": "Forearms",
+    "abs": "Abs / core",
+    "quads": "Quads",
+    "hamstrings": "Hamstrings",
+    "glutes": "Glutes",
+    "calves": "Calves",
+    "full_body": "Full body"
   },
   "chat": {
     "title": "Chat with your coach",
@@ -277,7 +293,9 @@
       "empty": "No exercises saved yet.",
       "newName": "New exercise",
       "addFrom": "Add from library",
-      "saveTo": "Save to library"
+      "saveTo": "Save to library",
+      "muscle": "Muscle group",
+      "filterAll": "All exercises"
     },
     "intakeTab": {
       "empty": "The client hasn't started the intake questionnaire yet.",

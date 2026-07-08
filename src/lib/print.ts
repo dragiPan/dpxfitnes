@@ -39,6 +39,9 @@ interface PrintExercise {
   target_sets: number | null
   target_reps: string | null
   target_weight: string | null
+  target_rpe?: number | null
+  target_minutes?: number | null
+  target_zone?: number | null
   rest_seconds: number | null
   instructions: string | null
   youtube_url: string | null
@@ -59,11 +62,21 @@ export function printProgram(
     html += `<h2>${esc(labels.day)} ${i + 1}${day.title ? ` — ${esc(day.title)}` : ''}</h2>`
     html += `<table><tr><th>${esc(labels.exercise)}</th><th>${esc(labels.sets)}</th><th>${esc(labels.reps)}</th><th>${esc(labels.weight)}</th><th>${esc(labels.rest)}</th></tr>`
     for (const ex of day.program_exercises) {
+      const cardio = ex.kind === 'cardio'
+      const setsCell = cardio ? (ex.target_zone ? `Z${ex.target_zone}` : '') : String(ex.target_sets ?? '')
+      const repsCell = cardio
+        ? ex.target_minutes
+          ? `${ex.target_minutes} min`
+          : esc(ex.target_reps)
+        : esc(ex.target_reps)
+      const weightCell = cardio
+        ? ''
+        : `${esc(ex.target_weight)}${ex.target_rpe ? ` RPE ${ex.target_rpe}` : ''}`
       html += `<tr><td><b>${esc(ex.name)}</b>${
         ex.instructions ? `<br><span class="muted">${esc(ex.instructions)}</span>` : ''
       }${ex.youtube_url ? `<br><span class="muted">${esc(labels.video)}: ${esc(ex.youtube_url)}</span>` : ''}</td>` +
-        `<td>${ex.target_sets ?? ''}</td><td>${esc(ex.target_reps)}</td><td>${esc(ex.target_weight)}</td>` +
-        `<td>${ex.rest_seconds ? `${ex.rest_seconds}s` : ''}</td></tr>`
+        `<td>${setsCell}</td><td>${repsCell}</td><td>${weightCell}</td>` +
+        `<td>${!cardio && ex.rest_seconds ? `${ex.rest_seconds}s` : ''}</td></tr>`
     }
     html += `</table>`
   })

@@ -83,6 +83,9 @@ export interface ProgramExercise {
   target_sets: number | null
   target_reps: string | null
   target_weight: string | null
+  target_rpe: number | null
+  target_minutes: number | null
+  target_zone: 1 | 2 | 3 | null
   rest_seconds: number | null
 }
 
@@ -117,11 +120,15 @@ export interface LibraryExercise {
   id: string
   name: string
   kind: 'strength' | 'cardio'
+  muscle_group: string | null
   youtube_url: string | null
   instructions: string | null
   target_sets: number | null
   target_reps: string | null
   target_weight: string | null
+  target_rpe: number | null
+  target_minutes: number | null
+  target_zone: 1 | 2 | 3 | null
   rest_seconds: number | null
 }
 

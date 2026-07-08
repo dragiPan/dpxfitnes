@@ -261,11 +261,17 @@ function ExerciseCard({
         </h2>
         <p className="text-xs font-bold text-neutral-500">
           {cardio ? (
-            ex.target_reps ?? ''
+            <>
+              {ex.target_zone ? `Z${ex.target_zone}` : ''}
+              {ex.target_zone && ex.target_minutes ? ' · ' : ''}
+              {ex.target_minutes ? `${ex.target_minutes} min` : ''}
+              {!ex.target_zone && !ex.target_minutes ? (ex.target_reps ?? '') : ''}
+            </>
           ) : (
             <>
               {ex.target_sets ?? '–'} × {ex.target_reps ?? '–'}
               {ex.target_weight ? ` @ ${ex.target_weight}` : ''}
+              {ex.target_rpe ? ` · ${t('program.rpe')} ${ex.target_rpe}` : ''}
               {ex.rest_seconds ? ` · ${t('program.rest')} ${ex.rest_seconds}s` : ''}
               {best > 0 ? ` · 🏆 ${best} kg` : ''}
             </>
