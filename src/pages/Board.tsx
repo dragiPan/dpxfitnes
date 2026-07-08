@@ -17,16 +17,21 @@ export default function Board() {
   const [msg, setMsg] = useState('')
 
   const load = useCallback(async () => {
+    // retention: announcements older than 60 days are purged (coach only has delete rights)
+    if (isCoach) {
+      const cutoff = new Date(Date.now() - 60 * 86400000).toISOString()
+      await supabase.from('board_posts').delete().lt('created_at', cutoff)
+    }
     const { data } = await supabase
       .from('board_posts')
       .select('*')
       .order('created_at', { ascending: false })
       .limit(50)
     setPosts((data as BoardPost[]) ?? [])
-    if (isCoach) {
-      const { data: g } = await supabase.from('groups').select('*').order('name')
-      setGroups((g as Group[]) ?? [])
-    }
+    // everyone loads groups — RLS gives clients the groups they belong to,
+    // so members see which group a post was sent to
+    const { data: g } = await supabase.from('groups').select('*').order('name')
+    setGroups((g as Group[]) ?? [])
   }, [isCoach])
 
   useEffect(() => {
@@ -135,7 +140,7 @@ export default function Board() {
           <div key={p.id} className="card">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <span className="badge">{groupName(p.group_id)}</span>
+                {groupName(p.group_id) && <span className="badge">{groupName(p.group_id)}</span>}
                 <h2 className="mt-1 text-lg">{p.title}</h2>
               </div>
               {isCoach && (

@@ -189,7 +189,9 @@ export default function ProgramBuilder() {
                 className="input"
                 defaultValue={day.title}
                 placeholder={t('coach.programs.dayTitle')}
-                onBlur={(e) => void supabase.from('program_days').update({ title: e.target.value }).eq('id', day.id)}
+                onBlur={async (e) => {
+                  await supabase.from('program_days').update({ title: e.target.value }).eq('id', day.id)
+                }}
               />
               <button className="btn btn-sm shrink-0" onClick={() => void deleteDay(day.id)}>
                 ✕

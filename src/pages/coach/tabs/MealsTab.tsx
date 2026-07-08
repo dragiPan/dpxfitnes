@@ -89,7 +89,9 @@ export default function MealsTab({ client }: { client: Profile }) {
               className="input font-black"
               defaultValue={plan.title}
               placeholder={t('coach.mealsTab.planTitle')}
-              onBlur={(e) => void supabase.from('meal_plans').update({ title: e.target.value }).eq('id', plan.id)}
+              onBlur={async (e) => {
+                await supabase.from('meal_plans').update({ title: e.target.value }).eq('id', plan.id)
+              }}
             />
             <button
               className={`btn btn-sm shrink-0 ${plan.active ? 'btn-primary' : ''}`}
@@ -105,7 +107,9 @@ export default function MealsTab({ client }: { client: Profile }) {
             className="input mb-2"
             defaultValue={plan.notes ?? ''}
             placeholder={t('common.notes')}
-            onBlur={(e) => void supabase.from('meal_plans').update({ notes: e.target.value || null }).eq('id', plan.id)}
+            onBlur={async (e) => {
+              await supabase.from('meal_plans').update({ notes: e.target.value || null }).eq('id', plan.id)
+            }}
           />
 
           <div className="space-y-2">

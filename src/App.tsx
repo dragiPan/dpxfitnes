@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import Layout from './components/Layout'
+import Brand from './components/Brand'
 import Login from './pages/Login'
 import Notifications from './pages/Notifications'
 import Profile from './pages/Profile'
@@ -27,7 +28,9 @@ export default function App() {
   if (loading || (session && !profile)) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-2xl font-black tracking-tighter animate-pulse">DPXFITNES</p>
+        <p className="text-2xl font-black tracking-tighter animate-pulse">
+          <Brand />
+        </p>
       </div>
     )
   }

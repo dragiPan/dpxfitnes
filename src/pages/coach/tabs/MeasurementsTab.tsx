@@ -26,7 +26,15 @@ export default function MeasurementsTab({
 
   async function toggleEnabled() {
     const next = !client.measurements_enabled
-    await supabase.from('profiles').update({ measurements_enabled: next }).eq('id', client.id)
+    const { error } = await supabase
+      .from('profiles')
+      .update({ measurements_enabled: next })
+      .eq('id', client.id)
+    if (error) {
+      console.error('measurements toggle failed:', error.message)
+      alert(error.message)
+      return
+    }
     onChanged({ ...client, measurements_enabled: next })
   }
 

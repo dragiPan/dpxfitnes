@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { setLanguage } from '../i18n'
+import Brand from '../components/Brand'
 
 type Step = 'start' | 'code'
 
@@ -55,7 +56,9 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-6 text-center">
-          <h1 className="text-4xl font-black tracking-tighter">{t('app.name')}</h1>
+          <h1 className="text-4xl font-black tracking-tighter">
+            <Brand />
+          </h1>
           <p className="mt-1 text-xs font-bold uppercase tracking-widest text-neutral-500">
             {t('auth.welcome')}
           </p>

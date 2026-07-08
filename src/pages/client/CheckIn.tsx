@@ -23,19 +23,23 @@ export default function CheckIn() {
   const [targets, setTargets] = useState<NutritionTarget[]>([])
   const [cardioEntries, setCardioEntries] = useState<CardioLog[]>([])
   const [cardioDraft, setCardioDraft] = useState({ kind: 'walk', zone: '', minutes: '', steps: '' })
+  // fetched fresh so a coach toggling measurements shows up without re-login
+  const [measurementsEnabled, setMeasurementsEnabled] = useState(profile?.measurements_enabled ?? false)
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState('')
 
   const load = useCallback(async () => {
     if (!session) return
     setMsg('')
-    const [{ data: ci }, { data: tg }, { data: ms }, { data: cl }] = await Promise.all([
+    const [{ data: ci }, { data: tg }, { data: ms }, { data: cl }, { data: pr }] = await Promise.all([
       supabase.from('checkins').select('*').eq('user_id', session.user.id).eq('date', date).maybeSingle(),
       supabase.from('nutrition_targets').select('*').eq('user_id', session.user.id),
       supabase.from('measurements').select('*').eq('user_id', session.user.id).eq('date', date).maybeSingle(),
       supabase.from('cardio_logs').select('*').eq('user_id', session.user.id).eq('date', date).order('created_at'),
+      supabase.from('profiles').select('measurements_enabled').eq('id', session.user.id).single(),
     ])
     setCardioEntries((cl as CardioLog[]) ?? [])
+    if (pr) setMeasurementsEnabled(!!(pr as { measurements_enabled: boolean }).measurements_enabled)
     const v: FormValues = {}
     if (ci) {
       for (const n of NUTRIENTS) {
@@ -90,7 +94,7 @@ export default function CheckIn() {
       const { error } = await supabase.from('checkins').upsert(row, { onConflict: 'user_id,date' })
       if (error) throw error
 
-      if (profile?.measurements_enabled) {
+      if (measurementsEnabled) {
         const mrow: Record<string, unknown> = { user_id: session.user.id, date }
         let any = false
         for (const f of MEASUREMENT_FIELDS) {
@@ -313,7 +317,7 @@ export default function CheckIn() {
         </div>
       </div>
 
-      {profile?.measurements_enabled && (
+      {measurementsEnabled && (
         <div className="card mb-4">
           <p className="mb-3 text-xs font-black uppercase tracking-wide">
             {t('measure.title')} <span className="text-neutral-400">({t('common.optional')})</span>

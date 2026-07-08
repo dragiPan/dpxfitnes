@@ -13,6 +13,14 @@ export default function Notifications() {
 
   const load = useCallback(async () => {
     if (!session) return
+    // retention: read notifications older than 60 days are purged
+    const cutoff = new Date(Date.now() - 60 * 86400000).toISOString()
+    await supabase
+      .from('notifications')
+      .delete()
+      .eq('user_id', session.user.id)
+      .eq('read', true)
+      .lt('created_at', cutoff)
     const { data } = await supabase
       .from('notifications')
       .select('*')

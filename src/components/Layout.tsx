@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../contexts/AuthContext'
 import { setLanguage } from '../i18n'
+import Brand from './Brand'
 
 interface NavItem {
   to: string
@@ -65,7 +66,7 @@ export default function Layout() {
       <header className="sticky top-0 z-20 border-b-2 border-black bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-3 py-2.5">
           <NavLink to="/" className="text-lg font-black tracking-tighter">
-            {t('app.name')}
+            <Brand />
           </NavLink>
           <div className="flex items-center gap-1">
             {/* segmented language control — active side highlighted */}

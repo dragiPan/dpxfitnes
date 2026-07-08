@@ -18,8 +18,15 @@ export default function Planner() {
   const { t } = useTranslation()
   const { session } = useAuth()
   const [connected, setConnected] = useState<boolean | null>(null)
-  const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date(), { weekStartsOn: 1 }))
+  const [viewDays, setViewDays] = useState<1 | 3 | 7>(7)
+  const [start, setStart] = useState(() => startOfWeek(new Date(), { weekStartsOn: 1 }))
   const [events, setEvents] = useState<DayEvent[]>([])
+
+  function changeView(days: 1 | 3 | 7) {
+    setViewDays(days)
+    // week view anchors on Monday; day/3-day views anchor on today
+    setStart(days === 7 ? startOfWeek(new Date(), { weekStartsOn: 1 }) : new Date())
+  }
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -50,8 +57,8 @@ export default function Planner() {
     if (!session) return
     setLoading(true)
     setError('')
-    const timeMin = weekStart.toISOString()
-    const timeMax = addDays(weekStart, 7).toISOString()
+    const timeMin = start.toISOString()
+    const timeMax = addDays(start, viewDays).toISOString()
     const collected: DayEvent[] = []
 
     // training sessions scheduled by the coach (always shown)
@@ -108,7 +115,7 @@ export default function Planner() {
     collected.sort((a, b) => a.start.getTime() - b.start.getTime())
     setEvents(collected)
     setLoading(false)
-  }, [session, weekStart, connected, t])
+  }, [session, start, viewDays, connected, t])
 
   useEffect(() => {
     if (connected !== null) void load()
@@ -126,20 +133,39 @@ export default function Planner() {
     })
   }
 
-  const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i))
+  const days = Array.from({ length: viewDays }, (_, i) => addDays(start, i))
+  const gridCls =
+    viewDays === 7
+      ? 'sm:grid-cols-2 lg:grid-cols-7'
+      : viewDays === 3
+        ? 'sm:grid-cols-3'
+        : 'max-w-xl'
 
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <h1 className="text-2xl">{t('planner.title')}</h1>
-        <div className="flex items-center gap-1">
-          <button className="btn btn-sm" onClick={() => setWeekStart((w) => addDays(w, -7))}>
+        <div className="flex flex-wrap items-center gap-1">
+          <div className="mr-2 flex gap-1">
+            {([1, 3, 7] as const).map((d) => (
+              <button
+                key={d}
+                className={`tab ${viewDays === d ? 'tab-active' : ''}`}
+                onClick={() => changeView(d)}
+              >
+                {d}D
+              </button>
+            ))}
+          </div>
+          <button className="btn btn-sm" onClick={() => setStart((s) => addDays(s, -viewDays))}>
             ←
           </button>
           <span className="px-2 text-xs font-black uppercase">
-            {format(weekStart, 'd.M.')} – {format(addDays(weekStart, 6), 'd.M.yyyy')}
+            {viewDays === 1
+              ? format(start, 'EEE d.M.yyyy')
+              : `${format(start, 'd.M.')} – ${format(addDays(start, viewDays - 1), 'd.M.yyyy')}`}
           </span>
-          <button className="btn btn-sm" onClick={() => setWeekStart((w) => addDays(w, 7))}>
+          <button className="btn btn-sm" onClick={() => setStart((s) => addDays(s, viewDays))}>
             →
           </button>
           <button className="btn btn-sm" onClick={() => void load()}>
@@ -169,7 +195,7 @@ export default function Planner() {
       )}
       {loading && <p className="mb-3 text-xs">{t('common.loading')}</p>}
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-7">
+      <div className={`grid grid-cols-1 gap-2 ${gridCls}`}>
         {days.map((d) => {
           const dayEvents = events.filter(
             (e) => format(e.start, 'yyyy-MM-dd') === format(d, 'yyyy-MM-dd'),

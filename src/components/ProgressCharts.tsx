@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 import { supabase } from '../lib/supabase'
 import NutrientChart, { type ChartPoint } from './NutrientChart'
-import { NUTRIENTS, type NutrientKey } from '../lib/nutrients'
-import type { CardioLog, Checkin, ExerciseLog, NutritionTarget } from '../lib/types'
+import { MEASUREMENT_FIELDS, NUTRIENTS, type MeasurementField, type NutrientKey } from '../lib/nutrients'
+import type { CardioLog, Checkin, ExerciseLog, Measurement, NutritionTarget } from '../lib/types'
 
 // macro donut slices: accent red / black / gray — identity is also carried by
 // the legend + direct % labels, never by color alone
@@ -35,6 +35,8 @@ export default function ProgressCharts({ userId }: { userId: string }) {
   const [targets, setTargets] = useState<NutritionTarget[]>([])
   const [logs, setLogs] = useState<LogRow[]>([])
   const [cardio, setCardioLogs] = useState<CardioLog[]>([])
+  const [measurements, setMeasurements] = useState<Measurement[]>([])
+  const [measureField, setMeasureField] = useState<MeasurementField>('waist')
   const [nutrient, setNutrient] = useState<NutrientKey>('calories')
   const [rangeDays, setRangeDays] = useState<number>(90)
 
@@ -56,6 +58,13 @@ export default function ProgressCharts({ userId }: { userId: string }) {
       .gte('date', sinceStr)
       .order('date')
       .then(({ data }) => setCardioLogs((data as CardioLog[]) ?? []))
+    void supabase
+      .from('measurements')
+      .select('*')
+      .eq('user_id', userId)
+      .gte('date', sinceStr)
+      .order('date')
+      .then(({ data }) => setMeasurements((data as Measurement[]) ?? []))
   }, [userId, rangeDays])
 
   useEffect(() => {
@@ -90,28 +99,32 @@ export default function ProgressCharts({ userId }: { userId: string }) {
     const vals = rows.map(pick).filter((v): v is number => v != null).map(Number)
     return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null
   }
-  const last7 = checkins.slice(-7)
-  const avg7 = {
-    calories: avgOf(last7, (c) => c.calories),
-    protein: avgOf(last7, (c) => c.protein),
-    carbs: avgOf(last7, (c) => c.carbs),
-    fat: avgOf(last7, (c) => c.fat),
-    steps: avgOf(last7, (c) => c.steps),
+  // averages follow the selected time range (checkins are already range-fetched)
+  const avgs = {
+    calories: avgOf(checkins, (c) => c.calories),
+    protein: avgOf(checkins, (c) => c.protein),
+    carbs: avgOf(checkins, (c) => c.carbs),
+    fat: avgOf(checkins, (c) => c.fat),
+    steps: avgOf(checkins, (c) => c.steps),
   }
 
   // macro split: % of calories from protein/carbs/fat (4/4/9 kcal per gram)
   const macroSlices = useMemo(() => {
-    const p = (avg7.protein ?? 0) * 4
-    const c = (avg7.carbs ?? 0) * 4
-    const f = (avg7.fat ?? 0) * 9
+    const p = (avgs.protein ?? 0) * 4
+    const c = (avgs.carbs ?? 0) * 4
+    const f = (avgs.fat ?? 0) * 9
     const total = p + c + f
     if (total <= 0) return []
     return [
-      { key: 'protein', grams: avg7.protein ?? 0, kcal: p, pct: (p / total) * 100 },
-      { key: 'carbs', grams: avg7.carbs ?? 0, kcal: c, pct: (c / total) * 100 },
-      { key: 'fat', grams: avg7.fat ?? 0, kcal: f, pct: (f / total) * 100 },
+      { key: 'protein', grams: avgs.protein ?? 0, kcal: p, pct: (p / total) * 100 },
+      { key: 'carbs', grams: avgs.carbs ?? 0, kcal: c, pct: (c / total) * 100 },
+      { key: 'fat', grams: avgs.fat ?? 0, kcal: f, pct: (f / total) * 100 },
     ]
-  }, [avg7.protein, avg7.carbs, avg7.fat])
+  }, [avgs.protein, avgs.carbs, avgs.fat])
+
+  const measureData: ChartPoint[] = measurements
+    .filter((m) => m[measureField] != null)
+    .map((m) => ({ date: m.date, value: Number(m[measureField]) }))
 
   // adherence over the last 30 days (only where a target exists — RLS already
   // limits which targets a client can see)
@@ -260,7 +273,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="card">
-          <p className="label">{t('progress.macroSplit')}</p>
+          <p className="label">{t('progress.macroSplitN', { n: rangeDays })}</p>
           {macroSlices.length === 0 ? (
             empty
           ) : (
@@ -284,10 +297,10 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                     </Pie>
                   </PieChart>
                 </ResponsiveContainer>
-                {avg7.calories != null && (
+                {avgs.calories != null && (
                   <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-xl font-black tabular-nums leading-none">
-                      {Math.round(avg7.calories)}
+                      {Math.round(avgs.calories)}
                     </span>
                     <span className="text-[9px] font-bold uppercase text-neutral-500">kcal</span>
                   </div>
@@ -318,14 +331,14 @@ export default function ProgressCharts({ userId }: { userId: string }) {
 
         <div className="space-y-4">
           <div className="card">
-            <p className="label">{t('progress.averages')}</p>
+            <p className="label">{t('progress.averagesN', { n: rangeDays })}</p>
             <div className="grid grid-cols-2 gap-1 text-center sm:grid-cols-3 lg:grid-cols-5">
               {(
                 [
-                  [t('nutrient.calories'), avg7.calories, 'kcal'],
-                  [t('nutrient.protein'), avg7.protein, 'g'],
-                  [t('nutrient.carbsShort'), avg7.carbs, 'g'],
-                  [t('nutrient.fat'), avg7.fat, 'g'],
+                  [t('nutrient.calories'), avgs.calories, 'kcal'],
+                  [t('nutrient.protein'), avgs.protein, 'g'],
+                  [t('nutrient.carbsShort'), avgs.carbs, 'g'],
+                  [t('nutrient.fat'), avgs.fat, 'g'],
                 ] as const
               ).map(([label, val, u]) => (
                 <div key={label} className="min-w-0 border-2 border-black p-1.5">
@@ -341,7 +354,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                   {t('progress.steps')}
                 </p>
                 <p className="text-sm font-black tabular-nums leading-tight sm:text-base">
-                  {avg7.steps != null ? Math.round(avg7.steps).toLocaleString() : '–'}
+                  {avgs.steps != null ? Math.round(avgs.steps).toLocaleString() : '–'}
                 </p>
               </div>
             </div>
@@ -413,6 +426,27 @@ export default function ProgressCharts({ userId }: { userId: string }) {
           <NutrientChart data={nutrientData} target={target} unit={unit} targetLabel={t('checkin.target')} />
         )}
       </div>
+
+      {measurements.length > 0 && (
+        <div className="card">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <p className="label mb-0">{t('measure.title')}</p>
+            <select
+              className="input max-w-56"
+              value={measureField}
+              onChange={(e) => setMeasureField(e.target.value as MeasurementField)}
+            >
+              {MEASUREMENT_FIELDS.map((f) => (
+                <option key={f} value={f}>
+                  {t(`measure.${f}`)}
+                </option>
+              ))}
+            </select>
+          </div>
+          {statHead(measureData, 'cm')}
+          {measureData.length === 0 ? empty : <NutrientChart data={measureData} unit="cm" />}
+        </div>
+      )}
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="card">
