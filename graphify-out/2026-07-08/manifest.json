@@ -40,8 +40,8 @@
     "semantic_hash": ""
   },
   "src/components/ProgressCharts.tsx": {
-    "mtime": 1783513479.1905627,
-    "ast_hash": "5a00efe4ae23c9de4bfa4a0e09dce4f8",
+    "mtime": 1783518473.6132355,
+    "ast_hash": "b494c076c4bb3b4ae069d8dad6c7f5af",
     "semantic_hash": ""
   },
   "src/components/YouTubeEmbed.tsx": {
@@ -55,8 +55,8 @@
     "semantic_hash": "464bd4c1aed44e86380be4e77cb28733"
   },
   "src/i18n/en.json": {
-    "mtime": 1783513585.4265745,
-    "ast_hash": "e1b99f306dbc2cce09b35fdd8a656329",
+    "mtime": 1783518508.4937909,
+    "ast_hash": "114f08519af614374d087ebf6be5844d",
     "semantic_hash": ""
   },
   "src/i18n/index.ts": {
@@ -65,8 +65,8 @@
     "semantic_hash": "d27bc086aa6d0e5e84c287b261be0858"
   },
   "src/i18n/sr.json": {
-    "mtime": 1783513590.7854104,
-    "ast_hash": "a6e8c7bdc6379b264dbbe6398736593b",
+    "mtime": 1783518523.478162,
+    "ast_hash": "2a44305f44af16f4e8943589f6cc3ffd",
     "semantic_hash": ""
   },
   "src/lib/intake.ts": {
@@ -80,14 +80,14 @@
     "semantic_hash": ""
   },
   "src/lib/nutrients.ts": {
-    "mtime": 1783513365.0603895,
-    "ast_hash": "f6a476256ef7304f5ef1c3356e0361f5",
+    "mtime": 1783518354.146349,
+    "ast_hash": "817892cd10c80b109d0dcfb1bcfef673",
     "semantic_hash": ""
   },
   "src/lib/print.ts": {
-    "mtime": 1783364510.6851575,
-    "ast_hash": "e7b54194e94e6694b0bf41310981b108",
-    "semantic_hash": "e7b54194e94e6694b0bf41310981b108"
+    "mtime": 1783518491.164603,
+    "ast_hash": "580e1fbd774f9c7b56883b76fecaddd9",
+    "semantic_hash": ""
   },
   "src/lib/supabase.ts": {
     "mtime": 1783340908.3693976,
@@ -95,8 +95,8 @@
     "semantic_hash": "4adc41f32fb51da421cbafaf2ebd560c"
   },
   "src/lib/types.ts": {
-    "mtime": 1783513367.424195,
-    "ast_hash": "22176d64f227c24ef371474fd8a59d9f",
+    "mtime": 1783518359.935355,
+    "ast_hash": "da13c523e30baa11363df9ac9c66dae3",
     "semantic_hash": ""
   },
   "src/lib/youtube.ts": {
@@ -155,8 +155,8 @@
     "semantic_hash": "cfe4162a032b3cd45227facc2ec07f9e"
   },
   "src/pages/client/MyProgram.tsx": {
-    "mtime": 1783513572.85962,
-    "ast_hash": "e8a61f94e74d7698f4d7c6fd55375e5a",
+    "mtime": 1783518453.3934133,
+    "ast_hash": "9dd69b8e7243f90df1ee39fe4d5f56aa",
     "semantic_hash": ""
   },
   "src/pages/client/Planner.tsx": {
@@ -190,19 +190,19 @@
     "semantic_hash": "82425966a83bfd23878f2e0bfbd91412"
   },
   "src/pages/coach/Library.tsx": {
-    "mtime": 1783364483.9078918,
-    "ast_hash": "a2e78cfce688cf1fc1ca9790205cf737",
-    "semantic_hash": "a2e78cfce688cf1fc1ca9790205cf737"
+    "mtime": 1783518439.6317904,
+    "ast_hash": "0587e106498b6cad3a8b5ef668d21401",
+    "semantic_hash": ""
   },
   "src/pages/coach/ProgramBuilder.tsx": {
-    "mtime": 1783364564.515226,
-    "ast_hash": "b0f30a0a98b117e1efd7044ff759f651",
-    "semantic_hash": "b0f30a0a98b117e1efd7044ff759f651"
+    "mtime": 1783518403.4512656,
+    "ast_hash": "5f37e307cd263c6ee2f6ad9530e6cf53",
+    "semantic_hash": ""
   },
   "src/pages/coach/Programs.tsx": {
-    "mtime": 1783340599.441577,
-    "ast_hash": "7abcbf340418357d8becd82ab0cce0a3",
-    "semantic_hash": "7abcbf340418357d8becd82ab0cce0a3"
+    "mtime": 1783518407.0704837,
+    "ast_hash": "08893508245f4a353593478e67c61e0f",
+    "semantic_hash": ""
   },
   "src/pages/coach/tabs/CheckinsTab.tsx": {
     "mtime": 1783420435.4050472,
@@ -327,6 +327,11 @@
   "supabase/migrations/005_cardio.sql": {
     "mtime": 1783513362.1577697,
     "ast_hash": "f3ea1114af3f7ebb365c92bdb481d1b2",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/006_exercise_fields.sql": {
+    "mtime": 1783518350.854173,
+    "ast_hash": "565ae789d950e39ab78864468b411e98",
     "semantic_hash": ""
   }
 }
