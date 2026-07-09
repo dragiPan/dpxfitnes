@@ -126,19 +126,15 @@ export default function ProgressCharts({ userId }: { userId: string }) {
     .filter((m) => m[measureField] != null)
     .map((m) => ({ date: m.date, value: Number(m[measureField]) }))
 
-  // adherence over the last 30 days (only where a target exists — RLS already
-  // limits which targets a client can see)
+  // adherence over the selected range — checkins are already range-fetched
+  // (only where a target exists; RLS limits which targets a client can see)
   const adherence = useMemo(() => {
-    const cutoff = new Date()
-    cutoff.setDate(cutoff.getDate() - 30)
-    const cutoffStr = cutoff.toISOString().slice(0, 10)
-    const last30 = checkins.filter((c) => c.date >= cutoffStr)
     const calTarget = targets.find((x) => x.nutrient === 'calories')?.target_value
     const protTarget = targets.find((x) => x.nutrient === 'protein')?.target_value
 
     let cal: { hit: number; days: number } | null = null
     if (calTarget) {
-      const days = last30.filter((c) => c.calories != null)
+      const days = checkins.filter((c) => c.calories != null)
       cal = {
         days: days.length,
         hit: days.filter((c) => Math.abs(Number(c.calories) - calTarget) <= calTarget * 0.1).length,
@@ -146,16 +142,13 @@ export default function ProgressCharts({ userId }: { userId: string }) {
     }
     let prot: { hit: number; days: number } | null = null
     if (protTarget) {
-      const days = last30.filter((c) => c.protein != null)
+      const days = checkins.filter((c) => c.protein != null)
       prot = {
         days: days.length,
         hit: days.filter((c) => Number(c.protein) >= protTarget).length,
       }
     }
-    const cutoff7 = new Date()
-    cutoff7.setDate(cutoff7.getDate() - 7)
-    const checkins7 = checkins.filter((c) => c.date >= cutoff7.toISOString().slice(0, 10)).length
-    return { cal, prot, checkins7 }
+    return { cal, prot, checkinCount: checkins.length }
   }, [checkins, targets])
 
   // stock-ticker headline: latest value + change across the loaded range
@@ -344,7 +337,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                 <div key={label} className="min-w-0 border-2 border-black p-1.5">
                   <p className="truncate text-[9px] font-black uppercase text-neutral-500">{label}</p>
                   <p className="text-sm font-black tabular-nums leading-tight sm:text-base">
-                    {val != null ? Math.round(val).toLocaleString() : '–'}
+                    {val != null ? Math.round(val).toLocaleString() : '-'}
                     <span className="ml-0.5 text-[9px] font-bold">{u}</span>
                   </p>
                 </div>
@@ -354,14 +347,14 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                   {t('progress.steps')}
                 </p>
                 <p className="text-sm font-black tabular-nums leading-tight sm:text-base">
-                  {avgs.steps != null ? Math.round(avgs.steps).toLocaleString() : '–'}
+                  {avgs.steps != null ? Math.round(avgs.steps).toLocaleString() : '-'}
                 </p>
               </div>
             </div>
           </div>
 
           <div className="card">
-            <p className="label">{t('progress.adherence')}</p>
+            <p className="label">{t('progress.adherenceN', { n: rangeDays })}</p>
             <div className="grid grid-cols-3 gap-1 text-center">
               <div className="border-2 border-black p-1.5">
                 <p className="text-[9px] font-black uppercase text-neutral-500">
@@ -370,7 +363,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                 <p className="text-xl font-black tabular-nums">
                   {adherence.cal && adherence.cal.days > 0
                     ? `${Math.round((adherence.cal.hit / adherence.cal.days) * 100)}%`
-                    : '–'}
+                    : '-'}
                 </p>
                 {adherence.cal && adherence.cal.days > 0 && (
                   <p className="text-[10px] font-bold text-neutral-500">
@@ -385,7 +378,7 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                 <p className="text-xl font-black tabular-nums">
                   {adherence.prot && adherence.prot.days > 0
                     ? `${Math.round((adherence.prot.hit / adherence.prot.days) * 100)}%`
-                    : '–'}
+                    : '-'}
                 </p>
                 {adherence.prot && adherence.prot.days > 0 && (
                   <p className="text-[10px] font-bold text-neutral-500">
@@ -397,7 +390,9 @@ export default function ProgressCharts({ userId }: { userId: string }) {
                 <p className="text-[9px] font-black uppercase text-neutral-500">
                   {t('progress.checkinCompliance')}
                 </p>
-                <p className="text-xl font-black tabular-nums">{adherence.checkins7}/7</p>
+                <p className="text-xl font-black tabular-nums">
+                  {adherence.checkinCount}/{rangeDays}
+                </p>
               </div>
             </div>
           </div>

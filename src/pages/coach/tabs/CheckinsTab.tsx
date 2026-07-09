@@ -52,13 +52,13 @@ export default function CheckinsTab({ client }: { client: Profile }) {
                 <td className="sticky left-0 whitespace-nowrap bg-inherit px-2 py-1.5 font-black">
                   {openId === c.id ? '▾' : '▸'} {new Date(c.date).toLocaleDateString()}
                 </td>
-                <td className="px-2 py-1.5 text-right font-bold tabular-nums">{c.weight ?? '–'}</td>
+                <td className="px-2 py-1.5 text-right font-bold tabular-nums">{c.weight ?? '-'}</td>
                 <td className="px-2 py-1.5 text-right tabular-nums">
-                  {c.steps != null ? Number(c.steps).toLocaleString() : '–'}
+                  {c.steps != null ? Number(c.steps).toLocaleString() : '-'}
                 </td>
                 {NUTRIENTS.map((n) => (
                   <td key={n.key} className="px-2 py-1.5 text-right tabular-nums">
-                    {c[n.key] != null ? String(c[n.key]) : '–'}
+                    {c[n.key] != null ? String(c[n.key]) : '-'}
                   </td>
                 ))}
                 <td className="max-w-48 truncate px-2 py-1.5" title={c.notes ?? ''}>
@@ -125,7 +125,7 @@ function Tile({
         {label}
       </p>
       <p className="text-lg font-black tabular-nums leading-tight">
-        {value != null ? (format ? format(value) : value) : '–'}
+        {value != null ? (format ? format(value) : value) : '-'}
         {value != null && unit && <span className="ml-0.5 text-[10px] font-bold">{unit}</span>}
       </p>
     </div>

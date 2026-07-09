@@ -128,7 +128,7 @@ export default function ProgramTab({ client }: { client: Profile }) {
                     <span className="font-bold">{name}:</span>{' '}
                     {dayLogs
                       .filter((l) => (l.exercise?.name ?? '?') === name)
-                      .map((l) => `${l.reps ?? '–'}×${l.weight ?? '–'}kg`)
+                      .map((l) => `${l.reps ?? '-'}×${l.weight ?? '-'}kg`)
                       .join(', ')}
                   </p>
                 ))

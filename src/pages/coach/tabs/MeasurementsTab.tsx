@@ -73,7 +73,7 @@ export default function MeasurementsTab({
                   </td>
                   {MEASUREMENT_FIELDS.map((f) => (
                     <td key={f} className="px-2 py-1.5 text-right">
-                      {r[f] ?? '–'}
+                      {r[f] ?? '-'}
                     </td>
                   ))}
                 </tr>

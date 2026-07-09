@@ -24,7 +24,7 @@
     "sendCode": "Send login code",
     "code": "6-digit code",
     "verifyCode": "Verify code",
-    "codeSent": "Code sent — check your email.",
+    "codeSent": "Code sent - check your email.",
     "inviteOnly": "This platform is invite-only. If you don't have an account, ask your coach for an invite.",
     "error": "Sign-in failed. Check your email/code and try again."
   },
@@ -136,16 +136,17 @@
     "steps": "Steps",
     "nutrition": "Nutrition",
     "prs": "Personal records",
-    "cardio4w": "Cardio — last 4 weeks",
+    "cardio4w": "Cardio - last 4 weeks",
     "sessions": "Sessions",
-    "macroSplit": "Macro split — 7-day avg",
-    "macroSplitN": "Macro split — {{n}}-day avg",
+    "macroSplit": "Macro split - 7-day avg",
+    "macroSplitN": "Macro split - {{n}}-day avg",
     "averages": "7-day averages",
-    "averagesN": "Averages — last {{n}} days",
-    "adherence": "Adherence — last 30 days",
+    "averagesN": "Averages - last {{n}} days",
+    "adherence": "Adherence - last 30 days",
+    "adherenceN": "Adherence - last {{n}} days",
     "calOnTarget": "Calories on target (±10%)",
     "proteinHit": "Protein target hit",
-    "checkinCompliance": "Check-ins (7 days)"
+    "checkinCompliance": "Check-ins"
   },
   "cardio": {
     "title": "Cardio",
@@ -270,7 +271,7 @@
       "email": "Client email",
       "fullName": "Full name",
       "sendInvite": "Send invite",
-      "invited": "Invite sent — the client will get an email to set up their account.",
+      "invited": "Invite sent - the client will get an email to set up their account.",
       "inviteError": "Invite failed. Is the invite-client edge function deployed?",
       "lastCheckin": "Last check-in",
       "never": "Never",
@@ -301,7 +302,7 @@
     },
     "intakeTab": {
       "empty": "The client hasn't started the intake questionnaire yet.",
-      "draft": "Draft — not submitted yet."
+      "draft": "Draft - not submitted yet."
     },
     "paymentTab": {
       "package": "Package",

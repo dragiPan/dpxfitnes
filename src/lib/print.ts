@@ -59,7 +59,7 @@ export function printProgram(
   let html = `<h1>${esc(program.title)}</h1>`
   if (program.description) html += `<p class="notes">${esc(program.description)}</p>`
   program.program_days.forEach((day, i) => {
-    html += `<h2>${esc(labels.day)} ${i + 1}${day.title ? ` — ${esc(day.title)}` : ''}</h2>`
+    html += `<h2>${esc(labels.day)} ${i + 1}${day.title ? ` - ${esc(day.title)}` : ''}</h2>`
     html += `<table><tr><th>${esc(labels.exercise)}</th><th>${esc(labels.sets)}</th><th>${esc(labels.reps)}</th><th>${esc(labels.weight)}</th><th>${esc(labels.rest)}</th></tr>`
     for (const ex of day.program_exercises) {
       const cardio = ex.kind === 'cardio'

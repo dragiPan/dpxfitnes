@@ -334,7 +334,7 @@ function ExerciseEditor({
               defaultValue={ex.target_zone ?? ''}
               onChange={(e) => void save('target_zone', e.target.value)}
             >
-              <option value="">–</option>
+              <option value="">-</option>
               <option value="1">Z1</option>
               <option value="2">Z2</option>
               <option value="3">Z3</option>

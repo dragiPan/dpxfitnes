@@ -29,14 +29,14 @@ export default function IntakeTab({ client }: { client: Profile }) {
     <div className="max-w-2xl space-y-3">
       <p className="text-xs font-bold text-neutral-500">
         {response.submitted_at
-          ? `✓ ${t('intake.submitted')} — ${new Date(response.submitted_at).toLocaleDateString()}`
+          ? `✓ ${t('intake.submitted')} - ${new Date(response.submitted_at).toLocaleDateString()}`
           : t('coach.intakeTab.draft')}
       </p>
       {INTAKE_QUESTIONS.map((q) => (
         <div key={q} className="card">
           <p className="label">{t(`intake.q.${q}`)}</p>
           <p className="whitespace-pre-wrap text-sm">
-            {response.answers?.[q] || <span className="text-neutral-400">—</span>}
+            {response.answers?.[q] || <span className="text-neutral-400">-</span>}
           </p>
         </div>
       ))}

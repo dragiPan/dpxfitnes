@@ -163,7 +163,7 @@ export default function Planner() {
           <span className="px-2 text-xs font-black uppercase">
             {viewDays === 1
               ? format(start, 'EEE d.M.yyyy')
-              : `${format(start, 'd.M.')} – ${format(addDays(start, viewDays - 1), 'd.M.yyyy')}`}
+              : `${format(start, 'd.M.')} - ${format(addDays(start, viewDays - 1), 'd.M.yyyy')}`}
           </span>
           <button className="btn btn-sm" onClick={() => setStart((s) => addDays(s, viewDays))}>
             →
@@ -221,7 +221,7 @@ export default function Planner() {
                     {!e.allDay && (
                       <span>
                         {format(e.start, 'HH:mm')}
-                        {e.end ? `–${format(e.end, 'HH:mm')}` : ''} ·{' '}
+                        {e.end ? `-${format(e.end, 'HH:mm')}` : ''} ·{' '}
                       </span>
                     )}
                     {e.allDay && <span>{t('planner.allDay')} · </span>}

@@ -103,8 +103,8 @@ export default function CoachDashboard() {
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <p className="font-black">{c.profile?.full_name || c.profile?.email}</p>
                 <p className="text-xs font-bold">
-                  {c.calories ?? '–'} kcal · P {c.protein ?? '–'}g ·{' '}
-                  {c.weight != null ? `${c.weight} kg` : '–'}
+                  {c.calories ?? '-'} kcal · P {c.protein ?? '-'}g ·{' '}
+                  {c.weight != null ? `${c.weight} kg` : '-'}
                 </p>
               </div>
               {c.notes && <p className="mt-1 text-sm text-neutral-600">{c.notes}</p>}

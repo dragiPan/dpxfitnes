@@ -115,7 +115,7 @@ export default function CheckIn() {
       await notifyUsers(((coaches as string[] | null) ?? []).map(String), {
         type: 'checkin',
         title: `Check-in: ${profile?.full_name || profile?.email} (${date})`,
-        body: `kcal: ${values.calories || '–'} | P: ${values.protein || '–'} | ${t('common.weight')}: ${values.weight || '–'}`,
+        body: `kcal: ${values.calories || '-'} | P: ${values.protein || '-'} | ${t('common.weight')}: ${values.weight || '-'}`,
         link: `/clients/${session.user.id}?tab=checkins`,
       })
 
@@ -279,7 +279,7 @@ export default function CheckIn() {
               value={cardioDraft.zone}
               onChange={(e) => setCardioDraft((d) => ({ ...d, zone: e.target.value }))}
             >
-              <option value="">–</option>
+              <option value="">-</option>
               <option value="1">Z1</option>
               <option value="2">Z2</option>
               <option value="3">Z3</option>
@@ -302,7 +302,7 @@ export default function CheckIn() {
               inputMode="numeric"
               value={cardioDraft.steps}
               onChange={(e) => setCardioDraft((d) => ({ ...d, steps: e.target.value }))}
-              placeholder="–"
+              placeholder="-"
             />
           </div>
           <div className="col-span-2 flex items-end sm:col-span-1">

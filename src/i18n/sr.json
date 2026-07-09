@@ -24,7 +24,7 @@
     "sendCode": "Pošalji kod za prijavu",
     "code": "6-cifreni kod",
     "verifyCode": "Potvrdi kod",
-    "codeSent": "Kod je poslat — proveri email.",
+    "codeSent": "Kod je poslat - proveri email.",
     "inviteOnly": "Platforma je dostupna samo po pozivu. Ako nemaš nalog, traži poziv od svog trenera.",
     "error": "Prijava nije uspela. Proveri email/kod i pokušaj ponovo."
   },
@@ -136,16 +136,17 @@
     "steps": "Koraci",
     "nutrition": "Ishrana",
     "prs": "Lični rekordi",
-    "cardio4w": "Kardio — poslednje 4 nedelje",
+    "cardio4w": "Kardio - poslednje 4 nedelje",
     "sessions": "Treninzi",
-    "macroSplit": "Odnos makroa — prosek 7 dana",
-    "macroSplitN": "Odnos makroa — prosek {{n}} dana",
+    "macroSplit": "Odnos makroa - prosek 7 dana",
+    "macroSplitN": "Odnos makroa - prosek {{n}} dana",
     "averages": "Prosek za 7 dana",
-    "averagesN": "Prosek — poslednjih {{n}} dana",
-    "adherence": "Pogađanje ciljeva — 30 dana",
+    "averagesN": "Prosek - poslednjih {{n}} dana",
+    "adherence": "Pogađanje ciljeva - 30 dana",
+    "adherenceN": "Pogađanje ciljeva - {{n}} dana",
     "calOnTarget": "Kalorije u cilju (±10%)",
     "proteinHit": "Pogođen proteinski cilj",
-    "checkinCompliance": "Prijave (7 dana)"
+    "checkinCompliance": "Prijave"
   },
   "cardio": {
     "title": "Kardio",
@@ -270,7 +271,7 @@
       "email": "Email klijenta",
       "fullName": "Ime i prezime",
       "sendInvite": "Pošalji poziv",
-      "invited": "Poziv poslat — klijent će dobiti email za otvaranje naloga.",
+      "invited": "Poziv poslat - klijent će dobiti email za otvaranje naloga.",
       "inviteError": "Poziv nije uspeo. Da li je invite-client funkcija postavljena?",
       "lastCheckin": "Poslednja prijava",
       "never": "Nikad",
@@ -301,7 +302,7 @@
     },
     "intakeTab": {
       "empty": "Klijent još nije počeo uvodni upitnik.",
-      "draft": "Nacrt — još nije poslato."
+      "draft": "Nacrt - još nije poslato."
     },
     "paymentTab": {
       "package": "Paket",

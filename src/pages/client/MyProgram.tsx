@@ -269,7 +269,7 @@ function ExerciseCard({
             </>
           ) : (
             <>
-              {ex.target_sets ?? '–'} × {ex.target_reps ?? '–'}
+              {ex.target_sets ?? '-'} × {ex.target_reps ?? '-'}
               {ex.target_weight ? ` @ ${ex.target_weight}` : ''}
               {ex.target_rpe ? ` · ${t('program.rpe')} ${ex.target_rpe}` : ''}
               {ex.rest_seconds ? ` · ${t('program.rest')} ${ex.rest_seconds}s` : ''}
@@ -289,7 +289,7 @@ function ExerciseCard({
 
       <div className="mt-3">
         <p className="label">
-          {t('program.logTitle')} — {t('common.today')}
+          {t('program.logTitle')} - {t('common.today')}
         </p>
         <div className="space-y-1">
           {Array.from({ length: numRows + extraSets }, (_, i) => i + 1).map((setNo) => {
@@ -359,8 +359,8 @@ function ExerciseCard({
                 .sort((a, b) => a.set_number - b.set_number)
                 .map((s) =>
                   cardio
-                    ? `${s.duration_min ?? '–'}min / ${s.steps ?? '–'} ${t('progress.steps').toLowerCase()}`
-                    : `${s.reps ?? '–'}×${s.weight ?? '–'}kg`,
+                    ? `${s.duration_min ?? '-'}min / ${s.steps ?? '-'} ${t('progress.steps').toLowerCase()}`
+                    : `${s.reps ?? '-'}×${s.weight ?? '-'}kg`,
                 )
                 .join(', ')}
             </p>

@@ -116,7 +116,7 @@ export default function SessionsTab({ client }: { client: Profile }) {
             hour: '2-digit',
             minute: '2-digit',
           })}{' '}
-          – {new Date(s.end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          - {new Date(s.end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </p>
       </div>
       <button className="btn btn-sm" onClick={() => void remove(s.id)}>
